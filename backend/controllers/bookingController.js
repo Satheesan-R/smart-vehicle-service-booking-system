@@ -21,3 +21,16 @@ exports.createBooking = (req, res) => {
   });
  });
 };
+
+
+exports.updateBookingStatus = (req, res) => {
+  const bookingId = req.params.id;
+  const { status } = req.body;
+
+  const sql = "UPDATE bookings SET status = ? WHERE id = ?";
+  db.query(sql, [status, bookingId], (err, result) => {
+    if (err) return res.status(500).json({ message: "Database error", error: err.message });
+    res.json({
+       message: "Booking status updated" });
+  });
+};
