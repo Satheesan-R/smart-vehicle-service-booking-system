@@ -9,10 +9,6 @@ export default function AllBookings() {
     setBookings(data);
   };
 
-  useEffect(() => {
-    fetchBookings();
-  }, []);
-
   const updateStatus = async (id) => {
     await fetch(`http://localhost:5000/api/bookings/${id}/status`, {
       method: "PUT",
@@ -22,15 +18,17 @@ export default function AllBookings() {
     fetchBookings();
   };
 
+  useEffect(() => { fetchBookings(); }, []);
+
   return (
     <div>
       <h2>Garage Dashboard</h2>
       <ul>
-        {bookings.map(booking => (
-          <li key={booking.id}>
-            {booking.service_type} - {booking.status} - {booking.booking_date}
-            {booking.status !== "completed" && (
-              <button onClick={() => updateStatus(booking.id)}>Mark Completed</button>
+        {bookings.map(b => (
+          <li key={b.id}>
+            {b.service_type} - {b.status} 
+            {b.status !== "completed" && (
+              <button onClick={() => updateStatus(b.id)}>Mark Completed</button>
             )}
           </li>
         ))}

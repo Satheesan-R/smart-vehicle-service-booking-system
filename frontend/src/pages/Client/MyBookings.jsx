@@ -6,22 +6,17 @@ export default function MyBookings() {
   const fetchBookings = async () => {
     const res = await fetch("http://localhost:5000/api/bookings");
     const data = await res.json();
-    // Filter only bookings for this user (replace 1 with dynamic user_id if needed)
-    setBookings(data.filter(b => b.user_id === 1));
+    setBookings(data);
   };
 
-  useEffect(() => {
-    fetchBookings();
-  }, []);
+  useEffect(() => { fetchBookings(); }, []);
 
   return (
     <div>
       <h2>My Bookings</h2>
       <ul>
-        {bookings.map(booking => (
-          <li key={booking.id}>
-            {booking.service_type} - {booking.status} - {booking.booking_date}
-          </li>
+        {bookings.map(b => (
+          <li key={b.id}>{b.service_type} - {b.status}</li>
         ))}
       </ul>
     </div>
