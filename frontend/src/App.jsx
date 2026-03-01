@@ -123,8 +123,8 @@ function App() {
       <h2>All Bookings</h2>
       <ul>
         {bookings.map((booking) => (
-          <li key={booking.id} style={{ marginBottom: "10px" }}>
-            {booking.service_type} - <strong>{booking.status}</strong>{" "}
+          <li key={booking.id}>
+            <strong>{booking.service_type}</strong> - Status: {booking.status} (User ID: {booking.user_id})
             {booking.status !== "completed" && (
               <button onClick={() => updateStatus(booking.id)}>Mark Completed</button>
             )}
