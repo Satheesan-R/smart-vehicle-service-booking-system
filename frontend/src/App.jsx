@@ -67,6 +67,12 @@ function App() {
         {bookings.map((booking) => (
           <li key={booking.id}>
             {booking.service_type} - {booking.status}
+            {/* Button to mark completed */}
+            {booking.status !== "completed" && (
+              <button onClick={() => updateStatus(booking.id)}>
+                Mark Completed
+              </button>
+            )}
           </li>
         ))}
       </ul>
