@@ -28,7 +28,7 @@ export default function ClientDashboard() {
     }
   };
 
-  const loadUpdatesForBooking = async (bookingId) => {
+    const loadUpdatesForBooking = async (bookingId) => {
     try {
       const updates = await getBookingUpdates(bookingId);
       setUpdatesByBooking((prev) => ({
@@ -39,6 +39,7 @@ export default function ClientDashboard() {
       setError(err.message);
     }
   };
+
 
   useEffect(() => {
     loadBookings();
