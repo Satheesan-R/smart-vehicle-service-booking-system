@@ -3,7 +3,17 @@ import { Link } from "react-router-dom";
 export default function LandingPage() {
   return (
     <div className="landing-page">
-
+      <header className="landing-header">
+        <h2 className="brand">Smart Vehicle Service</h2>
+        <div className="auth-actions">
+          <Link className="btn btn-outline" to="/signup">
+            Sign Up
+          </Link>
+          <Link className="btn btn-primary" to="/login">
+            Login
+          </Link>
+        </div>
+      </header>
 
       <section className="hero">
         <h1>Professional Vehicle Service Booking Platform</h1>
