@@ -28,6 +28,18 @@ export default function ClientDashboard() {
     }
   };
 
+    const loadUpdatesForBooking = async (bookingId) => {
+    try {
+      const updates = await getBookingUpdates(bookingId);
+      setUpdatesByBooking((prev) => ({
+        ...prev,
+        [bookingId]: updates
+      }));
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
 
   useEffect(() => {
     loadBookings();
