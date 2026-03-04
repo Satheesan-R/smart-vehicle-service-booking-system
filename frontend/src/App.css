@@ -1,42 +1,254 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.landing-page,
+.dashboard-page {
+  min-height: 100vh;
+  padding: 24px 48px;
+  background: #f4f7fb;
+  color: #1b2430;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.landing-header,
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.brand {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.auth-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.hero {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.hero h1 {
+  margin: 0 0 10px;
+  font-size: 2rem;
+}
+
+.hero p {
+  margin: 0;
+  color: #4a5463;
+}
+
+.service-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.service-card,
+.panel,
+.auth-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e5eaf0;
+  padding: 18px;
+}
+
+.service-card h3,
+.panel h2,
+.auth-card h1 {
+  margin: 0 0 8px;
+}
+
+.service-card p,
+.muted {
+  margin: 0;
+  color: #5e6978;
+}
+
+.panel {
+  margin-top: 20px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: #1b62f2;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #0f53de;
+}
+
+.btn-outline {
+  background: #fff;
+  border-color: #cfd7e3;
+  color: #213042;
+}
+
+.btn-outline:hover {
+  background: #f8faff;
+}
+
+.auth-layout {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f7fb;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.form-inline {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.eta-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 8px;
+}
+
+input,
+select {
+  border: 1px solid #ccd5e2;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.95rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #e8edf3;
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+th {
+  background: #f8fbff;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #7a5a00;
+}
+
+.status-in-progress {
+  background: #dbeafe;
+  color: #164c95;
+}
+
+.status-completed {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.error-text {
+  color: #c62828;
+  margin: 0;
+}
+
+.success-text {
+  color: #2e7d32;
+  margin: 0;
+}
+
+.switch-link {
+  margin-top: 12px;
+}
+
+.timeline-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.timeline-card {
+  border: 1px solid #e5eaf0;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fbfdff;
+}
+
+.timeline-card h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.timeline-list {
+  margin: 0;
+  padding-left: 16px;
+}
+
+.timeline-item {
+  margin-bottom: 8px;
+}
+
+.timeline-message {
+  margin: 0;
+  font-weight: 500;
+}
+
+.timeline-meta {
+  margin: 2px 0 0;
+  color: #5e6978;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .landing-page,
+  .dashboard-page {
+    padding: 18px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .landing-header,
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
