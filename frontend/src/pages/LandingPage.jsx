@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./LandingPage.css";
 
 export default function LandingPage() {
   return (
@@ -22,7 +23,7 @@ export default function LandingPage() {
           transparent workflow. From routine maintenance to urgent repairs, everything stays organized in a
           single dashboard.
         </p>
-        <div className="auth-actions" style={{ marginTop: "16px" }}>
+        <div className="auth-actions hero-actions">
           <Link className="btn btn-primary" to="/signup">
             Get Started
           </Link>

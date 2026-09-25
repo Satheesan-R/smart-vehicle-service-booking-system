@@ -1,0 +1,123 @@
+/* Landing page styles. Scoped to keep changes local to this page. */
+.landing-page {
+  min-height: 100vh;
+  padding: 24px 48px;
+  background: #f4f7fb;
+  color: #1b2430;
+}
+
+.landing-page .landing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.landing-page .brand {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.landing-page .auth-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.landing-page .hero {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.landing-page .hero h1 {
+  margin: 0 0 10px;
+  font-size: 2rem;
+}
+
+.landing-page .hero p {
+  margin: 0;
+  color: #4a5463;
+}
+
+.landing-page .service-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.landing-page .service-card,
+.landing-page .panel {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e5eaf0;
+  padding: 18px;
+}
+
+.landing-page .service-card h3,
+.landing-page .panel h2 {
+  margin: 0 0 8px;
+}
+
+.landing-page .service-card p,
+.landing-page .muted {
+  margin: 0;
+  color: #5e6978;
+}
+
+.landing-page .panel {
+  margin-top: 20px;
+}
+
+.landing-page .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.landing-page .btn-primary {
+  background: linear-gradient(90deg, #2a5dff 60%, #1741b6 100%);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(42,93,255,0.10);
+  border: 1.5px solid #2a5dff;
+  transition: background 0.2s, box-shadow 0.2s, border 0.2s;
+}
+
+.landing-page .btn-primary:hover {
+  background: linear-gradient(90deg, #1741b6 60%, #2a5dff 100%);
+  box-shadow: 0 4px 16px rgba(42,93,255,0.18);
+  border-color: #1741b6;
+}
+
+.landing-page .btn-outline {
+  background: #fff;
+  border: 1.5px solid #2a5dff;
+  color: #2a5dff;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.landing-page .btn-outline:hover {
+  background: #eaf0ff;
+  color: #1741b6;
+  border-color: #1741b6;
+}
+
+.landing-page .hero-actions {
+  margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+  .landing-page {
+    padding: 18px;
+  }
+
+  .landing-page .landing-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
