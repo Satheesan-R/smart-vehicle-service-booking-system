@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { saveAuth } from "../auth";
 import { loginUser, registerUser } from "../services/api";
 import "./RegisterPage.css";
+import "./LoginPage.css";
 
 export default function AuthPage({ mode }) {
   const isSignup = mode === "signup";
@@ -102,10 +103,23 @@ export default function AuthPage({ mode }) {
     );
   }
   return (
-    <div className="auth-layout">
+    <div className="login-page">
+      <aside className="login-story">
+        <Link className="login-brand" to="/">SMART VEHICLE <span>SERVICE & CARE</span></Link>
+        <div>
+          <p className="login-eyebrow">WELCOME BACK TO BETTER CARE</p>
+          <h2>Your vehicle.<br />Your journey.<br /><span>You're in control.</span></h2>
+          <p>Pick up where you left off. Your bookings, service updates, and next steps are waiting in your dashboard.</p>
+          <ul><li>All your service bookings in one place</li><li>Updates that keep you in the loop</li><li>A dashboard built around your account</li></ul>
+        </div>
+        <p className="login-story-footer">BETTER CARE. EVERY JOURNEY.</p>
+      </aside>
+      <section className="login-content" aria-label="Log in to your account">
+      <Link className="login-home" to="/">← Back to home</Link>
       <div className="auth-card">
+        <p className="login-eyebrow">YOUR DASHBOARD AWAITS</p>
         <h1>{title}</h1>
-        <p className="muted">{isSignup ? "Register as Client or Garage" : "Login with your email and password"}</p>
+        <p className="muted">Log in to keep your service journey moving.</p>
 
         <form className="form" onSubmit={handleSubmit}>
           {isSignup && (
@@ -121,17 +135,20 @@ export default function AuthPage({ mode }) {
             </>
           )}
 
-          <label>Email</label>
-          <input type="email" name="email" value={form.email} onChange={handleChange} required />
+          <label htmlFor="login-email">Email address</label>
+          <input id="login-email" type="email" name="email" autoComplete="username" placeholder="you@example.com" value={form.email} onChange={handleChange} disabled={loading} required />
 
-          <label>Password</label>
-          <input type="password" name="password" value={form.password} onChange={handleChange} required />
+          <label htmlFor="login-password">Password</label>
+          <div className="login-password-wrap">
+            <input id="login-password" type={showPassword ? "text" : "password"} name="password" autoComplete="current-password" placeholder="Enter your password" value={form.password} onChange={handleChange} disabled={loading} required />
+            <button type="button" className="login-password-toggle" onClick={() => setShowPassword(previous => !previous)} aria-pressed={showPassword} aria-label={showPassword ? "Hide password" : "Show password"}>{showPassword ? "Hide" : "Show"}</button>
+          </div>
 
-          {error && <p className="error-text">{error}</p>}
-          {message && <p className="success-text">{message}</p>}
+          {error && <p className="error-text" role="alert">{error}</p>}
+          {message && <p className="success-text" role="status">{message}</p>}
 
           <button className="btn btn-primary" type="submit" disabled={loading}>
-            {loading ? "Please wait..." : isSignup ? "Register" : "Login"}
+            {loading ? "Logging in..." : "Log in to your dashboard ↗"}
           </button>
         </form>
 
@@ -140,6 +157,8 @@ export default function AuthPage({ mode }) {
           <Link to={isSignup ? "/login" : "/signup"}>{isSignup ? "Login" : "Sign Up"}</Link>
         </p>
       </div>
+      <footer className="login-footer">Smart Vehicle Service <span>Better care. Every journey.</span></footer>
+      </section>
     </div>
   );
 }
