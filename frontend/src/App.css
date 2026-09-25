@@ -1,3 +1,5 @@
+
+
 .landing-page,
 .dashboard-page {
   min-height: 100vh;
@@ -84,22 +86,30 @@
 }
 
 .btn-primary {
-  background: #1b62f2;
+  background: linear-gradient(90deg, #2a5dff 60%, #1741b6 100%);
   color: #fff;
+  box-shadow: 0 2px 8px rgba(42,93,255,0.10);
+  border: 1.5px solid #2a5dff;
+  transition: background 0.2s, box-shadow 0.2s, border 0.2s;
 }
 
-.btn-primary:hover {
-  background: #0f53de;
+ .btn-primary:hover {
+  background: linear-gradient(90deg, #1741b6 60%, #2a5dff 100%);
+  box-shadow: 0 4px 16px rgba(42,93,255,0.18);
+  border-color: #1741b6;
 }
 
 .btn-outline {
   background: #fff;
-  border-color: #cfd7e3;
-  color: #213042;
+  border: 1.5px solid #2a5dff;
+  color: #2a5dff;
+  transition: background 0.2s, color 0.2s, border 0.2s;
 }
 
-.btn-outline:hover {
-  background: #f8faff;
+ .btn-outline:hover {
+  background: #eaf0ff;
+  color: #1741b6;
+  border-color: #1741b6;
 }
 
 .auth-layout {
