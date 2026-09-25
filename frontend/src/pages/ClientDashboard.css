@@ -1,0 +1,125 @@
+﻿/* Client dashboard only. All selectors are scoped to this page. */
+.client-dashboard { --client-ink: #172b32; --client-muted: #6c7972; --client-accent: #d4ee82; display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: 100vh; background: #f5f7f3; color: var(--client-ink); }
+.client-dashboard a { text-decoration: none; }
+.client-dashboard a:focus-visible, .client-dashboard button:focus-visible { outline: 3px solid #819e4e; outline-offset: 4px; }
+.client-dashboard .client-sidebar { position: sticky; top: 0; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; background: #172b32; color: #fff; padding: 32px 22px 20px; }
+.client-dashboard .client-brand { display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 750; letter-spacing: 1px; }
+.client-dashboard .client-brand-mark { width: 36px; height: 38px; display: grid; place-items: center; background: var(--client-accent); color: var(--client-ink); border-radius: 9px; font-size: 25px; letter-spacing: -2px; }
+.client-dashboard .client-brand small { display: block; color: #aebfbc; font-size: 7px; font-weight: 400; letter-spacing: 2.6px; margin-top: 4px; }
+.client-dashboard .client-nav-label { color: #a2b7b4; font-size: 8px; letter-spacing: 1.6px; margin: 50px 10px 16px; }
+.client-dashboard nav { display: grid; gap: 7px; }
+.client-dashboard nav a { display: flex; justify-content: space-between; align-items: center; padding: 13px 12px; border-radius: 7px; color: #ccdad5; font-size: 12px; }
+.client-dashboard nav a:first-child { background: #d4ee821a; color: var(--client-accent); }
+.client-dashboard nav a:hover { background: #ffffff0d; }
+.client-dashboard nav a span { font-size: 13px; }
+.client-dashboard .client-sidebar-note { padding: 22px 17px; margin-top: auto; margin-bottom: 28px; background: #ffffff07; border: 1px solid #ffffff15; border-radius: 10px; }
+.client-dashboard .client-sidebar-note > span { color: var(--client-accent); font-size: 25px; }
+.client-dashboard .client-sidebar-note h2 { font-size: 18px; line-height: 1.4; font-weight: 500; margin: 15px 0 9px; }
+.client-dashboard .client-sidebar-note p { color: #aebfbc; font-size: 11px; line-height: 1.8; }
+.client-dashboard .client-sidebar-note a { color: var(--client-accent); font-size: 10px; font-weight: 600; }
+.client-dashboard .client-account { display: flex; align-items: center; gap: 9px; border-top: 1px solid #ffffff19; padding-top: 20px; margin-top: 20px; }
+.client-dashboard .client-avatar { display: grid; place-items: center; width: 30px; height: 30px; flex-shrink: 0; background: #38534c; border-radius: 50%; color: var(--client-accent); font-size: 12px; }
+.client-dashboard .client-account > div { min-width: 0; flex: 1; }
+.client-dashboard .client-account strong { display: block; font-size: 11px; overflow-wrap: anywhere; }
+.client-dashboard .client-account small { font-size: 9px; color: #aebfbc; }
+.client-dashboard .client-account button { background: transparent; color: #d4ee82; border: 0; padding: 6px 0; font-size: 10px; cursor: pointer; white-space: nowrap; }
+.client-dashboard .client-main { min-width: 0; width: 100%; max-width: 1450px; margin-inline: auto; padding: 0 40px; }
+.client-dashboard .client-topbar { display: flex; align-items: center; justify-content: space-between; gap: 15px; min-height: 83px; border-bottom: 1px solid #dfe5da; font-size: 11px; color: var(--client-muted); }
+.client-dashboard .client-topbar > span > span { margin: 0 12px; color: #a4aea2; }
+.client-dashboard .client-topbar strong { color: var(--client-ink); font-weight: 500; }
+.client-dashboard .client-account-tag { font-size: 8px; letter-spacing: 1.3px; border: 1px solid #dce4d4; padding: 7px 10px; border-radius: 20px; }
+.client-dashboard .client-welcome { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 34px 28px; }
+.client-dashboard .client-eyebrow { font-size: 8px; letter-spacing: 1.6px; font-weight: 700; color: #6c824d; margin: 0 0 10px; }
+.client-dashboard h1 { font-size: clamp(26px, 2.6vw, 37px); font-weight: 600; line-height: 1.2; letter-spacing: -1.2px; margin: 0; overflow-wrap: anywhere; }
+.client-dashboard h1 span { color: #799a46; }
+.client-dashboard .client-welcome p:last-child { color: var(--client-muted); font-size: 12px; margin: 12px 0 0; }
+.client-dashboard .client-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 25px; padding: 14px 18px; border: 0; border-radius: 7px; font: inherit; font-size: 11px; font-weight: 600; background: var(--client-ink); color: var(--client-accent); cursor: pointer; }
+.client-dashboard .client-button:hover:not(:disabled) { background: #304a43; }
+.client-dashboard .client-button:disabled { opacity: .6; cursor: wait; }
+.client-dashboard .client-button span { font-size: 18px; line-height: 1; }
+.client-dashboard .client-welcome > .client-button { flex-shrink: 0; }
+.client-dashboard .client-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 26px; }
+.client-dashboard .client-stat { padding: 21px; background: #fff; border: 1px solid #e2e7dd; border-radius: 10px; }
+.client-dashboard .client-stat > div { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: #627067; font-size: 11px; }
+.client-dashboard .client-stat > strong { display: block; margin: 15px 0 5px; font-size: 32px; font-weight: 600; line-height: 1; }
+.client-dashboard .client-stat p { margin: 10px 0 0; font-size: 9px; color: var(--client-muted); }
+.client-dashboard .client-stat-dot { width: 7px; height: 7px; border-radius: 50%; background: #73945b; flex-shrink: 0; }
+.client-dashboard .dot-1 { background: #d5ac55; }
+.client-dashboard .dot-2 { background: #6699b2; }
+.client-dashboard .dot-3 { background: #79a575; }
+.client-dashboard .client-workspace-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 24px; }
+.client-dashboard .client-panel { padding: 27px; border: 1px solid #e2e7dd; background: #fff; border-radius: 11px; scroll-margin-top: 20px; min-width: 0; }
+.client-dashboard h2 { margin: 0; font-size: 20px; letter-spacing: -.5px; font-weight: 600; }
+.client-dashboard .client-panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+.client-dashboard .client-panel-symbol { background: #eef3e6; color: #6c824d; padding: 6px 12px; border-radius: 8px; font-size: 22px; }
+.client-dashboard .client-panel-description { color: var(--client-muted); margin: 12px 0 23px; font-size: 11px; line-height: 1.8; }
+.client-dashboard .client-form { display: grid; gap: 17px; }
+.client-dashboard .client-form label { display: block; font-size: 11px; font-weight: 600; margin-bottom: 8px; }
+.client-dashboard .client-form input, .client-dashboard .client-form select { width: 100%; min-width: 0; background: #fafbf8; color: var(--client-ink); font: inherit; font-size: 12px; border: 1px solid #dce3d6; border-radius: 6px; padding: 12px; }
+.client-dashboard .client-form input:focus, .client-dashboard .client-form select:focus { outline: none; border-color: #819e4e; box-shadow: 0 0 0 3px #819e4e20; }
+.client-dashboard .client-form input::placeholder { color: #929c91; }
+.client-dashboard .client-form-note { margin: -5px 0 0; text-align: center; font-size: 9px; color: var(--client-muted); }
+.client-dashboard .client-service-list { display: grid; }
+.client-dashboard .client-service-list a { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid #e8ece3; font-size: 12px; }
+.client-dashboard .client-service-list a:hover { color: #66813f; }
+.client-dashboard .client-service-list a > span:last-child { margin-left: auto; }
+.client-dashboard .client-service-number { color: #7b925b; font-size: 9px; background: #f0f4e9; padding: 7px 8px; border-radius: 5px; }
+.client-dashboard .client-service-note { background: #f3f6ed; padding: 16px; margin-top: 22px; border-radius: 7px; }
+.client-dashboard .client-service-note strong { font-size: 11px; font-weight: 600; }
+.client-dashboard .client-service-note p { font-size: 10px; color: var(--client-muted); line-height: 1.7; margin: 6px 0 0; }
+.client-dashboard .client-requests { margin-top: 24px; }
+.client-dashboard .client-count { font-size: 10px; white-space: nowrap; color: #6c824d; background: #f0f4e9; border-radius: 20px; padding: 6px 11px; }
+.client-dashboard .client-table-wrap { overflow-x: auto; margin-top: 24px; }
+.client-dashboard table { width: 100%; border-collapse: collapse; }
+.client-dashboard th { background: #f5f7f1; color: #75806f; font-weight: 500; font-size: 10px; text-align: left; padding: 12px; border-bottom: 1px solid #e5eadf; }
+.client-dashboard td { padding: 16px 12px; font-size: 11px; text-align: left; border-bottom: 1px solid #eaf0e5; overflow-wrap: anywhere; }
+.client-dashboard .client-status { display: inline-block; white-space: nowrap; text-transform: capitalize; border-radius: 20px; font-size: 9px; padding: 5px 10px; background: #eef1e9; color: #64705c; }
+.client-dashboard .client-status-pending { background: #fbf1d8; color: #846725; }
+.client-dashboard .client-status-in-progress { background: #e7f0f6; color: #3d6984; }
+.client-dashboard .client-status-completed { background: #e8f2df; color: #4e753b; }
+.client-dashboard .client-empty { text-align: center; padding: 26px 10px; }
+.client-dashboard .client-empty strong { font-size: 14px; font-weight: 500; }
+.client-dashboard .client-empty p { color: var(--client-muted); font-size: 11px; line-height: 1.8; }
+.client-dashboard .client-empty a { display: inline-block; margin-top: 10px; color: #587537; font-weight: 600; }
+.client-dashboard .client-progress { padding-block: 32px; scroll-margin-top: 20px; }
+.client-dashboard .client-progress-empty { padding: 22px; border: 1px dashed #ccd7c1; border-radius: 9px; font-size: 12px; color: var(--client-muted); }
+.client-dashboard .client-timeline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; margin-top: 20px; }
+.client-dashboard .client-timeline { background: #fff; border: 1px solid #e2e7dd; border-radius: 10px; padding: 22px; min-width: 0; }
+.client-dashboard .client-timeline-heading h3 { font-size: 13px; margin: 0 0 4px; font-weight: 600; }
+.client-dashboard .client-timeline-heading span { font-size: 10px; color: var(--client-muted); }
+.client-dashboard .client-no-updates { font-size: 11px; color: var(--client-muted); margin: 20px 0 0; }
+.client-dashboard .client-timeline ul { padding-left: 16px; margin: 20px 0 0; color: #799a46; }
+.client-dashboard .client-timeline li { padding: 0 0 17px 4px; }
+.client-dashboard .client-timeline li:last-child { padding-bottom: 0; }
+.client-dashboard .client-timeline li p { color: var(--client-ink); font-size: 12px; margin: 0 0 6px; overflow-wrap: anywhere; }
+.client-dashboard .client-timeline small { font-size: 9px; color: var(--client-muted); line-height: 1.8; }
+.client-dashboard .client-error { color: #9d3022; border: 1px solid #f2c6bc; background: #fff0ed; padding: 14px; font-size: 12px; border-radius: 8px; overflow-wrap: anywhere; }
+.client-dashboard .client-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 20px 0; border-top: 1px solid #dfe5da; font-size: 9px; color: var(--client-muted); }
+@media (max-width: 1150px) {
+  .client-dashboard { grid-template-columns: 220px minmax(0, 1fr); }
+  .client-dashboard .client-main { padding-inline: 24px; }
+  .client-dashboard .client-sidebar { padding-inline: 16px; }
+  .client-dashboard .client-stats { gap: 10px; }
+  .client-dashboard .client-stat { padding: 16px; }
+  .client-dashboard .client-workspace-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 780px) {
+  .client-dashboard { grid-template-columns: 1fr; }
+  .client-dashboard .client-sidebar { position: static; height: auto; padding: 20px 24px; }
+  .client-dashboard .client-nav-label, .client-dashboard .client-sidebar-note { display: none; }
+  .client-dashboard nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+  .client-dashboard nav a { gap: 12px; font-size: 10px; padding: 10px; }
+  .client-dashboard .client-account { margin-top: 12px; padding-top: 14px; }
+  .client-dashboard .client-topbar { min-height: 60px; }
+  .client-dashboard .client-welcome { align-items: flex-start; flex-direction: column; padding-block: 25px; }
+  .client-dashboard .client-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .client-dashboard .client-panel { padding: 22px; }
+  .client-dashboard .client-form input, .client-dashboard .client-form select { font-size: 16px; }
+}
+@media (max-width: 440px) {
+  .client-dashboard .client-main { padding-inline: 16px; }
+  .client-dashboard .client-sidebar { padding-inline: 16px; }
+  .client-dashboard .client-panel { padding: 18px; }
+  .client-dashboard .client-requests .client-panel-heading { flex-wrap: wrap; }
+  .client-dashboard .client-account-tag { font-size: 7px; letter-spacing: .5px; }
+}
