@@ -4,6 +4,13 @@ const jwt = require("jsonwebtoken");
 
 const JWT_SECRET = "your_secret_key"; // later move to .env
 
+function databaseError(res, err) {
+  console.error("Authentication database error:", err);
+  return res.status(500).json({
+    message: "Unable to access the database. Please try again shortly."
+  });
+}
+
 // ================= REGISTER =================
 exports.register = async (req, res) => {
   const { name, email, password, role } = req.body;
@@ -14,7 +21,7 @@ exports.register = async (req, res) => {
 
   // Check if user exists
   db.query("SELECT * FROM users WHERE email = ?", [email], async (err, result) => {
-    if (err) return res.status(500).json(err);
+    if (err) return databaseError(res, err);
     if (result.length > 0) {
       return res.status(400).json({ message: "Email already registered" });
     }
@@ -25,7 +32,7 @@ exports.register = async (req, res) => {
       "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)",
       [name, email, hashedPassword, role],
       (err, result) => {
-        if (err) return res.status(500).json(err);
+        if (err) return databaseError(res, err);
 
         res.json({
           message: "User registered successfully",
@@ -41,7 +48,7 @@ exports.login = (req, res) => {
   const { email, password } = req.body;
 
   db.query("SELECT * FROM users WHERE email = ?", [email], async (err, result) => {
-    if (err) return res.status(500).json(err);
+    if (err) return databaseError(res, err);
     if (result.length === 0) {
       return res.status(400).json({ message: "User not found" });
     }
