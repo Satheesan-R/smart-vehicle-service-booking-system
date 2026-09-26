@@ -103,16 +103,15 @@ export default function AuthPage({ mode }) {
   return (
     <div className="login-page"><header className="login-site-header"><Link className="login-site-brand" to="/">Auto<span>Care</span></Link><Link to="/">← Back to website</Link></header><main className="login-shell">
       <aside className="login-story">
-        <Link className="login-brand" to="/">SMART VEHICLE <span>SERVICE & CARE</span></Link>
+        <Link className="login-brand" to="/">AutoCare <span>SMART SERVICE</span></Link>
         <div>
-          <p className="login-eyebrow">WELCOME BACK TO BETTER CARE</p>
-          <h2>Your vehicle.<br />Your journey.<br /><span>You're in control.</span></h2>
-          <p>Pick up where you left off. Your bookings, service updates, and next steps are waiting in your dashboard.</p>
-          <ul><li>All your service bookings in one place</li><li>Updates that keep you in the loop</li><li>A dashboard built around your account</li></ul>
+          <p className="login-eyebrow">YOUR CONNECTED SERVICE WORKSPACE</p>
+          <h2>Smarter Service & Care<br />for Your Vehicle.</h2>
+          <p>Manage your vehicle service requests and follow repair progress with updates from your garage.</p>
+          <div className="login-preview"><div className="login-preview-title"><strong>Your service journey</strong><span>OVERVIEW</span></div><p>From your first request to service completion.</p><div className="login-preview-steps"><div><small>01</small><strong>Book a visit</strong></div><div><small>02</small><strong>Get updates</strong></div><div><small>03</small><strong>Track progress</strong></div></div></div>
         </div>
-        <p className="login-story-footer">BETTER CARE. EVERY JOURNEY.</p>
-      </aside>
-      <section className="login-content" aria-label="Log in to your account">
+        <ul className="login-panel-benefits"><li>Online booking</li><li>Garage updates</li><li>Service history</li></ul>
+      </aside>      <section className="login-content" aria-label="Log in to your account">
       <Link className="login-home" to="/">← Back to home</Link>
       <div className="auth-card">
         <p className="login-eyebrow">YOUR DASHBOARD AWAITS</p>
@@ -160,4 +159,5 @@ export default function AuthPage({ mode }) {
     </div>
   );
 }
+
 

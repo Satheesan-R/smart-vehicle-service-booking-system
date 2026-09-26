@@ -76,3 +76,25 @@
 @media (max-width: 1000px) { .login-page .login-content { padding: 32px; } }
 @media (max-width: 760px) { .login-page .login-shell { grid-template-columns: 1fr; margin-top: 26px; width: calc(100% - 28px); } }
 @media (max-width: 440px) { .login-page .login-content { padding: 26px 20px; } }
+
+/* Photo and service preview panel. */
+.login-page .login-story { background: #0e2035 url('../assets/login_img.png') center / cover no-repeat; padding: 48px; gap: 45px; align-self: start; min-height: 610px; }
+.login-page .login-brand { font-size: 20px; letter-spacing: -.5px; }
+.login-page .login-brand span { font-size: 8px; letter-spacing: 2px; }
+.login-page .login-story .login-eyebrow { color: #b6cbff; font-size: 11px; }
+.login-page .login-story h2 { font-size: clamp(27px, 2.6vw, 36px); letter-spacing: -.8px; line-height: 1.4; }
+.login-page .login-story h2 + p { max-width: none; color: #c4d1e7; font-size: 13px; }
+.login-page .login-preview { background: #c4d3f038; border: 1px solid #ffffff0b; border-radius: 13px; padding: 22px; margin-top: 24px; }
+.login-page .login-preview-title { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.login-page .login-preview-title strong { font-size: 15px; font-weight: 600; }
+.login-page .login-preview-title span { background: #2d67f7; color: #fff; border-radius: 20px; padding: 5px 9px; font-size: 8px; }
+.login-page .login-preview > p { font-size: 11px; color: #c4d1e7; }
+.login-page .login-preview-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 22px; }
+.login-page .login-preview-steps > div { background: #d5dfff33; border-radius: 7px; padding: 12px; }
+.login-page .login-preview-steps small { display: block; color: #c4d1e7; font-size: 10px; margin-bottom: 5px; }
+.login-page .login-preview-steps strong { font-size: 11px; font-weight: 600; }
+.login-page .login-story .login-panel-benefits { display: flex; flex-wrap: wrap; gap: 18px; font-size: 10px; margin: 0; }
+.login-page .login-panel-benefits li::before { color: #a6c0ff; margin-right: 5px; }
+@media (max-width: 1000px) { .login-page .login-story { padding: 32px; } }
+@media (max-width: 760px) { .login-page .login-story { min-height: auto; gap: 30px; } .login-page .login-story h2 br { display: block; } }
+@media (max-width: 440px) { .login-page .login-story { padding: 26px; } .login-page .login-preview { padding: 15px; } }
