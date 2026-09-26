@@ -76,7 +76,7 @@ export default function AuthPage({ mode }) {
               </fieldset>
               <div className="register-field"><label htmlFor="register-name">{form.role === "garage" ? "Garage name" : "Full name"}</label><input id="register-name" name="name" autoComplete={form.role === "garage" ? "organization" : "name"} placeholder={form.role === "garage" ? "Enter your garage name" : "Enter your full name"} value={form.name} onChange={handleChange} disabled={loading} required /></div>
               <div className="register-field"><label htmlFor="register-email">Email address</label><input id="register-email" type="email" name="email" autoComplete="email" placeholder="you@example.com" value={form.email} onChange={handleChange} disabled={loading} required /></div>
-              <div className="register-field">
+              <div className="register-field register-full-width"><label htmlFor="register-phone">Phone number *</label><div className="register-phone-row"><select name="country_code" aria-label="Country calling code" value={form.country_code} onChange={handleChange} disabled={loading}><option value="+94">+94 (Sri Lanka)</option><option value="+91">+91 (India)</option><option value="+1">+1 (US / Canada)</option><option value="+44">+44 (UK)</option><option value="+61">+61 (Australia)</option></select><input id="register-phone" name="phone" type="tel" autoComplete="tel-national" value={form.phone} onChange={handleChange} placeholder="Your phone number" pattern="[0-9 ()+\-]{6,20}" maxLength={20} required disabled={loading} /></div></div>              <div className="register-field">
                 <label htmlFor="register-password">Password</label>
                 <div className="register-password-wrap"><input id="register-password" type={showPassword ? "text" : "password"} name="password" autoComplete="new-password" placeholder="At least 8 characters" minLength={8} value={form.password} onChange={handleChange} disabled={loading} required /><button type="button" className="register-password-toggle" onClick={() => setShowPassword(previous => !previous)} aria-label={showPassword ? "Hide password" : "Show password"} aria-pressed={showPassword}>{showPassword ? "Hide" : "Show"}</button></div>
               </div>
@@ -153,5 +153,6 @@ export default function AuthPage({ mode }) {
     </div>
   );
 }
+
 
 
