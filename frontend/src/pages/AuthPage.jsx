@@ -91,11 +91,11 @@ export default function AuthPage({ mode }) {
                 </> : <p className="register-garage-info">Garage accounts manage customer service requests. You do not need to register a personal vehicle.</p>}
               </section>              {error && <p className="register-error" role="alert">{error}</p>}
               {message && <p className="register-success" role="status">{message}</p>}
-              <button className="register-submit" type="submit" disabled={loading}><span>{loading ? "Creating your account..." : "Create account"}</span><span aria-hidden="true">↗</span></button>
+<label className="register-confirmation register-full-width"><input type="checkbox" required disabled={loading} /> <span>I confirm that the account and vehicle details above are correct. My phone and vehicle profile will be stored with my account to manage service requests.</span></label><div className="register-bottom-actions register-full-width"><span>Already registered? <Link to="/login">Sign in here</Link></span><button className="register-submit" type="submit" disabled={loading}><span>{loading ? "Creating your account..." : form.role === "client" ? "Create Account & Save Vehicle" : "Create Garage Account"}</span><span aria-hidden="true">→</span></button></div>
               <p className="register-form-note">{form.role === "garage" ? "Your next step: log in and manage customer service requests." : "Your next step: log in and book your first vehicle service."}</p>
             </form>
           </div>
-          <footer className="register-footer">Smart Vehicle Service <span>Better care. Every journey.</span></footer>
+          <footer className="register-footer"><span>✓ Passwords securely hashed</span><span>▦ Account & vehicle profiles</span><span>↗ Organized service booking</span></footer>
         </section>
       </main>
     );
@@ -160,6 +160,7 @@ export default function AuthPage({ mode }) {
     </div>
   );
 }
+
 
 
 
