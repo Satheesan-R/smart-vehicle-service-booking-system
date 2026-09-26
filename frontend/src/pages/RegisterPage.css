@@ -100,3 +100,24 @@
 @media (prefers-reduced-motion: reduce) {
   .register-page .register-field input, .register-page .register-submit { transition: none; }
 }
+
+/* AutoCare reference: centered registration layout. */
+.register-page { display: block; background: #f8f7ff; color: #172035; }
+.register-page .register-site-header { display: flex; justify-content: space-between; align-items: center; gap: 20px; background: #fff; border-bottom: 1px solid #eeeefa; padding: 24px 4%; font-size: 13px; }
+.register-page .register-site-header > a:last-child { color: #005bea; }
+.register-page .register-logo { font-weight: 750; font-size: 22px; letter-spacing: -.7px; }
+.register-page .register-logo span { color: #005bea; }
+.register-page .register-content { max-width: 1100px; margin: auto; padding: 36px 24px 55px; }
+.register-page .register-topbar { font-size: 12px; padding-bottom: 24px; }
+.register-page .register-topbar span a { color: #005bea; }
+.register-page .register-form-wrap { width: 100%; padding: 40px; background: linear-gradient(120deg, #fff 75%, #f7f8ff); border-radius: 16px 16px 0 0; box-shadow: 0 10px 28px #1b224909; }
+.register-page .register-form-wrap > .register-eyebrow { display: inline-block; background: #dfe5ff; color: #19356b; border-radius: 20px; padding: 6px 12px; letter-spacing: .4px; }
+.register-page .register-form-wrap h2 { font-size: clamp(28px, 3.5vw, 43px); }
+.register-page .register-intro { max-width: 690px; font-size: 15px; }
+.register-page .register-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 35px 0; }
+.register-page .register-steps a { display: flex; align-items: center; gap: 16px; padding: 20px; border-radius: 9px; background: #f1f2ff; font-size: 14px; font-weight: 600; }
+.register-page .register-steps b { display: grid; place-items: center; width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: #005bea; color: #fff; }
+.register-page .register-steps small { display: block; font-size: 10px; color: #005bea; margin-bottom: 5px; }
+.register-page #owner-information { font-size: 19px; margin: 0 0 25px; scroll-margin-top: 20px; }
+.register-page .register-footer { background: #f0f2ff; padding: 22px 40px; border-radius: 0 0 16px 16px; box-shadow: 0 10px 20px #1b224911; }
+@media (max-width: 600px) { .register-page .register-form-wrap { padding: 24px 18px; } .register-page .register-content { padding-inline: 12px; } .register-page .register-steps { grid-template-columns: 1fr; } }

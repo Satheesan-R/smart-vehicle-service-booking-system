@@ -57,27 +57,14 @@ export default function AuthPage({ mode }) {
   if (isSignup) {
     return (
       <main className="register-page">
-        <aside className="register-story" aria-labelledby="register-story-title">
-          <Link className="register-brand" to="/" aria-label="Smart Vehicle Service home"><span className="register-brand-mark" aria-hidden="true">S.</span><span>SMART VEHICLE<small>SERVICE & CARE</small></span></Link>
-          <div className="register-story-content">
-            <p className="register-eyebrow">YOUR NEXT JOURNEY STARTS HERE</p>
-            <h1 id="register-story-title">Better care. <br />Fewer worries. <br /><span>All in one place.</span></h1>
-            <p>Join a simpler way to book, manage, and follow your vehicle's service journey.</p>
-            <ul className="register-benefits">
-              <li><span aria-hidden="true">01</span><div><strong>Book on your schedule</strong><p>Send a service request with your preferred date.</p></div></li>
-              <li><span aria-hidden="true">02</span><div><strong>Stay in the loop</strong><p>Follow progress and updates from your garage.</p></div></li>
-              <li><span aria-hidden="true">03</span><div><strong>Keep everything together</strong><p>Manage your bookings from one dashboard.</p></div></li>
-            </ul>
-          </div>
-          <div className="register-story-footer"><span>BUILT FOR DRIVERS & GARAGES</span><span aria-hidden="true">↗</span></div>
-        </aside>
+<header className="register-site-header"><Link className="register-logo" to="/">Auto<span>Care</span></Link><Link to="/">← Back to website</Link></header>
         <section className="register-content" aria-labelledby="register-title">
           <div className="register-topbar"><Link to="/">← Back to home</Link><span>Already a member? <Link to="/login">Log in ↗</Link></span></div>
           <div className="register-form-wrap">
-            <p className="register-eyebrow">LET'S GET YOU STARTED</p>
-            <h2 id="register-title">Create your account<span>.</span></h2>
-            <p className="register-intro">A smoother service experience is just a few details away.</p>
-            <form className="register-form" onSubmit={handleSubmit} aria-busy={loading}>
+            <p className="register-eyebrow">SMART VEHICLE & SERVICE MANAGEMENT</p>
+            <h2 id="register-title">Create Your AutoCare Account</h2>
+            <p className="register-intro">Join a simpler way to manage vehicle maintenance and follow garage progress updates.</p>
+            <nav className="register-steps" aria-label="Registration sections"><a href="#owner-information"><b>1</b><span><small>STEP 1</small>Owner & Account Profile</span></a><a href="#owner-information"><b>2</b><span><small>STEP 2</small>Vehicle Profile</span></a></nav><h3 id="owner-information">1. Owner Information</h3><form className="register-form" onSubmit={handleSubmit} aria-busy={loading}>
               <fieldset className="register-role-picker" disabled={loading}>
                 <legend>I'm joining as a</legend>
                 <div className="register-role-options">
@@ -162,3 +149,4 @@ export default function AuthPage({ mode }) {
     </div>
   );
 }
+
