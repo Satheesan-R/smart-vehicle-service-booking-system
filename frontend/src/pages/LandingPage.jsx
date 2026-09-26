@@ -44,20 +44,16 @@ export default function LandingPage() {
           <div className="landing-section-heading"><div><p className="landing-eyebrow">CARE FOR EVERY MILE</p><h2 id="services-title">Comprehensive Maintenance & Repair Services</h2><p className="section-description">From routine maintenance to diagnostics, find the right care for your vehicle.</p></div><Link className="section-link" to="/signup">Book a service →</Link></div>
           <div className="landing-service-grid">{services.map(([number, title, description]) => <article className="landing-service-card" key={number}><span className="service-number" aria-hidden="true">{["◈", "✓", "◎", "⚙", "ϟ"][Number(number) - 1]}</span><h3>{title}</h3><p>{description}</p><Link to="/signup" aria-label={`Book ${title.toLowerCase()}`}>Book service <span aria-hidden="true">→</span></Link></article>)}</div>
         </section>
-        <section className="landing-process landing-container" id="how-it-works" aria-labelledby="process-title">
-          <div><p className="landing-eyebrow">SIMPLE FROM THE START</p><h2 id="process-title">Three steps.<br />One smoother experience.</h2><p className="process-intro">More clarity at every stage of your service.</p></div>
-          <ol className="process-steps">
-            <li><span>01</span><div><h3>Make it yours</h3><p>Create your account to manage your vehicle's service needs.</p></div></li>
-            <li><span>02</span><div><h3>Book your visit</h3><p>Add your vehicle details, preferred date, and what needs attention.</p></div></li>
-            <li><span>03</span><div><h3>Follow the progress</h3><p>View garage updates and track your booking through to completion.</p></div></li>
-          </ol>
-        </section>
-        <section className="landing-garage landing-container"><div><p className="landing-eyebrow">FOR GARAGE TEAMS</p><h2>Great service starts with better organization.</h2><p>Manage requests, update repair progress, and keep customers in the loop.</p></div><Link className="landing-button landing-button-accent" to="/signup">Register your garage <span aria-hidden="true">↗</span></Link></section>
+        <section className="landing-process" id="how-it-works" aria-labelledby="process-title"><div className="landing-container">
+          <div className="centered-heading"><p className="landing-eyebrow">SEAMLESS PROCESS</p><h2 id="process-title">How AutoCare Works</h2><p>From online booking to service updates, four simple steps to better vehicle care.</p></div>
+          <ol className="process-steps">{[["Register", "Create your account and get ready to manage your vehicle servicing."], ["Select Service", "Choose the maintenance or diagnostic service your vehicle needs."], ["Choose a Date", "Add your vehicle details and preferred service date to your request."], ["Track Your Service", "Follow booking status, garage updates, and estimated completion times."]].map(([title, description], index) => <li key={title}><span>0{index + 1}</span><div><h3>{title}</h3><p>{description}</p></div></li>)}</ol>
+        </div></section>        <section className="landing-garage landing-container"><div><p className="landing-eyebrow">FOR GARAGE TEAMS</p><h2>Great service starts with better organization.</h2><p>Manage requests, update repair progress, and keep customers in the loop.</p></div><Link className="landing-button landing-button-accent" to="/signup">Register your garage <span aria-hidden="true">↗</span></Link></section>
       </main>
       <footer className="landing-footer landing-container"><span>Smart Vehicle Service<span className="footer-dot">.</span></span><p>Better care. Every journey.</p><Link to="/login">Access your dashboard ↗</Link></footer>
     </div>
   );
 }
+
 
 
 
