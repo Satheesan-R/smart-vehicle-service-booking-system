@@ -98,3 +98,26 @@
 @media (max-width: 1000px) { .login-page .login-story { padding: 32px; } }
 @media (max-width: 760px) { .login-page .login-story { min-height: auto; gap: 30px; } .login-page .login-story h2 br { display: block; } }
 @media (max-width: 440px) { .login-page .login-story { padding: 26px; } .login-page .login-preview { padding: 15px; } }
+
+/* Portal selection and email sign-in. */
+.login-page .login-portal-heading { display: flex; justify-content: space-between; gap: 12px; font-size: 9px; font-weight: 600; color: #5f6470; }
+.login-page .login-portal-heading > span:last-child { color: #64726e; font-size: 8px; }
+.login-page .login-role-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 5px; margin: 24px 0; background: #f2f2ff; border: 0; border-radius: 12px; }
+.login-page .login-role-tabs label { text-align: center; padding: 11px 8px; font-size: 11px; color: #646977; border-radius: 8px; cursor: pointer; }
+.login-page .login-role-tabs .selected { background: #fff; color: #005bea; box-shadow: 0 2px 4px #1b224907; }
+.login-page .login-role-tabs input, .login-page .login-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.login-page .login-role-tabs label:has(input:focus-visible) { outline: 3px solid #005bea; outline-offset: 2px; }
+.login-page .login-portal-info { font-size: 12px; color: #616879; background: #e9edff; padding: 15px; border-radius: 9px; line-height: 1.5; }
+.login-page .login-email-divider { display: flex; align-items: center; gap: 12px; color: #777b86; font-size: 10px; margin-top: 28px; }
+.login-page .login-email-divider::before, .login-page .login-email-divider::after { content: ''; height: 1px; flex: 1; background: #e9ebff; }
+.login-page .form { margin-top: 24px; }
+.login-page .form input { background: #fff; border-color: #eeeef5; border-radius: 10px; }
+.login-page .form input:focus { border-color: #005bea; box-shadow: 0 0 0 3px #005bea15; }
+.login-page .form .login-remember { display: flex; align-items: center; gap: 8px; color: #666b75; font-size: 12px; font-weight: 400; margin-top: 8px; }
+.login-page .form .login-remember input { width: 15px; height: 15px; padding: 0; margin: 0; accent-color: #005bea; }
+.login-page .btn-primary { color: #fff; background: #0054df; border-radius: 10px; font-size: 14px; min-height: 50px; margin-top: 6px; }
+.login-page .btn-primary:hover:not(:disabled) { background: #0048c2; }
+.login-page .switch-link { border: 0; margin-top: 15px; }
+.login-page .switch-link a { color: #005bea; }
+.login-page .login-footer { border: 0; color: #646977; font-size: 9px; }
+.login-page a:focus-visible, .login-page button:focus-visible { outline-color: #005bea; }

@@ -1,11 +1,14 @@
-const AUTH_STORAGE_KEY = "svs_auth";
+﻿const AUTH_STORAGE_KEY = "svs_auth";
 
-export function saveAuth(authPayload) {
-  localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(authPayload));
+export function saveAuth(authPayload, remember = true) {
+  localStorage.removeItem(AUTH_STORAGE_KEY);
+  sessionStorage.removeItem(AUTH_STORAGE_KEY);
+  const storage = remember ? localStorage : sessionStorage;
+  storage.setItem(AUTH_STORAGE_KEY, JSON.stringify(authPayload));
 }
 
 export function getAuth() {
-  const raw = localStorage.getItem(AUTH_STORAGE_KEY);
+  const raw = sessionStorage.getItem(AUTH_STORAGE_KEY) || localStorage.getItem(AUTH_STORAGE_KEY);
   if (!raw) return null;
 
   try {
@@ -21,5 +24,6 @@ export function getCurrentUser() {
 }
 
 export function logout() {
+  sessionStorage.removeItem(AUTH_STORAGE_KEY);
   localStorage.removeItem(AUTH_STORAGE_KEY);
 }
