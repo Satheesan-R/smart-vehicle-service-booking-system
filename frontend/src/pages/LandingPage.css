@@ -110,3 +110,18 @@
   .landing-page .landing-button, .landing-page .landing-service-card { transition: none; }
   .landing-page .landing-button:hover, .landing-page .landing-service-card:hover { transform: none; }
 }
+
+/* Reference redesign: navigation */
+.landing-page { --ink: #182235; --muted: #6b7080; --accent: #005bea; background: #f9f8ff; }
+.landing-page .landing-header { min-height: 84px; border-bottom: 1px solid #eeedf6; gap: 20px; }
+.landing-page .landing-brand { letter-spacing: -.3px; font-size: 19px; }
+.landing-page .brand-blue { color: #005bea; }
+.landing-page .brand-symbol { background: #005bea; border-radius: 9px; }
+.landing-page .brand-symbol span { color: white; }
+.landing-page .brand-caption { font-size: 7px; letter-spacing: 1.2px; }
+.landing-page .landing-nav { gap: 22px; }
+.landing-page .landing-nav a:hover { color: #005bea; }
+.landing-page .landing-button-dark { background: #005bea; box-shadow: 0 3px 8px #005bea22; }
+.landing-page .landing-button-dark:hover { background: #0049bd; }
+.landing-page .landing-button { border-radius: 8px; }
+@media (max-width: 1050px) { .landing-page .landing-nav { gap: 12px; font-size: 11px; } }

@@ -9,19 +9,19 @@ const services = [
 
 export default function LandingPage() {
   return (
-    <div className="landing-page">
+    <div className="landing-page" id="home">
       <header className="landing-header landing-container">
         <Link className="landing-brand" to="/" aria-label="Smart Vehicle Service home">
           <span className="brand-symbol" aria-hidden="true">S<span>.</span></span>
-          <span>SMART VEHICLE<span className="brand-caption">SERVICE & CARE</span></span>
+          <span>Auto<span className="brand-blue">Care</span><span className="brand-caption">SMART VEHICLE SERVICE</span></span>
         </Link>
         <nav className="landing-nav" aria-label="Main navigation">
-          <a href="#services">Our services</a>
-          <a href="#how-it-works">How it works</a>
+          <a href="#home">Home</a><a href="#services">Services</a>
+          <a href="#how-it-works">How It Works</a><a href="#about">About</a>
         </nav>
         <div className="landing-actions">
           <Link className="landing-login" to="/login">Log in</Link>
-          <Link className="landing-button landing-button-dark" to="/signup">Get started <span aria-hidden="true">↗</span></Link>
+          <Link className="landing-button landing-button-dark" to="/signup">Book a Service <span aria-hidden="true">→</span></Link>
         </div>
       </header>
 
@@ -82,3 +82,4 @@ export default function LandingPage() {
     </div>
   );
 }
+
