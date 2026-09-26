@@ -197,3 +197,11 @@
 .landing-page .benefit-grid p { color: #747b89; font-size: 12px; line-height: 1.65; margin: 0; }
 @media (max-width: 1050px) { .landing-page .benefit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .landing-page .benefit-grid { grid-template-columns: 1fr; } }
+
+/* Reference redesign: garage partnership */
+.landing-page .landing-garage { background: #e4e8ff; color: #182235; padding: 36px; border-radius: 15px; }
+.landing-page .landing-garage .landing-eyebrow { color: #355592; font-size: 9px; }
+.landing-page .landing-garage h2 { font-size: 24px; }
+.landing-page .landing-garage p:last-child { color: #6b7080; max-width: 720px; }
+.landing-page .landing-garage .landing-button { background: #102036; color: #fff; font-size: 11px; }
+@media (max-width: 780px) { .landing-page .landing-garage { padding: 26px; } }
