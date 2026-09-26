@@ -13,7 +13,7 @@ export default function AuthPage({ mode }) {
     name: "",
     role: "client",
     email: "",
-    password: "", confirm_password: "", phone: "", country_code: "+94"
+    password: "", confirm_password: "", phone: "", country_code: "+94", vehicle_make: "", vehicle_model: "", vehicle_year: "", license_plate: ""
   });
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -40,7 +40,8 @@ export default function AuthPage({ mode }) {
           name: form.name,
           role: form.role,
           email: form.email,
-          password: form.password, phone: `${form.country_code} ${form.phone}`
+          password: form.password, phone: `${form.country_code} ${form.phone}`,
+          vehicle: form.role === "client" ? { make: form.vehicle_make, model: form.vehicle_model, year: Number(form.vehicle_year), license_plate: form.license_plate } : null
         });
         setMessage("Registration successful. Please login now.");
         navigate("/login");
@@ -66,7 +67,7 @@ export default function AuthPage({ mode }) {
             <p className="register-eyebrow">SMART VEHICLE & SERVICE MANAGEMENT</p>
             <h2 id="register-title">Create Your AutoCare Account</h2>
             <p className="register-intro">Join a simpler way to manage vehicle maintenance and follow garage progress updates.</p>
-            <nav className="register-steps" aria-label="Registration sections"><a href="#owner-information"><b>1</b><span><small>STEP 1</small>Owner & Account Profile</span></a><a href="#owner-information"><b>2</b><span><small>STEP 2</small>Vehicle Profile</span></a></nav><h3 id="owner-information">1. Owner Information</h3><form className="register-form" onSubmit={handleSubmit} aria-busy={loading}>
+            <nav className="register-steps" aria-label="Registration sections"><a href="#owner-information"><b>1</b><span><small>STEP 1</small>Owner & Account Profile</span></a><a href="#vehicle-information"><b>2</b><span><small>STEP 2</small>Vehicle Profile</span></a></nav><h3 id="owner-information">1. Owner Information</h3><form className="register-form" onSubmit={handleSubmit} aria-busy={loading}>
               <fieldset className="register-role-picker" disabled={loading}>
                 <legend>I'm joining as a</legend>
                 <div className="register-role-options">
@@ -82,7 +83,13 @@ export default function AuthPage({ mode }) {
               </div>
               <div className="register-field"><label htmlFor="register-confirm">Confirm password *</label><input id="register-confirm" name="confirm_password" type={showPassword ? "text" : "password"} autoComplete="new-password" value={form.confirm_password} onChange={handleChange} placeholder="Re-enter your password" required disabled={loading} aria-describedby="register-match" /><small id="register-match" className={form.confirm_password && form.confirm_password !== form.password ? "register-mismatch" : "register-match"} aria-live="polite">{form.confirm_password ? form.confirm_password === form.password ? "Passwords match" : "Passwords do not match" : "Re-enter your password to confirm."}</small></div>
               <div className="register-strength register-full-width"><meter min="0" max="4" value={[form.password.length >= 8, /[A-Z]/.test(form.password) && /[a-z]/.test(form.password), /[0-9]/.test(form.password), /[^A-Za-z0-9]/.test(form.password)].filter(Boolean).length} aria-label="Password strength" /><small>Use a long password with a mix of letters, numbers, and symbols. {form.password.length} characters</small></div>
-              {error && <p className="register-error" role="alert">{error}</p>}
+              <section className="register-vehicle register-full-width" id="vehicle-information" aria-labelledby="vehicle-heading"><div className="vehicle-section-heading"><h3 id="vehicle-heading">2. Primary Vehicle Profile</h3><span>Manual entry</span></div>
+                {form.role === "client" ? <>
+                  <div className="register-plate-preview"><div><small>LICENSE PLATE</small><strong>{form.license_plate || "YOUR PLATE"}</strong></div><section><h4>Your vehicle, connected to your account</h4><p>Save your primary vehicle details with your profile.</p></section></div>
+                  <div className="register-vehicle-grid"><div className="register-field"><label htmlFor="vehicle-make">Make / Brand *</label><input id="vehicle-make" name="vehicle_make" placeholder="e.g. Toyota" value={form.vehicle_make} onChange={handleChange} maxLength={80} required disabled={loading} /></div><div className="register-field"><label htmlFor="vehicle-model">Model *</label><input id="vehicle-model" name="vehicle_model" placeholder="e.g. Corolla" value={form.vehicle_model} onChange={handleChange} maxLength={80} required disabled={loading} /></div><div className="register-field"><label htmlFor="vehicle-year">Model year *</label><select id="vehicle-year" name="vehicle_year" value={form.vehicle_year} onChange={handleChange} required disabled={loading}><option value="">Select year</option>{Array.from({ length: new Date().getFullYear() - 1885 }, (_, i) => new Date().getFullYear() + 1 - i).map(year => <option key={year} value={year}>{year}</option>)}</select></div><div className="register-field"><label htmlFor="vehicle-plate">License plate *</label><input id="vehicle-plate" name="license_plate" placeholder="e.g. ABC-1234" value={form.license_plate} onChange={handleChange} maxLength={30} required disabled={loading} /></div></div>
+                  <div className="register-telematics"><div><strong>Automatic VIN / OBD-II detection</strong><p>Not connected. Enter your vehicle details manually.</p></div><input type="checkbox" role="switch" aria-label="Automatic vehicle detection unavailable" disabled checked={false} /></div>
+                </> : <p className="register-garage-info">Garage accounts manage customer service requests. You do not need to register a personal vehicle.</p>}
+              </section>              {error && <p className="register-error" role="alert">{error}</p>}
               {message && <p className="register-success" role="status">{message}</p>}
               <button className="register-submit" type="submit" disabled={loading}><span>{loading ? "Creating your account..." : "Create account"}</span><span aria-hidden="true">↗</span></button>
               <p className="register-form-note">{form.role === "garage" ? "Your next step: log in and manage customer service requests." : "Your next step: log in and book your first vehicle service."}</p>
@@ -153,6 +160,7 @@ export default function AuthPage({ mode }) {
     </div>
   );
 }
+
 
 
 
