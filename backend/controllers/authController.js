@@ -1,4 +1,4 @@
-const db = require("../config/db");
+﻿const db = require("../config/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -13,36 +13,38 @@ function databaseError(res, err) {
 
 // ================= REGISTER =================
 exports.register = async (req, res) => {
-  const { name, email, password, role } = req.body;
-
-  if (!name || !email || !password || !role) {
-    return res.status(400).json({ message: "All fields are required" });
+  const { name, email, password, role, phone, vehicle } = req.body;
+  if (![name, email, password, role, phone].every(value => typeof value === "string" && value.trim())) {
+    return res.status(400).json({ message: "Name, email, phone, password and role are required." });
   }
-
-  // Check if user exists
-  db.query("SELECT * FROM users WHERE email = ?", [email], async (err, result) => {
-    if (err) return databaseError(res, err);
-    if (result.length > 0) {
+  if (!["client", "garage"].includes(role) || password.length < 8 || Buffer.byteLength(password, "utf8") > 72 || name.length > 100 || email.length > 100 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !/^\+[0-9 ()-]{7,30}$/.test(phone)) {
+    return res.status(400).json({ message: "Check your account details. Passwords need at least 8 characters (maximum 72 bytes)." });
+  }
+  if (role === "client" && (!vehicle || ![vehicle.make, vehicle.model, vehicle.license_plate].every(value => typeof value === "string" && value.trim()) || vehicle.make.length > 80 || vehicle.model.length > 80 || vehicle.license_plate.length > 30 || !Number.isInteger(vehicle.year) || vehicle.year < 1886 || vehicle.year > new Date().getFullYear() + 1)) {
+    return res.status(400).json({ message: "Enter a valid vehicle make, model, year and license plate." });
+  }
+  const profileVehicle = role === "client" ? JSON.stringify({ make: vehicle.make.trim(), model: vehicle.model.trim(), year: vehicle.year, license_plate: vehicle.license_plate.trim().toUpperCase() }) : null;
+  let connection;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    connection = await db.promise().getConnection();
+    await connection.beginTransaction();
+    const [existing] = await connection.query("SELECT id FROM users WHERE email = ?", [email.trim()]);
+    if (existing.length) {
+      await connection.rollback();
       return res.status(400).json({ message: "Email already registered" });
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    db.query(
-      "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)",
-      [name, email, hashedPassword, role],
-      (err, result) => {
-        if (err) return databaseError(res, err);
-
-        res.json({
-          message: "User registered successfully",
-          user: { id: result.insertId, name, email, role }
-        });
-      }
-    );
-  });
+    const [result] = await connection.query("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)", [name.trim(), email.trim(), hashedPassword, role]);
+    await connection.query("INSERT INTO registration_profiles (user_id, phone, vehicle) VALUES (?, ?, ?)", [result.insertId, phone.trim(), profileVehicle]);
+    await connection.commit();
+    return res.status(201).json({ message: "User registered successfully", user: { id: result.insertId, name: name.trim(), email: email.trim(), role } });
+  } catch (err) {
+    if (connection) await connection.rollback().catch(() => {});
+    return databaseError(res, err);
+  } finally {
+    if (connection) connection.release();
+  }
 };
-
 // ================= LOGIN =================
 exports.login = (req, res) => {
   const { email, password } = req.body;
@@ -79,3 +81,5 @@ exports.login = (req, res) => {
     });
   });
 };
+
+

@@ -36,3 +36,13 @@ npm start
 ```
 
 Done! That's all you need to know.
+
+## Registration profile setup
+
+Before starting an updated backend, run `node backend/scripts/setup-registration.js`
+from the repository root. This creates the additive `registration_profiles` table
+for phone and primary vehicle details; existing users are unchanged. Restart the
+backend after updating. New client accounts require phone and vehicle details;
+garage accounts require phone but no personal vehicle. VIN/OBD-II integration is
+not connected. Terms and privacy documents must be supplied before adding policy
+links or requesting agreement to them.

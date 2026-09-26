@@ -100,3 +100,69 @@
 @media (prefers-reduced-motion: reduce) {
   .register-page .register-field input, .register-page .register-submit { transition: none; }
 }
+
+/* AutoCare reference: centered registration layout. */
+.register-page { display: block; background: #f8f7ff; color: #172035; }
+.register-page .register-site-header { display: flex; justify-content: space-between; align-items: center; gap: 20px; background: #fff; border-bottom: 1px solid #eeeefa; padding: 24px 4%; font-size: 13px; }
+.register-page .register-site-header > a:last-child { color: #005bea; }
+.register-page .register-logo { font-weight: 750; font-size: 22px; letter-spacing: -.7px; }
+.register-page .register-logo span { color: #005bea; }
+.register-page .register-content { max-width: 1100px; margin: auto; padding: 36px 24px 55px; }
+.register-page .register-topbar { font-size: 12px; padding-bottom: 24px; }
+.register-page .register-topbar span a { color: #005bea; }
+.register-page .register-form-wrap { width: 100%; padding: 40px; background: linear-gradient(120deg, #fff 75%, #f7f8ff); border-radius: 16px 16px 0 0; box-shadow: 0 10px 28px #1b224909; }
+.register-page .register-form-wrap > .register-eyebrow { display: inline-block; background: #dfe5ff; color: #19356b; border-radius: 20px; padding: 6px 12px; letter-spacing: .4px; }
+.register-page .register-form-wrap h2 { font-size: clamp(28px, 3.5vw, 43px); }
+.register-page .register-intro { max-width: 690px; font-size: 15px; }
+.register-page .register-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 35px 0; }
+.register-page .register-steps a { display: flex; align-items: center; gap: 16px; padding: 20px; border-radius: 9px; background: #f1f2ff; font-size: 14px; font-weight: 600; }
+.register-page .register-steps b { display: grid; place-items: center; width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: #005bea; color: #fff; }
+.register-page .register-steps small { display: block; font-size: 10px; color: #005bea; margin-bottom: 5px; }
+.register-page #owner-information { font-size: 19px; margin: 0 0 25px; scroll-margin-top: 20px; }
+.register-page .register-footer { background: #f0f2ff; padding: 22px 40px; border-radius: 0 0 16px 16px; box-shadow: 0 10px 20px #1b224911; }
+@media (max-width: 600px) { .register-page .register-form-wrap { padding: 24px 18px; } .register-page .register-content { padding-inline: 12px; } .register-page .register-steps { grid-template-columns: 1fr; } }
+
+/* Owner information */
+.register-page .register-form { grid-template-columns: 1fr 1fr; gap: 22px 18px; }
+.register-page .register-role-picker, .register-page .register-full-width, .register-page .register-error, .register-page .register-success, .register-page .register-submit, .register-page .register-form-note { grid-column: 1 / -1; }
+.register-page .register-field input, .register-page .register-phone-row select { background: #f2f2ff; border: 1px solid transparent; color: #172035; }
+.register-page .register-field input:focus { border-color: #005bea; box-shadow: 0 0 0 3px #005bea15; }
+.register-page .register-phone-row { display: grid; grid-template-columns: 150px 1fr; gap: 8px; }
+.register-page .register-phone-row select { font: inherit; font-size: 12px; padding: 10px; border-radius: 7px; min-width: 0; }
+.register-page .register-role.selected { background: #f0f2ff; border-color: #005bea; box-shadow: 0 0 0 1px #005bea; }
+.register-page .register-role input { accent-color: #005bea; }
+.register-page .register-match { color: #005bea; font-size: 11px; }
+.register-page .register-mismatch { color: #a42e25; font-size: 11px; }
+.register-page .register-strength meter { width: 100%; height: 9px; display: block; }
+.register-page .register-strength small { display: block; color: #6b7080; font-size: 10px; margin-top: 7px; }
+@media (max-width: 600px) { .register-page .register-form { grid-template-columns: 1fr; } .register-page .register-phone-row { grid-template-columns: 115px 1fr; } }
+
+/* Vehicle profile */
+.register-page .register-vehicle { background: #f6f7ff; padding: 25px; border-radius: 13px; margin-block: 12px; scroll-margin-top: 20px; }
+.register-page .vehicle-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
+.register-page .vehicle-section-heading h3 { font-size: 19px; margin: 0; }
+.register-page .vehicle-section-heading > span { background: #dfe5ff; color: #224779; padding: 4px 10px; border-radius: 20px; font-size: 10px; white-space: nowrap; }
+.register-page .register-plate-preview { display: flex; align-items: center; gap: 18px; background: #fff; padding: 16px; border-radius: 9px; margin-bottom: 20px; }
+.register-page .register-plate-preview > div { min-width: 160px; max-width: 260px; padding: 10px; background: #dce2ff; border-radius: 5px; text-align: center; overflow-wrap: anywhere; }
+.register-page .register-plate-preview small { display: block; font-size: 8px; letter-spacing: 1px; }
+.register-page .register-plate-preview strong { font-size: 21px; letter-spacing: 1px; text-transform: uppercase; }
+.register-page .register-plate-preview h4 { margin: 0 0 5px; font-weight: 600; font-size: 14px; }
+.register-page .register-plate-preview p, .register-page .register-telematics p { margin: 0; font-size: 11px; color: #6b7080; line-height: 1.6; }
+.register-page .register-vehicle-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.register-page .register-vehicle input:not([type="checkbox"]), .register-page .register-vehicle select { width: 100%; min-width: 0; background: #fff; font: inherit; font-size: 13px; border: 1px solid transparent; border-radius: 7px; padding: 12px; }
+.register-page .register-telematics { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #fff; padding: 12px; margin-top: 18px; border-radius: 9px; }
+.register-page .register-telematics strong { font-size: 12px; }
+.register-page .register-garage-info { color: #6b7080; font-size: 13px; line-height: 1.7; }
+@media (max-width: 780px) { .register-page .register-vehicle-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .register-page .register-plate-preview { flex-wrap: wrap; } }
+@media (max-width: 440px) { .register-page .register-vehicle-grid { grid-template-columns: 1fr; } .register-page .register-vehicle { padding: 18px; } .register-page .vehicle-section-heading { flex-wrap: wrap; } }
+
+/* Confirmation and account creation */
+.register-page .register-confirmation { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; line-height: 1.8; color: #616572; margin-block: 6px 18px; }
+.register-page .register-confirmation input { margin: 5px 0 0; accent-color: #005bea; flex-shrink: 0; }
+.register-page .register-bottom-actions { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.register-page .register-bottom-actions > span { font-size: 12px; color: #6b7080; }
+.register-page .register-bottom-actions a { color: #005bea; }
+.register-page .register-submit { background: #005bea; color: #fff; padding: 16px 24px; gap: 20px; box-shadow: 0 6px 12px #13254212; }
+.register-page .register-submit:hover:not(:disabled) { background: #004abe; }
+.register-page .register-footer { font-size: 11px; color: #526078; justify-content: space-around; }
+@media (max-width: 600px) { .register-page .register-bottom-actions { flex-direction: column-reverse; align-items: stretch; } .register-page .register-footer { gap: 16px; justify-content: flex-start; padding: 22px; } }
