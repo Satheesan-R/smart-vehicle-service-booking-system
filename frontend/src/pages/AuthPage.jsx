@@ -13,7 +13,7 @@ export default function AuthPage({ mode }) {
     name: "",
     role: "client",
     email: "",
-    password: ""
+    password: "", confirm_password: "", phone: "", country_code: "+94"
   });
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -34,11 +34,13 @@ export default function AuthPage({ mode }) {
 
     try {
       if (isSignup) {
+        if (form.password !== form.confirm_password) throw new Error("Passwords do not match.");
+        if (form.password.length < 8) throw new Error("Use at least 8 characters for your password.");
         await registerUser({
           name: form.name,
           role: form.role,
           email: form.email,
-          password: form.password
+          password: form.password, phone: `${form.country_code} ${form.phone}`
         });
         setMessage("Registration successful. Please login now.");
         navigate("/login");
@@ -76,8 +78,10 @@ export default function AuthPage({ mode }) {
               <div className="register-field"><label htmlFor="register-email">Email address</label><input id="register-email" type="email" name="email" autoComplete="email" placeholder="you@example.com" value={form.email} onChange={handleChange} disabled={loading} required /></div>
               <div className="register-field">
                 <label htmlFor="register-password">Password</label>
-                <div className="register-password-wrap"><input id="register-password" type={showPassword ? "text" : "password"} name="password" autoComplete="new-password" placeholder="Create a password" value={form.password} onChange={handleChange} disabled={loading} required /><button type="button" className="register-password-toggle" onClick={() => setShowPassword(previous => !previous)} aria-label={showPassword ? "Hide password" : "Show password"} aria-pressed={showPassword}>{showPassword ? "Hide" : "Show"}</button></div>
+                <div className="register-password-wrap"><input id="register-password" type={showPassword ? "text" : "password"} name="password" autoComplete="new-password" placeholder="At least 8 characters" minLength={8} value={form.password} onChange={handleChange} disabled={loading} required /><button type="button" className="register-password-toggle" onClick={() => setShowPassword(previous => !previous)} aria-label={showPassword ? "Hide password" : "Show password"} aria-pressed={showPassword}>{showPassword ? "Hide" : "Show"}</button></div>
               </div>
+              <div className="register-field"><label htmlFor="register-confirm">Confirm password *</label><input id="register-confirm" name="confirm_password" type={showPassword ? "text" : "password"} autoComplete="new-password" value={form.confirm_password} onChange={handleChange} placeholder="Re-enter your password" required disabled={loading} aria-describedby="register-match" /><small id="register-match" className={form.confirm_password && form.confirm_password !== form.password ? "register-mismatch" : "register-match"} aria-live="polite">{form.confirm_password ? form.confirm_password === form.password ? "Passwords match" : "Passwords do not match" : "Re-enter your password to confirm."}</small></div>
+              <div className="register-strength register-full-width"><meter min="0" max="4" value={[form.password.length >= 8, /[A-Z]/.test(form.password) && /[a-z]/.test(form.password), /[0-9]/.test(form.password), /[^A-Za-z0-9]/.test(form.password)].filter(Boolean).length} aria-label="Password strength" /><small>Use a long password with a mix of letters, numbers, and symbols. {form.password.length} characters</small></div>
               {error && <p className="register-error" role="alert">{error}</p>}
               {message && <p className="register-success" role="status">{message}</p>}
               <button className="register-submit" type="submit" disabled={loading}><span>{loading ? "Creating your account..." : "Create account"}</span><span aria-hidden="true">↗</span></button>
@@ -149,4 +153,5 @@ export default function AuthPage({ mode }) {
     </div>
   );
 }
+
 
