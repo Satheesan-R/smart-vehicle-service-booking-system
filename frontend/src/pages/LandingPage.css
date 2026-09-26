@@ -205,3 +205,13 @@
 .landing-page .landing-garage p:last-child { color: #6b7080; max-width: 720px; }
 .landing-page .landing-garage .landing-button { background: #102036; color: #fff; font-size: 11px; }
 @media (max-width: 780px) { .landing-page .landing-garage { padding: 26px; } }
+
+/* Reference redesign: final booking call to action */
+.landing-page .landing-final-cta { margin-block: 36px 42px; padding: 40px; background: radial-gradient(ellipse at bottom right, #0d326c, transparent 65%), #102036; color: #fff; border-radius: 20px; box-shadow: 0 16px 22px #14274720; }
+.landing-page .cta-badge { display: inline-block; font-size: 9px; font-weight: 600; background: #ffffff14; color: #d5e0f5; border-radius: 20px; padding: 5px 12px; margin: 0 0 20px; }
+.landing-page .landing-final-cta h2 { font-size: clamp(27px, 3vw, 40px); }
+.landing-page .landing-final-cta > p:not(.cta-badge) { color: #a9b5ca; max-width: 680px; font-size: 14px; line-height: 1.8; margin-block: 13px 25px; }
+.landing-page .landing-final-cta > div { display: flex; flex-wrap: wrap; gap: 10px; }
+.landing-page .cta-secondary { background: #ffffff12; color: #fff; }
+.landing-page .landing-final-cta small { display: block; margin-top: 18px; font-size: 10px; color: #a9b5ca; }
+@media (max-width: 600px) { .landing-page .landing-final-cta { padding: 27px; } }
