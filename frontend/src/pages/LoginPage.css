@@ -61,3 +61,18 @@
   .login-page .login-content { padding-inline: 18px; }
 }
 @media (prefers-reduced-motion: reduce) { .login-page .btn-primary { transition: none; } }
+
+/* AutoCare reference: header and portal layout. */
+.login-page { display: block; background: #f8f7ff; padding-bottom: 60px; }
+.login-page .login-site-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 4%; background: #fff; border-bottom: 1px solid #eeeefa; font-size: 13px; }
+.login-page .login-site-brand { font-size: 22px; font-weight: 750; letter-spacing: -.7px; }
+.login-page .login-site-brand span, .login-page .login-site-header > a:last-child { color: #005bea; }
+.login-page .login-shell { display: grid; grid-template-columns: 1fr 1fr; width: min(1240px, calc(100% - 56px)); margin: 60px auto 0; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 22px #1b224917; }
+.login-page .login-content { padding: 45px 50px; }
+.login-page .auth-card { padding-block: 35px; max-width: 450px; }
+.login-page .login-home { color: #005bea; }
+.login-page .login-eyebrow { color: #555c69; }
+.login-page .auth-card h1 { font-size: 29px; letter-spacing: -.9px; }
+@media (max-width: 1000px) { .login-page .login-content { padding: 32px; } }
+@media (max-width: 760px) { .login-page .login-shell { grid-template-columns: 1fr; margin-top: 26px; width: calc(100% - 28px); } }
+@media (max-width: 440px) { .login-page .login-content { padding: 26px 20px; } }

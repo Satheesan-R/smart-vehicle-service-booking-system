@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+﻿import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { saveAuth } from "../auth";
 import { loginUser, registerUser } from "../services/api";
@@ -101,7 +101,7 @@ export default function AuthPage({ mode }) {
     );
   }
   return (
-    <div className="login-page">
+    <div className="login-page"><header className="login-site-header"><Link className="login-site-brand" to="/">Auto<span>Care</span></Link><Link to="/">← Back to website</Link></header><main className="login-shell">
       <aside className="login-story">
         <Link className="login-brand" to="/">SMART VEHICLE <span>SERVICE & CARE</span></Link>
         <div>
@@ -156,7 +156,8 @@ export default function AuthPage({ mode }) {
         </p>
       </div>
       <footer className="login-footer">Smart Vehicle Service <span>Better care. Every journey.</span></footer>
-      </section>
+      </section></main>
     </div>
   );
 }
+
