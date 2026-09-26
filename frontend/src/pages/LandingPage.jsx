@@ -3,11 +3,12 @@ import "./LandingPage.css";
 import garagePhoto from "../assets/images.jpg";
 
 const services = [
-  ["01", "Routine servicing", "Keep your vehicle at its best with regular maintenance and oil changes."],
-  ["02", "Diagnostics & repairs", "Describe the issue and give your garage the details they need to get started."],
-  ["03", "Brakes & battery", "Arrange essential checks for the components you depend on every day."]
+  ["01", "Oil Change", "Keep your engine running smoothly with routine oil and filter maintenance."],
+  ["02", "General Service", "Give your vehicle regular attention with a general maintenance visit."],
+  ["03", "Brake Service", "Book an inspection for brake wear, noise, or changes in stopping performance."],
+  ["04", "Engine Diagnostics", "Help your garage investigate warning lights and engine performance issues."],
+  ["05", "Battery Check", "Arrange a battery check when starting becomes slow or unreliable."]
 ];
-
 export default function LandingPage() {
   return (
     <div className="landing-page" id="home">
@@ -40,10 +41,9 @@ export default function LandingPage() {
         </section>
         <section className="landing-summary" aria-label="Platform highlights"><div className="landing-container summary-grid">{[["↗", "Online", "Service booking"], ["▦", "One place", "Your service requests"], ["✓", "Stay informed", "Garage progress updates"], ["→", "For everyone", "Drivers & garage teams"]].map(([icon, title, caption]) => <div className="summary-item" key={title}><span aria-hidden="true">{icon}</span><div><strong>{title}</strong><p>{caption}</p></div></div>)}</div></section>
         <section className="landing-services landing-container" id="services" aria-labelledby="services-title">
-          <div className="landing-section-heading"><div><p className="landing-eyebrow">BUILT AROUND YOUR VEHICLE</p><h2 id="services-title">Everyday care. Expert attention.</h2></div><p>From the essentials to the unexpected,<br />make your next service easier to manage.</p></div>
-          <div className="landing-service-grid">{services.map(([number, title, description]) => <article className="landing-service-card" key={number}><span className="service-number">{number}</span><h3>{title}</h3><p>{description}</p><Link to="/signup" aria-label={`Book ${title.toLowerCase()}`}>Explore service <span aria-hidden="true">↗</span></Link></article>)}</div>
+          <div className="landing-section-heading"><div><p className="landing-eyebrow">CARE FOR EVERY MILE</p><h2 id="services-title">Comprehensive Maintenance & Repair Services</h2><p className="section-description">From routine maintenance to diagnostics, find the right care for your vehicle.</p></div><Link className="section-link" to="/signup">Book a service →</Link></div>
+          <div className="landing-service-grid">{services.map(([number, title, description]) => <article className="landing-service-card" key={number}><span className="service-number" aria-hidden="true">{["◈", "✓", "◎", "⚙", "ϟ"][Number(number) - 1]}</span><h3>{title}</h3><p>{description}</p><Link to="/signup" aria-label={`Book ${title.toLowerCase()}`}>Book service <span aria-hidden="true">→</span></Link></article>)}</div>
         </section>
-
         <section className="landing-process landing-container" id="how-it-works" aria-labelledby="process-title">
           <div><p className="landing-eyebrow">SIMPLE FROM THE START</p><h2 id="process-title">Three steps.<br />One smoother experience.</h2><p className="process-intro">More clarity at every stage of your service.</p></div>
           <ol className="process-steps">
@@ -58,5 +58,6 @@ export default function LandingPage() {
     </div>
   );
 }
+
 
 

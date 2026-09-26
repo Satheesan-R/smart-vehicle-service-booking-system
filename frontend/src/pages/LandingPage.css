@@ -156,3 +156,21 @@
 .landing-page .summary-item p { font-size: 10px; color: #747b89; margin: 3px 0 0; }
 @media (max-width: 780px) { .landing-page .landing-hero { grid-template-columns: 1fr; } .landing-page .summary-grid { grid-template-columns: repeat(2, 1fr); } .landing-page .hero-photo-wrap { min-height: 320px; } }
 @media (max-width: 440px) { .landing-page .hero-quick-start { flex-wrap: wrap; } .landing-page .summary-item strong { font-size: 15px; } }
+
+/* Reference redesign: service catalog */
+.landing-page .landing-services { border: 0; padding-block: 58px 44px; }
+.landing-page .landing-section-heading { align-items: end; }
+.landing-page .landing-section-heading .landing-eyebrow, .landing-page .landing-eyebrow { color: #005bea; }
+.landing-page h2 { font-size: clamp(25px, 2.4vw, 34px); letter-spacing: -1px; }
+.landing-page .section-description { color: #747b89; font-size: 13px; line-height: 1.7; max-width: 650px; margin: 10px 0 0; }
+.landing-page .section-link { color: #005bea; font-size: 11px; white-space: nowrap; }
+.landing-page .landing-service-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.landing-page .landing-service-card { padding: 20px; border: 1px solid #f0eff7; border-radius: 14px; display: flex; flex-direction: column; }
+.landing-page .landing-service-card:hover { border-color: #c8d5ff; }
+.landing-page .service-number { color: #005bea; background: #e5eaff; align-self: flex-start; margin-bottom: 15px; font-size: 22px; padding: 6px 12px; border-radius: 9px; }
+.landing-page .landing-service-card h3 { font-size: 16px; }
+.landing-page .landing-service-card p { font-size: 12px; line-height: 1.65; }
+.landing-page .landing-service-card a { border: 0; margin-top: auto; color: #005bea; padding-top: 5px; }
+@media (max-width: 1050px) { .landing-page .landing-service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 780px) { .landing-page .landing-service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .landing-page .section-link { display: inline-block; margin-top: 15px; } }
+@media (max-width: 440px) { .landing-page .landing-service-grid { grid-template-columns: 1fr; } }
