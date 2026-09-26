@@ -1,84 +1,63 @@
 ﻿import { Link } from "react-router-dom";
 import "./LandingPage.css";
+import garagePhoto from "../assets/images.jpg";
 
 const services = [
-  ["01", "Routine servicing", "Keep your vehicle at its best with regular maintenance and oil changes."],
-  ["02", "Diagnostics & repairs", "Describe the issue and give your garage the details they need to get started."],
-  ["03", "Brakes & battery", "Arrange essential checks for the components you depend on every day."]
+  ["01", "Oil Change", "Keep your engine running smoothly with routine oil and filter maintenance."],
+  ["02", "General Service", "Give your vehicle regular attention with a general maintenance visit."],
+  ["03", "Brake Service", "Book an inspection for brake wear, noise, or changes in stopping performance."],
+  ["04", "Engine Diagnostics", "Help your garage investigate warning lights and engine performance issues."],
+  ["05", "Battery Check", "Arrange a battery check when starting becomes slow or unreliable."]
 ];
-
 export default function LandingPage() {
   return (
-    <div className="landing-page">
+    <div className="landing-page" id="home">
       <header className="landing-header landing-container">
         <Link className="landing-brand" to="/" aria-label="Smart Vehicle Service home">
           <span className="brand-symbol" aria-hidden="true">S<span>.</span></span>
-          <span>SMART VEHICLE<span className="brand-caption">SERVICE & CARE</span></span>
+          <span>Auto<span className="brand-blue">Care</span><span className="brand-caption">SMART VEHICLE SERVICE</span></span>
         </Link>
         <nav className="landing-nav" aria-label="Main navigation">
-          <a href="#services">Our services</a>
-          <a href="#how-it-works">How it works</a>
+          <a href="#home">Home</a><a href="#services">Services</a>
+          <a href="#how-it-works">How It Works</a><a href="#about">About</a>
         </nav>
         <div className="landing-actions">
           <Link className="landing-login" to="/login">Log in</Link>
-          <Link className="landing-button landing-button-dark" to="/signup">Get started <span aria-hidden="true">↗</span></Link>
+          <Link className="landing-button landing-button-dark" to="/signup">Book a Service <span aria-hidden="true">→</span></Link>
         </div>
       </header>
 
       <main>
         <section className="landing-hero landing-container" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="landing-eyebrow"><span className="accent-line" /> A BETTER WAY TO CARE FOR YOUR CAR</p>
-            <h1 id="hero-title">Less hassle.<br />More miles.<br /><span>Service, simplified.</span></h1>
-            <p className="hero-description">Your next service starts here. Book a visit, keep up with repairs, and manage your vehicle care — all in one place.</p>
-            <div className="hero-actions">
-              <Link className="landing-button landing-button-accent" to="/signup">Book your service <span aria-hidden="true">↗</span></Link>
-              <a className="landing-text-link" href="#how-it-works">See how it works <span aria-hidden="true">↓</span></a>
-            </div>
-            <div className="hero-benefits"><span>✓ Easy online booking</span><span>✓ Clear progress updates</span></div>
+            <p className="hero-badge">● Smart vehicle servicing & progress updates</p>
+            <h1 id="hero-title">Your Vehicle. Our Care.<br /><span>Smarter Service.</span></h1>
+            <p className="hero-description">Book your vehicle service online, track repair progress, and keep your service requests together in one simple dashboard.</p>
+            <div className="hero-actions"><Link className="landing-button landing-button-accent" to="/signup">Book a Service →</Link><a className="landing-button hero-secondary" href="#services">Explore Services</a></div>
+            <div className="hero-benefits"><span>✓ Online booking</span><span>✓ Garage updates</span><span>✓ Service history</span></div>
+            <div className="hero-quick-start"><span className="quick-icon" aria-hidden="true">↗</span><div><strong>Your next service starts here</strong><p>Create an account, add your vehicle, and choose a date.</p></div><Link to="/signup">Get started →</Link></div>
           </div>
-          <div className="hero-visual" aria-label="Illustration of vehicle service tracking">
-            <div className="visual-topline"><span>YOUR CAR. OUR PRIORITY.</span><span aria-hidden="true">↗</span></div>
-            <div className="vehicle-orbit" aria-hidden="true" />
-            <svg className="vehicle-illustration" viewBox="0 0 600 310" role="img" aria-label="Side profile of a modern car">
-              <defs>
-                <linearGradient id="car-body" x1="0" y1="0" x2="0.2" y2="1"><stop stopColor="#fbfcfd"/><stop offset="0.5" stopColor="#c8d2da"/><stop offset="1" stopColor="#83929e"/></linearGradient>
-                <linearGradient id="car-glass" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#3c5665"/><stop offset="1" stopColor="#152630"/></linearGradient>
-              </defs>
-              <ellipse cx="308" cy="254" rx="246" ry="17" fill="#000" opacity=".25"/>
-              <path d="M53 205 65 169 152 145 214 91 Q225 82 251 81 L349 84 Q376 86 402 107 L454 149 520 164 Q544 170 550 190 L557 221 536 233 71 231 47 220Z" fill="url(#car-body)" stroke="#e1e8ed" strokeWidth="2"/>
-              <path d="m177 145 53-48 58-1-2 50Zm123-49 47 2q24 1 43 18l35 31-123-1Z" fill="url(#car-glass)"/>
-              <path d="m302 154 1 68m125-67 14 60M85 191l420 4M178 224h235" fill="none" stroke="#657681" strokeWidth="2"/>
-              <path d="m70 175 54-8-13 16-47 6m446-14 27 9 7 13-31-5" fill="#e2f8ff"/>
-              <path d="m65 208 41 1m390 0 45 2" stroke="#23343f" strokeWidth="7"/>
-              <path d="m264 164 17 0m112 0 17 0" stroke="#465967" strokeWidth="4" strokeLinecap="round"/>
-              {[149, 456].map(x => <g key={x}><circle cx={x} cy="225" r="43" fill="#111b22"/><circle cx={x} cy="225" r="28" fill="#81919b"/><circle cx={x} cy="225" r="21" fill="#283a46"/><path d={`M${x} 205v40m-20-20h40m-34-14 28 28m-28 0 28-28`} stroke="#b7c4cb" strokeWidth="4"/><circle cx={x} cy="225" r="7" fill="#cbd6dc"/></g>)}
-            </svg>
-            <div className="service-preview">
-              <div className="preview-icon" aria-hidden="true">✓</div>
-              <div><span className="preview-label">SERVICE JOURNEY</span><strong>Stay in the driver's seat.</strong><p>From booking to completion.</p></div>
-              <span className="preview-arrow" aria-hidden="true">↗</span>
-            </div>
-            <div className="visual-bottomline"><span>CARE THAT KEEPS YOU MOVING</span><span>01 / 03</span></div>
-          </div>
+          <div className="hero-photo-wrap"><img src={garagePhoto} alt="A garage technician discussing vehicle servicing with a customer" fetchPriority="high" /><div className="hero-photo-label"><span className="photo-label-icon" aria-hidden="true">✓</span><div><strong>Care you can keep up with.</strong><p>From your first booking to the final update.</p></div></div></div>
         </section>
-
+        <section className="landing-summary" aria-label="Platform highlights"><div className="landing-container summary-grid">{[["↗", "Online", "Service booking"], ["▦", "One place", "Your service requests"], ["✓", "Stay informed", "Garage progress updates"], ["→", "For everyone", "Drivers & garage teams"]].map(([icon, title, caption]) => <div className="summary-item" key={title}><span aria-hidden="true">{icon}</span><div><strong>{title}</strong><p>{caption}</p></div></div>)}</div></section>
         <section className="landing-services landing-container" id="services" aria-labelledby="services-title">
-          <div className="landing-section-heading"><div><p className="landing-eyebrow">BUILT AROUND YOUR VEHICLE</p><h2 id="services-title">Everyday care. Expert attention.</h2></div><p>From the essentials to the unexpected,<br />make your next service easier to manage.</p></div>
-          <div className="landing-service-grid">{services.map(([number, title, description]) => <article className="landing-service-card" key={number}><span className="service-number">{number}</span><h3>{title}</h3><p>{description}</p><Link to="/signup" aria-label={`Book ${title.toLowerCase()}`}>Explore service <span aria-hidden="true">↗</span></Link></article>)}</div>
+          <div className="landing-section-heading"><div><p className="landing-eyebrow">CARE FOR EVERY MILE</p><h2 id="services-title">Comprehensive Maintenance & Repair Services</h2><p className="section-description">From routine maintenance to diagnostics, find the right care for your vehicle.</p></div><Link className="section-link" to="/signup">Book a service →</Link></div>
+          <div className="landing-service-grid">{services.map(([number, title, description]) => <article className="landing-service-card" key={number}><span className="service-number" aria-hidden="true">{["◈", "✓", "◎", "⚙", "ϟ"][Number(number) - 1]}</span><h3>{title}</h3><p>{description}</p><Link to="/signup" aria-label={`Book ${title.toLowerCase()}`}>Book service <span aria-hidden="true">→</span></Link></article>)}</div>
         </section>
-
-        <section className="landing-process landing-container" id="how-it-works" aria-labelledby="process-title">
-          <div><p className="landing-eyebrow">SIMPLE FROM THE START</p><h2 id="process-title">Three steps.<br />One smoother experience.</h2><p className="process-intro">More clarity at every stage of your service.</p></div>
-          <ol className="process-steps">
-            <li><span>01</span><div><h3>Make it yours</h3><p>Create your account to manage your vehicle's service needs.</p></div></li>
-            <li><span>02</span><div><h3>Book your visit</h3><p>Add your vehicle details, preferred date, and what needs attention.</p></div></li>
-            <li><span>03</span><div><h3>Follow the progress</h3><p>View garage updates and track your booking through to completion.</p></div></li>
-          </ol>
-        </section>
-        <section className="landing-garage landing-container"><div><p className="landing-eyebrow">FOR GARAGE TEAMS</p><h2>Great service starts with better organization.</h2><p>Manage requests, update repair progress, and keep customers in the loop.</p></div><Link className="landing-button landing-button-accent" to="/signup">Register your garage <span aria-hidden="true">↗</span></Link></section>
-      </main>
-      <footer className="landing-footer landing-container"><span>Smart Vehicle Service<span className="footer-dot">.</span></span><p>Better care. Every journey.</p><Link to="/login">Access your dashboard ↗</Link></footer>
+        <section className="landing-process" id="how-it-works" aria-labelledby="process-title"><div className="landing-container">
+          <div className="centered-heading"><p className="landing-eyebrow">SEAMLESS PROCESS</p><h2 id="process-title">How AutoCare Works</h2><p>From online booking to service updates, four simple steps to better vehicle care.</p></div>
+          <ol className="process-steps">{[["Register", "Create your account and get ready to manage your vehicle servicing."], ["Select Service", "Choose the maintenance or diagnostic service your vehicle needs."], ["Choose a Date", "Add your vehicle details and preferred service date to your request."], ["Track Your Service", "Follow booking status, garage updates, and estimated completion times."]].map(([title, description], index) => <li key={title}><span>0{index + 1}</span><div><h3>{title}</h3><p>{description}</p></div></li>)}</ol>
+        </div></section>        <section className="landing-benefits landing-container" id="about" aria-labelledby="benefits-title"><div className="centered-heading"><p className="landing-eyebrow">THE AUTOCARE ADVANTAGE</p><h2 id="benefits-title">Built for a Simpler Service Experience</h2><p>Keep your vehicle care organized, with clear information at every step.</p></div><div className="benefit-grid">{[["↗", "Easy Online Booking", "Send your vehicle details, select a service, and choose your preferred date."], ["◷", "Service Progress Tracking", "See whether your request is pending, in progress, or completed."], ["▦", "Connected Garage Teams", "Give your garage the information it needs to manage your service request."], ["◈", "Clear Communication", "Read progress messages from your garage directly in your dashboard."], ["☷", "Organized Booking History", "Keep your service requests together so they're easy to find again."], ["✓", "Your Own Dashboard", "Access the tools you need as a vehicle owner or garage team."]].map(([icon, title, description]) => <article key={title}><span aria-hidden="true">{icon}</span><div><h3>{title}</h3><p>{description}</p></div></article>)}</div></section>        <section className="landing-garage landing-container"><div><p className="landing-eyebrow">FOR AUTOMOTIVE SERVICE TEAMS</p><h2>Are You a Repair Shop or Garage Owner?</h2><p>Join the platform to manage customer requests, share progress updates, and keep your service work organized.</p></div><Link className="landing-button landing-button-accent" to="/signup">Become a Garage Partner <span aria-hidden="true">↗</span></Link></section>
+        <section className="landing-final-cta landing-container" aria-labelledby="final-cta-title"><p className="cta-badge">↗ SMARTER VEHICLE CARE</p><h2 id="final-cta-title">Ready to take care of your vehicle?</h2><p>Make your next service easier to manage. Create your account and keep your bookings and garage updates in one place.</p><div><Link className="landing-button landing-button-accent" to="/signup">Book Your Service →</Link><Link className="landing-button cta-secondary" to="/login">Access Your Dashboard</Link></div><small>For vehicle owners and garage teams.</small></section>      </main>
+      <footer className="landing-footer" id="contact"><div className="landing-container"><div className="footer-columns"><div className="footer-about"><Link className="footer-brand" to="/">Auto<span>Care</span></Link><p>Smarter vehicle servicing, clear progress updates, and organized garage management.</p></div><div><h3>QUICK LINKS</h3><a href="#home">Home</a><a href="#how-it-works">How It Works</a><a href="#about">About the Platform</a><Link to="/signup">Join as a Garage</Link></div><div><h3>SERVICES</h3>{services.map(([, title]) => <a key={title} href="#services">{title}</a>)}</div><div><h3>YOUR ACCOUNT</h3><Link to="/signup">Create an Account</Link><Link to="/login">Customer Login</Link><Link to="/login">Garage Login</Link><a href="#how-it-works">Booking Guide</a></div></div><div className="footer-bottom"><span><span className="footer-status-dot" aria-hidden="true" /> Built for better vehicle care</span><span>© {new Date().getFullYear()} AutoCare. Smart Vehicle Service.</span><a href="#home">Back to top ↑</a></div></div></footer>
     </div>
   );
 }
+
+
+
+
+
+
+
+
