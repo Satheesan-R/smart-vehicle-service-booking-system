@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+﻿import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { saveAuth } from "../auth";
 import { loginUser, registerUser } from "../services/api";
@@ -15,6 +15,8 @@ export default function AuthPage({ mode }) {
     email: "",
     password: "", confirm_password: "", phone: "", country_code: "+94", vehicle_make: "", vehicle_model: "", vehicle_year: "", license_plate: ""
   });
+  const [loginRole, setLoginRole] = useState("client");
+  const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState("");
@@ -47,7 +49,8 @@ export default function AuthPage({ mode }) {
         navigate("/login");
       } else {
         const authData = await loginUser({ email: form.email, password: form.password });
-        saveAuth(authData);
+        if (authData.user.role !== loginRole) throw new Error(`This is a ${authData.user.role === "garage" ? "service center" : "customer"} account. Select the matching portal above.`);
+        saveAuth(authData, rememberMe);
         navigate(authData.user.role === "garage" ? "/garage" : "/client");
       }
     } catch (err) {
@@ -101,62 +104,34 @@ export default function AuthPage({ mode }) {
     );
   }
   return (
-    <div className="login-page">
+    <div className="login-page"><header className="login-site-header"><Link className="login-site-brand" to="/">Auto<span>Care</span></Link><Link to="/">← Back to website</Link></header><main className="login-shell">
       <aside className="login-story">
-        <Link className="login-brand" to="/">SMART VEHICLE <span>SERVICE & CARE</span></Link>
+        <Link className="login-brand" to="/">AutoCare <span>SMART SERVICE</span></Link>
         <div>
-          <p className="login-eyebrow">WELCOME BACK TO BETTER CARE</p>
-          <h2>Your vehicle.<br />Your journey.<br /><span>You're in control.</span></h2>
-          <p>Pick up where you left off. Your bookings, service updates, and next steps are waiting in your dashboard.</p>
-          <ul><li>All your service bookings in one place</li><li>Updates that keep you in the loop</li><li>A dashboard built around your account</li></ul>
+          <p className="login-eyebrow">YOUR CONNECTED SERVICE WORKSPACE</p>
+          <h2>Smarter Service & Care<br />for Your Vehicle.</h2>
+          <p>Manage your vehicle service requests and follow repair progress with updates from your garage.</p>
+          <div className="login-preview"><div className="login-preview-title"><strong>Your service journey</strong><span>OVERVIEW</span></div><p>From your first request to service completion.</p><div className="login-preview-steps"><div><small>01</small><strong>Book a visit</strong></div><div><small>02</small><strong>Get updates</strong></div><div><small>03</small><strong>Track progress</strong></div></div></div>
         </div>
-        <p className="login-story-footer">BETTER CARE. EVERY JOURNEY.</p>
-      </aside>
-      <section className="login-content" aria-label="Log in to your account">
-      <Link className="login-home" to="/">← Back to home</Link>
-      <div className="auth-card">
-        <p className="login-eyebrow">YOUR DASHBOARD AWAITS</p>
-        <h1>{title}</h1>
-        <p className="muted">Log in to keep your service journey moving.</p>
-
-        <form className="form" onSubmit={handleSubmit}>
-          {isSignup && (
-            <>
-              <label>Name</label>
-              <input name="name" value={form.name} onChange={handleChange} required />
-
-              <label>Role</label>
-              <select name="role" value={form.role} onChange={handleChange} required>
-                <option value="client">Client</option>
-                <option value="garage">Garage</option>
-              </select>
-            </>
-          )}
-
-          <label htmlFor="login-email">Email address</label>
-          <input id="login-email" type="email" name="email" autoComplete="username" placeholder="you@example.com" value={form.email} onChange={handleChange} disabled={loading} required />
-
-          <label htmlFor="login-password">Password</label>
-          <div className="login-password-wrap">
-            <input id="login-password" type={showPassword ? "text" : "password"} name="password" autoComplete="current-password" placeholder="Enter your password" value={form.password} onChange={handleChange} disabled={loading} required />
-            <button type="button" className="login-password-toggle" onClick={() => setShowPassword(previous => !previous)} aria-pressed={showPassword} aria-label={showPassword ? "Hide password" : "Show password"}>{showPassword ? "Hide" : "Show"}</button>
-          </div>
-
-          {error && <p className="error-text" role="alert">{error}</p>}
-          {message && <p className="success-text" role="status">{message}</p>}
-
-          <button className="btn btn-primary" type="submit" disabled={loading}>
-            {loading ? "Logging in..." : "Log in to your dashboard ↗"}
-          </button>
-        </form>
-
-        <p className="switch-link">
-          {isSignup ? "Already registered?" : "New user?"} {" "}
-          <Link to={isSignup ? "/login" : "/signup"}>{isSignup ? "Login" : "Sign Up"}</Link>
-        </p>
-      </div>
-      <footer className="login-footer">Smart Vehicle Service <span>Better care. Every journey.</span></footer>
-      </section>
+        <ul className="login-panel-benefits"><li>Online booking</li><li>Garage updates</li><li>Service history</li></ul>
+      </aside>      <section className="login-content" aria-label="Log in to your account">
+        <div className="login-portal-heading"><span>PORTAL ACCESS</span><span>ACCOUNT SIGN-IN</span></div>
+        <div className="auth-card">
+          <h1>{title}</h1><p className="muted">Sign in to manage your vehicle services and repair status.</p>
+          <fieldset className="login-role-tabs" disabled={loading}><legend className="login-sr-only">Choose your account portal</legend>{[["client", "Customer Login"], ["garage", "Service Center"]].map(([role, label]) => <label className={loginRole === role ? "selected" : ""} key={role}><input type="radio" name="login-role" value={role} checked={loginRole === role} onChange={() => { setLoginRole(role); setError(""); }} /><span>{label}</span></label>)}</fieldset>
+          <p className="login-portal-info">{loginRole === "client" ? "Access your service bookings, vehicle profile, and garage progress updates." : "Manage customer requests, update service status, and share repair progress."}</p>
+          <div className="login-email-divider">SIGN IN WITH EMAIL</div>
+          <form className="form" onSubmit={handleSubmit} aria-busy={loading}>
+            <label htmlFor="login-email">Email Address</label><input id="login-email" type="email" name="email" autoComplete="username" placeholder="you@example.com" value={form.email} onChange={handleChange} disabled={loading} required />
+            <label htmlFor="login-password">Password</label><div className="login-password-wrap"><input id="login-password" type={showPassword ? "text" : "password"} name="password" autoComplete="current-password" placeholder="Enter your password" value={form.password} onChange={handleChange} disabled={loading} required /><button type="button" className="login-password-toggle" onClick={() => setShowPassword(previous => !previous)} aria-pressed={showPassword} aria-label={showPassword ? "Hide password" : "Show password"}>{showPassword ? "Hide" : "Show"}</button></div>
+            <label className="login-remember"><input type="checkbox" checked={rememberMe} onChange={event => setRememberMe(event.target.checked)} disabled={loading} /><span>Remember me</span></label>
+            {error && <p className="error-text" role="alert">{error}</p>}{message && <p className="success-text" role="status">{message}</p>}
+            <button className="btn btn-primary" type="submit" disabled={loading}>{loading ? "Logging in..." : "Login to Account →"}</button>
+          </form>
+          <p className="switch-link">Don't have an account? <Link to="/signup">Create an Account</Link></p>
+        </div>
+        <footer className="login-footer"><span>AutoCare · Smart Vehicle Service</span><Link to="/">Back to website</Link></footer>
+      </section></main>
     </div>
   );
 }
