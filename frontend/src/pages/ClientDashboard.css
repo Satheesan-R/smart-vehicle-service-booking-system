@@ -147,3 +147,13 @@
 .client-dashboard a:focus-visible, .client-dashboard button:focus-visible { outline-color: #005bea; }
 @media (max-width: 780px) { .client-dashboard { grid-template-columns: 1fr; } .client-dashboard .client-main { padding-inline: 18px; } .client-dashboard .client-topbar { margin-inline: -18px; padding-inline: 18px; } }
 @media (max-width: 440px) { .client-dashboard .client-topbar-title { font-size: 9px; padding: 10px; } }
+
+/* Booking summary cards */
+.client-dashboard .client-stats { gap: 16px; margin-bottom: 32px; }
+.client-dashboard .client-stat { border: 1px solid #f0eff9; border-radius: 15px; padding: 22px 18px; background: linear-gradient(145deg, #fff 65%, #f3f3ff); }
+.client-dashboard .client-summary-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 9px; color: #005bea; background: #e9edff; font-size: 21px; }
+.client-dashboard .client-stat:nth-child(2) .client-summary-icon { background: #3069ef; color: #fff; }
+.client-dashboard .client-stat > strong { font-size: 34px; margin-top: 15px; }
+.client-dashboard .client-stat h2 { font-size: 15px; letter-spacing: -.2px; margin-top: 8px; }
+.client-dashboard .client-stat p { font-size: 11px; line-height: 1.6; margin-top: 5px; }
+@media (max-width: 1050px) { .client-dashboard .client-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

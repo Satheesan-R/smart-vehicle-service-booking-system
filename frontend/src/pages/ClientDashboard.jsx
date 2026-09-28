@@ -76,6 +76,12 @@ export default function ClientDashboard() {
     }
   };
 
+  const activeBookings = bookings.filter(booking => booking.status === "in-progress");
+  const pendingBookings = bookings.filter(booking => booking.status === "pending");
+  const completedBookings = bookings.filter(booking => booking.status === "completed");
+  const nextBooking = [...pendingBookings].filter(booking => String(booking.booking_date).slice(0, 10) >= new Date().toLocaleDateString("en-CA")).sort((a, b) => String(a.booking_date).localeCompare(String(b.booking_date)))[0];
+  const vehicles = [...new Set(bookings.map(booking => booking.vehicle_id).filter(Boolean))];
+  const recentUpdates = bookings.flatMap(booking => (updatesByBooking[booking.id] || []).map(update => ({ ...update, bookingId: booking.id, service: booking.service_type }))).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 4);
   return (
     <div className="client-dashboard">
       <aside className="client-sidebar">
@@ -94,10 +100,7 @@ export default function ClientDashboard() {
         <header className="client-topbar"><span className="client-topbar-title">AutoCare / Customer Dashboard</span><div className="client-topbar-user"><span className="client-avatar" aria-hidden="true">{user?.name?.charAt(0).toUpperCase() || "C"}</span><span>{user?.name || "Vehicle owner"}<small>Customer account</small></span></div></header>
         <section className="client-welcome" aria-labelledby="client-title"><div><p className="client-eyebrow">OPERATIONAL HUB · CLIENT PORTAL</p><h1 id="client-title">Welcome back, {user?.name?.split(" ")[0] || "there"}<span>.</span></h1><p>Here's what's happening with your vehicle care.</p></div><a className="client-button" href="#client-book">Book New Service <span aria-hidden="true">+</span></a></section>
         {error && <p className="client-error" role="alert">{error}</p>}
-        <section className="client-stats" aria-label="Booking summary">
-          {[["Total requests", bookings.length, "Your service history"], ["Pending", bookings.filter(b => b.status === "pending").length, "Awaiting garage review"], ["In progress", bookings.filter(b => b.status === "in-progress").length, "Getting the care it needs"], ["Completed", bookings.filter(b => b.status === "completed").length, "Service completed"]].map(([label, count, note], index) => <article className="client-stat" key={label}><div><span>{label}</span><span className={`client-stat-dot dot-${index}`} aria-hidden="true" /></div><strong>{count}</strong><p>{note}</p></article>)}
-        </section>
-        <div className="client-workspace-grid">
+        <section className="client-stats" aria-label="Booking summary">{[["Pending Requests", pendingBookings.length, "Awaiting garage review", "▦"], ["Active Services", activeBookings.length, "Service work in progress", "⚙"], ["Completed Services", completedBookings.length, "Your completed bookings", "✓"], ["Total Bookings", bookings.length, "All your service requests", "☷"]].map(([label, count, note, icon]) => <article className="client-stat" key={label}><span className="client-summary-icon" aria-hidden="true">{icon}</span><strong>{count}</strong><h2>{label}</h2><p>{note}</p></article>)}</section>        <div className="client-workspace-grid">
           <section className="client-panel client-booking" id="client-book" aria-labelledby="client-book-title">
             <div className="client-panel-heading"><div><p className="client-eyebrow">PLAN YOUR NEXT VISIT</p><h2 id="client-book-title">Book a service</h2></div><span className="client-panel-symbol" aria-hidden="true">+</span></div>
             <p className="client-panel-description">Tell us about your vehicle and the care it needs.</p>
@@ -126,4 +129,5 @@ export default function ClientDashboard() {
     </div>
   );
 }
+
 
