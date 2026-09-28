@@ -30,7 +30,7 @@ export default function CreateBooking() {
     let cancelled = false;
     getBookings(user.id).then(data => {
       if (!cancelled) setVehicles([...new Set(data.map(booking => booking.vehicle_id).filter(Boolean))]);
-    }).catch(() => { if (!cancelled) setVehicleError("Previous vehicles could not be loaded. You can enter your vehicle below."); });
+    }).catch(() => { if (!cancelled) setVehicleError("We could not load vehicles from past bookings. Please fill in your vehicle details manually."); });
     return () => { cancelled = true; };
   }, [user.id]);
 
@@ -39,7 +39,7 @@ export default function CreateBooking() {
     if (saving || success) return;
     setError("");
     if (!form.vehicle_id.trim() || !form.booking_date || form.booking_date < today) {
-      setError("Enter your vehicle and choose today or a future date.");
+      setError("Please enter your vehicle model and registration number, then choose today or a future service date.");
       return;
     }
     setSaving(true);
@@ -61,7 +61,7 @@ export default function CreateBooking() {
       <main className="client-main">
         <header className="client-topbar"><span>Customer Portal / Book Service</span><div className="client-topbar-user">{user.name}</div></header>
         <section className="booking-heading"><p className="client-eyebrow">COMPLETE YOUR SERVICE REQUEST</p><h1>Vehicle Service Booking Form</h1><p>Fill in the required fields below, review your details, and submit your request for garage review.</p></section>
-        {success ? <section className="client-panel booking-success" role="status"><span aria-hidden="true">✓</span><h2>Request #{success} submitted</h2><p>Your booking is pending garage review. Track progress from your dashboard.</p><Link className="client-button" to="/client">View my bookings →</Link><button type="button" className="booking-another" onClick={() => { setSuccess(null); setForm({ vehicle_id: "", service_type: "General Service", booking_date: "" }); }}>Book another service</button></section> :
+        {success ? <section className="client-panel booking-success" role="status"><span aria-hidden="true">✓</span><h2>Service request #{success} submitted</h2><p>Your completed form has been sent for garage review. Open My Bookings to view the request and follow its progress.</p><Link className="client-button" to="/client/bookings">View my bookings →</Link><button type="button" className="booking-another" onClick={() => { setSuccess(null); setForm({ vehicle_id: "", service_type: "General Service", booking_date: "" }); }}>Fill another booking form</button></section> :
         <form aria-label="Vehicle service booking form" className="booking-grid" onSubmit={submit} aria-busy={saving}>
           <div className="booking-column">
             <section className="client-panel"><div className="booking-section-heading"><span>1</span><div><h2>Enter Vehicle Details</h2><p>Enter the vehicle model and registration number. You can also reuse details from a previous booking.</p></div></div>
