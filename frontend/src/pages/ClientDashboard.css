@@ -220,3 +220,24 @@
 .client-dashboard .client-progress-empty { background: #f3f2ff; border-color: #d6dfff; }
 .client-dashboard .client-footer { border-color: #e8e7f4; }
 @media (max-width: 1000px) { .client-dashboard .client-workspace-grid { grid-template-columns: 1fr; } }
+
+/* Latest reference: light navigation and compact top bar. */
+.client-dashboard .client-sidebar { background: #f1f2ff; color: #182137; border-right: 1px solid #eeedf8; }
+.client-dashboard .client-brand small { color: #005bea; }
+.client-dashboard .client-nav-label { color: #7d8294; }
+.client-dashboard nav a { color: #4e5463; }
+.client-dashboard nav a:first-child { background: #101f32; box-shadow: none; }
+.client-dashboard nav a:hover { background: #e4e7fb; color: #172035; }
+.client-dashboard .client-account { margin-top: auto; border-color: #dedff0; }
+.client-dashboard .client-account small { color: #7d8294; }
+.client-dashboard .client-account button { color: #ce2929; }
+.client-dashboard .client-search { display: flex; align-items: center; gap: 10px; flex: 1; max-width: 720px; background: #fff; border: 1px solid #f0eff8; border-radius: 12px; padding: 0 14px; }
+.client-dashboard .client-search > span { color: #797d8b; font-size: 22px; }
+.client-dashboard .client-search input { width: 100%; min-width: 0; border: 0; outline-offset: -2px; font: inherit; font-size: 12px; padding: 12px 0; background: transparent; }
+.client-dashboard .client-search input::placeholder { color: #9699ab; }
+.client-dashboard .client-topbar { gap: 22px; background: #fcfbff; }
+.client-dashboard .client-welcome .client-eyebrow { display: none; }
+.client-dashboard .client-welcome > .client-button { background: #080808; padding: 15px 22px; }
+.client-dashboard .client-welcome { padding-block: 30px 36px; }
+.client-dashboard .client-topbar-user { flex-shrink: 0; }
+@media (max-width: 600px) { .client-dashboard .client-topbar { flex-wrap: wrap; padding-block: 12px; } .client-dashboard .client-search { flex-basis: 100%; } }

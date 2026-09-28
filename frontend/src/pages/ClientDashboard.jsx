@@ -12,6 +12,7 @@ export default function ClientDashboard() {
   const user = getCurrentUser();
   const [bookings, setBookings] = useState([]);
   const [updatesByBooking, setUpdatesByBooking] = useState({});
+  const [search, setSearch] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
@@ -95,12 +96,11 @@ export default function ClientDashboard() {
           <a href="#client-requests">My Bookings <span>{bookings.length}</span></a>
           <a href="#client-progress">Service updates <span aria-hidden="true">↗</span></a>
         </nav>
-        <div className="client-sidebar-note"><span aria-hidden="true">↗</span><h2>Keep your journey moving.</h2><p>Your next service is just a few details away.</p><a href="#client-book">Book your next visit →</a></div>
         <div className="client-account"><span className="client-avatar" aria-hidden="true">{user?.name?.charAt(0).toUpperCase() || "C"}</span><div><strong>{user?.name || "Vehicle owner"}</strong><small>Client account</small></div><button type="button" onClick={onLogout}>Log out</button></div>
       </aside>
       <main className="client-main" id="client-overview">
-        <header className="client-topbar"><span className="client-topbar-title">AutoCare / Customer Dashboard</span><div className="client-topbar-user"><span className="client-avatar" aria-hidden="true">{user?.name?.charAt(0).toUpperCase() || "C"}</span><span>{user?.name || "Vehicle owner"}<small>Customer account</small></span></div></header>
-        <section className="client-welcome" aria-labelledby="client-title"><div><p className="client-eyebrow">OPERATIONAL HUB · CLIENT PORTAL</p><h1 id="client-title">Welcome back, {user?.name?.split(" ")[0] || "there"}<span>.</span></h1><p>Here's what's happening with your vehicle care.</p></div><a className="client-button" href="#client-book">Book New Service <span aria-hidden="true">+</span></a></section>
+        <header className="client-topbar"><label className="client-search"><span aria-hidden="true">⌕</span><input type="search" aria-label="Search bookings by vehicle, service or booking ID" placeholder="Search vehicle, service, or booking ID..." value={search} onChange={event => setSearch(event.target.value)} /></label><div className="client-topbar-user"><span className="client-avatar" aria-hidden="true">{user?.name?.charAt(0).toUpperCase() || "C"}</span><span>{user?.name || "Vehicle owner"}<small>Customer account</small></span></div></header>
+        <section className="client-welcome" aria-labelledby="client-title"><div><p className="client-eyebrow">OPERATIONAL HUB · CLIENT PORTAL</p><h1 id="client-title">Welcome back, {user?.name || "there"}<span>.</span></h1><p>Manage your vehicle services, bookings, and service history from one place.</p></div><a className="client-button" href="#client-book">Book New Service <span aria-hidden="true">+</span></a></section>
         {error && <p className="client-error" role="alert">{error}</p>}
         <section className="client-stats" aria-label="Booking summary">{[["Pending Requests", pendingBookings.length, "Awaiting garage review", "▦"], ["Active Services", activeBookings.length, "Service work in progress", "⚙"], ["Completed Services", completedBookings.length, "Your completed bookings", "✓"], ["Total Bookings", bookings.length, "All your service requests", "☷"]].map(([label, count, note, icon]) => <article className="client-stat" key={label}><span className="client-summary-icon" aria-hidden="true">{icon}</span><strong>{count}</strong><h2>{label}</h2><p>{note}</p></article>)}</section>        <div className="client-overview-grid">
           <div className="client-overview-main">
@@ -143,6 +143,7 @@ export default function ClientDashboard() {
     </div>
   );
 }
+
 
 
 
