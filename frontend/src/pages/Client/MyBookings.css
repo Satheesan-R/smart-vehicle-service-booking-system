@@ -20,3 +20,15 @@
 .history-page .history-filter-fields button { border: 0; background: #eef0ff; color: #005bea; border-radius: 8px; padding: 10px; cursor: pointer; }
 .history-page .history-record-count { color: #797d8b; font-size: 10px; margin: 15px 0 0; }
 @media(max-width: 850px) { .history-page .history-filter-fields { grid-template-columns: 1fr 1fr; } }
+.history-page .history-list { display: grid; gap: 18px; }
+.history-page .history-card { padding: 26px; background: #fff; border-radius: 15px; border: 1px solid #eeeefa; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.history-page .history-card-main { display: flex; gap: 18px; min-width: 0; }
+.history-page .history-icon { flex-shrink: 0; display: grid; place-items: center; width: 48px; height: 48px; background: #e9edff; border-radius: 12px; color: #005bea; font-size: 24px; }
+.history-page .history-card-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 11px; color: #005bea; }
+.history-page .history-card h2 { font-size: 18px; margin: 10px 0 7px; }
+.history-page .history-card p { font-size: 12px; color: #606777; margin: 0 0 6px; overflow-wrap: anywhere; }
+.history-page .history-card time { font-size: 11px; color: #797d8b; }
+.history-page .history-in-progress { box-shadow: 0 5px 8px #15203d0a; }
+.history-page .history-empty { text-align: center; padding: 40px; }
+.history-page .history-empty p { color: #797d8b; font-size: 13px; }
+.history-page .history-empty a { color: #005bea; }
