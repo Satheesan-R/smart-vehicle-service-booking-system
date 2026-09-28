@@ -1,8 +1,9 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+﻿import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { getCurrentUser } from "./auth";
 import LandingPage from "./pages/LandingPage";
 import AuthPage from "./pages/AuthPage";
 import ClientDashboard from "./pages/ClientDashboard";
+import CreateBooking from "./pages/Client/CreateBooking";
 import GarageDashboard from "./pages/GarageDashboard";
 import "./App.css";
 
@@ -43,6 +44,7 @@ export default function App() {
             </ProtectedRoute>
           )}
         />
+        <Route path="/client/book" element={<ProtectedRoute role="client"><CreateBooking /></ProtectedRoute>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
