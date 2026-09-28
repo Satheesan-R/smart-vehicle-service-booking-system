@@ -1,5 +1,5 @@
 ﻿import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { getCurrentUser, logout } from "../../auth";
 import { createBooking, getBookings } from "../../services/api";
 import "../ClientDashboard.css";
@@ -15,9 +15,10 @@ const SERVICES = [
 
 export default function CreateBooking() {
   const user = getCurrentUser();
+  const { state } = useLocation();
   const navigate = useNavigate();
   const [vehicles, setVehicles] = useState([]);
-  const [form, setForm] = useState({ vehicle_id: "", service_type: "General Service", booking_date: "" });
+  const [form, setForm] = useState({ vehicle_id: typeof state?.rebook?.vehicle_id === "string" ? state.rebook.vehicle_id : "", service_type: SERVICES.some(([name]) => name === state?.rebook?.service_type) ? state.rebook.service_type : "General Service", booking_date: "" });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(null);
@@ -79,4 +80,5 @@ export default function CreateBooking() {
     </div>
   );
 }
+
 
