@@ -111,7 +111,11 @@ export default function ClientDashboard() {
             <section className="client-panel client-next-service" aria-labelledby="client-next-title"><div className="client-panel-heading"><div><h2 id="client-next-title">Upcoming Service</h2><p className="client-panel-description">Your next preferred service date.</p></div><span className="client-count">{nextBooking ? "Pending review" : "No upcoming request"}</span></div>{nextBooking ? <><div className="client-next-details"><div><small>VEHICLE</small><strong>{nextBooking.vehicle_id}</strong></div><div><small>SERVICE</small><strong>{nextBooking.service_type}</strong></div><div><small>REQUESTED DATE</small><strong>{String(nextBooking.booking_date).slice(0,10)}</strong></div></div><a className="client-button" href="#client-requests">View booking details →</a></> : <p className="client-no-updates">No upcoming pending bookings. Choose a date using the booking form below.</p>}</section>
           </div>
 
-        </div>        <div className="client-workspace-grid">
+        </div>        <section className="client-panel client-requests" id="client-requests" aria-labelledby="client-requests-title">
+          <div className="client-panel-heading"><div><p className="client-eyebrow">YOUR BOOKING HISTORY</p><h2 id="client-requests-title">Recent Bookings</h2></div><span className="client-count">{bookings.length} requests</span></div>
+          <div className="client-table-wrap"><table><thead><tr><th scope="col">Booking</th><th scope="col">Vehicle</th><th scope="col">Service</th><th scope="col">Date</th><th scope="col">Status</th><th scope="col">Action</th></tr></thead><tbody>{filteredBookings.length === 0 ? <tr><td colSpan="6"><div className="client-empty"><strong>No matching bookings.</strong><p>Try another search or create a new service request.</p><a href="#client-book">Book your first service ↗</a></div></td></tr> : filteredBookings.map(booking => <tr key={booking.id}><td><strong>#{booking.id}</strong></td><td>{booking.vehicle_id}</td><td>{booking.service_type}</td><td>{String(booking.booking_date).slice(0, 10)}</td><td><span className={`client-status client-status-${booking.status}`}>{booking.status?.replace(/-/g, " ")}</span></td><td><a className="client-table-action" href={`#booking-progress-${booking.id}`}>{booking.status === "in-progress" ? "Track Service" : "View Details"}</a></td></tr>)}</tbody></table></div>
+        </section>
+        <div className="client-workspace-grid">
           <section className="client-panel client-booking" id="client-book" aria-labelledby="client-book-title">
             <div className="client-panel-heading"><div><p className="client-eyebrow">PLAN YOUR NEXT VISIT</p><h2 id="client-book-title">Book a service</h2></div><span className="client-panel-symbol" aria-hidden="true">+</span></div>
             <p className="client-panel-description">Tell us about your vehicle and the care it needs.</p>
@@ -125,14 +129,10 @@ export default function ClientDashboard() {
           </section>
           <section className="client-panel client-services" aria-labelledby="client-services-title"><p className="client-eyebrow">CARE FOR EVERY MILE</p><h2 id="client-services-title">What can we help with?</h2><p className="client-panel-description">Choose a service to get your booking started.</p><div className="client-service-list">{SERVICES.map((service, index) => <a key={service} href="#client-book" onClick={() => setForm(prev => ({ ...prev, service_type: service }))}><span className="client-service-number">0{index + 1}</span><span>{service}</span><span aria-hidden="true">↗</span></a>)}</div><div className="client-service-note"><strong>A little care goes a long way.</strong><p>Regular maintenance helps you stay ready for the road ahead.</p></div></section>
         </div>
-        <section className="client-panel client-requests" id="client-requests" aria-labelledby="client-requests-title">
-          <div className="client-panel-heading"><div><p className="client-eyebrow">EVERY VISIT, IN ONE PLACE</p><h2 id="client-requests-title">My service requests</h2></div><span className="client-count">{bookings.length} requests</span></div>
-          <div className="client-table-wrap"><table><thead><tr><th scope="col">Booking</th><th scope="col">Vehicle</th><th scope="col">Service</th><th scope="col">Date</th><th scope="col">Status</th></tr></thead><tbody>{bookings.length === 0 ? <tr><td colSpan="5"><div className="client-empty"><strong>Your service journey starts here.</strong><p>Your bookings will appear here once you submit a request.</p><a href="#client-book">Book your first service ↗</a></div></td></tr> : bookings.map(booking => <tr key={booking.id}><td><strong>#{booking.id}</strong></td><td>{booking.vehicle_id}</td><td>{booking.service_type}</td><td>{String(booking.booking_date).slice(0, 10)}</td><td><span className={`client-status client-status-${booking.status}`}>{booking.status?.replace(/-/g, " ")}</span></td></tr>)}</tbody></table></div>
-        </section>
         <section className="client-progress" id="client-progress" aria-labelledby="client-progress-title"><div className="client-panel-heading"><div><p className="client-eyebrow">STAY IN THE LOOP</p><h2 id="client-progress-title">Service progress</h2></div></div>
           {bookings.length === 0 ? <p className="client-progress-empty">Garage updates will appear here when your service journey begins.</p> : <div className="client-timeline-grid">{bookings.map(booking => {
             const updates = updatesByBooking[booking.id] || [];
-            return <article className="client-timeline" key={booking.id}><div className="client-timeline-heading"><h3>Booking #{booking.id}</h3><span>{booking.service_type}</span></div>{updates.length === 0 ? <p className="client-no-updates">No updates from your garage yet.</p> : <ul>{updates.map(update => <li key={update.id}><p>{update.message}</p><small>{update.eta_value && update.eta_unit ? `ETA: ${update.eta_value} ${update.eta_unit}` : "ETA: Not specified"}<span aria-hidden="true"> · </span>{new Date(update.created_at).toLocaleString()}</small></li>)}</ul>}</article>;
+            return <article className="client-timeline" id={`booking-progress-${booking.id}`} key={booking.id}><div className="client-timeline-heading"><h3>Booking #{booking.id}</h3><span>{booking.service_type}</span></div>{updates.length === 0 ? <p className="client-no-updates">No updates from your garage yet.</p> : <ul>{updates.map(update => <li key={update.id}><p>{update.message}</p><small>{update.eta_value && update.eta_unit ? `ETA: ${update.eta_value} ${update.eta_unit}` : "ETA: Not specified"}<span aria-hidden="true"> · </span>{new Date(update.created_at).toLocaleString()}</small></li>)}</ul>}</article>;
           })}</div>}
         </section>
           <aside className="client-overview-aside" aria-label="Vehicles and recent activity">
@@ -145,6 +145,7 @@ export default function ClientDashboard() {
     </div>
   );
 }
+
 
 
 

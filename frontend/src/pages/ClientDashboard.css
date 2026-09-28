@@ -263,3 +263,19 @@
 .client-dashboard .client-next-service > .client-button { display: flex; width: fit-content; margin-left: auto; background: #080808; }
 .client-dashboard .client-overview-aside { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 28px; }
 @media (max-width: 1100px) { .client-dashboard .client-overview-main { grid-template-columns: 1fr; } .client-dashboard .client-overview-aside { grid-template-columns: 1fr; } }
+
+/* Recent bookings and usable table actions. */
+.client-dashboard .client-requests { margin: 32px 0; padding: 0; border: 0; background: transparent; }
+.client-dashboard .client-requests .client-panel-heading { padding-block: 4px 10px; }
+.client-dashboard .client-table-wrap { border-radius: 14px; overflow-x: auto; background: #fff; border: 1px solid #eeeef8; margin-top: 12px; }
+.client-dashboard th { padding: 17px 20px; text-transform: uppercase; font-size: 9px; letter-spacing: .4px; }
+.client-dashboard td { padding: 25px 20px; font-size: 12px; }
+.client-dashboard td:first-child { color: #005bea; }
+.client-dashboard tbody tr:last-child td { border-bottom: 0; }
+.client-dashboard .client-table-action { display: inline-flex; justify-content: center; min-width: 90px; background: #eaecff; color: #172035; border-radius: 8px; padding: 11px 14px; font-size: 10px; }
+.client-dashboard .client-table-action:hover { background: #dbe2ff; }
+.client-dashboard .client-status-in-progress { background: #ffdfcd; color: #cf6200; }
+.client-dashboard .client-status-pending { background: #e6ebff; color: #005bea; }
+.client-dashboard .client-status-completed { background: #eeeefe; color: #283653; }
+.client-dashboard .client-timeline { scroll-margin-top: 25px; }
+.client-dashboard .client-workspace-grid { margin-top: 32px; }
