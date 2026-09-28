@@ -123,3 +123,27 @@
   .client-dashboard .client-requests .client-panel-heading { flex-wrap: wrap; }
   .client-dashboard .client-account-tag { font-size: 7px; letter-spacing: .5px; }
 }
+
+/* AutoCare customer portal: navigation and page shell. */
+.client-dashboard { --client-ink: #182137; --client-muted: #797d8b; --client-accent: #005bea; background: #f8f7ff; grid-template-columns: 250px minmax(0, 1fr); }
+.client-dashboard .client-sidebar { background: #0f1e31; }
+.client-dashboard .client-brand { font-size: 18px; letter-spacing: -.4px; }
+.client-dashboard .client-brand-mark { background: #005bea; color: #fff; }
+.client-dashboard .client-brand small { font-size: 8px; letter-spacing: 1px; }
+.client-dashboard nav a { font-size: 13px; color: #b8c6df; }
+.client-dashboard nav a:first-child { background: #3069ef; color: #fff; box-shadow: 0 5px 15px #005bea25; }
+.client-dashboard .client-sidebar-note { margin-top: auto; }
+.client-dashboard .client-sidebar-note > span, .client-dashboard .client-sidebar-note a, .client-dashboard .client-account button { color: #a7c6ff; }
+.client-dashboard .client-avatar { color: #fff; background: #183458; }
+.client-dashboard .client-main { padding-inline: 26px; }
+.client-dashboard .client-topbar { background: #fff; margin-inline: -26px; padding-inline: 26px; min-height: 72px; border-bottom: 1px solid #f0eff9; }
+.client-dashboard .client-topbar-title { background: #f3f2ff; border-radius: 20px; padding: 12px 18px; }
+.client-dashboard .client-topbar-user { display: flex; align-items: center; gap: 10px; font-size: 12px; color: #182137; }
+.client-dashboard .client-topbar-user small { display: block; font-size: 9px; color: #797d8b; margin-top: 3px; }
+.client-dashboard .client-welcome .client-eyebrow { display: inline-block; background: #e4e9ff; border-radius: 20px; color: #375381; padding: 6px 10px; font-size: 9px; letter-spacing: .5px; }
+.client-dashboard h1 span { color: #005bea; }
+.client-dashboard .client-button { color: #fff; background: #005bea; border-radius: 10px; box-shadow: 0 3px 6px #005bea18; }
+.client-dashboard .client-button:hover:not(:disabled) { background: #0048be; }
+.client-dashboard a:focus-visible, .client-dashboard button:focus-visible { outline-color: #005bea; }
+@media (max-width: 780px) { .client-dashboard { grid-template-columns: 1fr; } .client-dashboard .client-main { padding-inline: 18px; } .client-dashboard .client-topbar { margin-inline: -18px; padding-inline: 18px; } }
+@media (max-width: 440px) { .client-dashboard .client-topbar-title { font-size: 9px; padding: 10px; } }

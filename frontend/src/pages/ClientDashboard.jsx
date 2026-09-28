@@ -79,20 +79,20 @@ export default function ClientDashboard() {
   return (
     <div className="client-dashboard">
       <aside className="client-sidebar">
-        <Link className="client-brand" to="/" aria-label="Smart Vehicle Service home"><span className="client-brand-mark">S.</span><span>SMART VEHICLE<small>SERVICE & CARE</small></span></Link>
-        <p className="client-nav-label">YOUR WORKSPACE</p>
+        <Link className="client-brand" to="/" aria-label="Smart Vehicle Service home"><span className="client-brand-mark">S.</span><span>AutoCare<small>CUSTOMER PORTAL</small></span></Link>
+        <p className="client-nav-label">YOUR SERVICE WORKSPACE</p>
         <nav aria-label="Dashboard navigation">
-          <a href="#client-overview">Overview <span aria-hidden="true">↗</span></a>
+          <a href="#client-overview">Dashboard <span aria-hidden="true">↗</span></a>
           <a href="#client-book">Book a service <span aria-hidden="true">+</span></a>
-          <a href="#client-requests">My requests <span>{bookings.length}</span></a>
+          <a href="#client-requests">My Bookings <span>{bookings.length}</span></a>
           <a href="#client-progress">Service updates <span aria-hidden="true">↗</span></a>
         </nav>
         <div className="client-sidebar-note"><span aria-hidden="true">↗</span><h2>Keep your journey moving.</h2><p>Your next service is just a few details away.</p><a href="#client-book">Book your next visit →</a></div>
         <div className="client-account"><span className="client-avatar" aria-hidden="true">{user?.name?.charAt(0).toUpperCase() || "C"}</span><div><strong>{user?.name || "Vehicle owner"}</strong><small>Client account</small></div><button type="button" onClick={onLogout}>Log out</button></div>
       </aside>
       <main className="client-main" id="client-overview">
-        <header className="client-topbar"><span>Workspace <span aria-hidden="true">/</span> <strong>Overview</strong></span><span className="client-account-tag">VEHICLE OWNER</span></header>
-        <section className="client-welcome" aria-labelledby="client-title"><div><p className="client-eyebrow">YOUR SERVICE, SIMPLIFIED</p><h1 id="client-title">Welcome back, {user?.name?.split(" ")[0] || "there"}<span>.</span></h1><p>Here's what's happening with your vehicle care.</p></div><a className="client-button" href="#client-book">Book a service <span aria-hidden="true">+</span></a></section>
+        <header className="client-topbar"><span className="client-topbar-title">AutoCare / Customer Dashboard</span><div className="client-topbar-user"><span className="client-avatar" aria-hidden="true">{user?.name?.charAt(0).toUpperCase() || "C"}</span><span>{user?.name || "Vehicle owner"}<small>Customer account</small></span></div></header>
+        <section className="client-welcome" aria-labelledby="client-title"><div><p className="client-eyebrow">OPERATIONAL HUB · CLIENT PORTAL</p><h1 id="client-title">Welcome back, {user?.name?.split(" ")[0] || "there"}<span>.</span></h1><p>Here's what's happening with your vehicle care.</p></div><a className="client-button" href="#client-book">Book New Service <span aria-hidden="true">+</span></a></section>
         {error && <p className="client-error" role="alert">{error}</p>}
         <section className="client-stats" aria-label="Booking summary">
           {[["Total requests", bookings.length, "Your service history"], ["Pending", bookings.filter(b => b.status === "pending").length, "Awaiting garage review"], ["In progress", bookings.filter(b => b.status === "in-progress").length, "Getting the care it needs"], ["Completed", bookings.filter(b => b.status === "completed").length, "Service completed"]].map(([label, count, note], index) => <article className="client-stat" key={label}><div><span>{label}</span><span className={`client-stat-dot dot-${index}`} aria-hidden="true" /></div><strong>{count}</strong><p>{note}</p></article>)}
@@ -126,3 +126,4 @@ export default function ClientDashboard() {
     </div>
   );
 }
+
