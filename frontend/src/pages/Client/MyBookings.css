@@ -32,3 +32,10 @@
 .history-page .history-empty { text-align: center; padding: 40px; }
 .history-page .history-empty p { color: #797d8b; font-size: 13px; }
 .history-page .history-empty a { color: #005bea; }
+.history-page .history-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.history-page .history-actions button, .history-page .history-actions a { border: 0; background: #eff0ff; border-radius: 8px; color: #182137; padding: 11px 16px; font: inherit; font-size: 11px; cursor: pointer; }
+.history-page .history-details { flex-basis: 100%; border-top: 1px solid #eeeefa; padding-top: 20px; }
+.history-page .history-details h3 { font-size: 15px; }
+.history-page .history-details dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.history-page .history-details dt { font-size: 10px; color: #797d8b; }
+.history-page .history-details dd { font-size: 12px; margin: 5px 0 0; overflow-wrap: anywhere; text-transform: capitalize; }
