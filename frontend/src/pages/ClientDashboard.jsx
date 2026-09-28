@@ -71,7 +71,7 @@ export default function ClientDashboard() {
         <nav aria-label="Dashboard navigation">
           <a href="#client-overview">Dashboard <span aria-hidden="true">↗</span></a>
           <a href="#client-vehicles">My Vehicles <span aria-hidden="true">▣</span></a><a href="/client/book">Book a service <span aria-hidden="true">+</span></a>
-          <a href="#client-requests">My Bookings <span>{bookings.length}</span></a>
+          <a href="/client/bookings">My Bookings <span>{bookings.length}</span></a>
           <a href="#client-progress">Service updates <span aria-hidden="true">↗</span></a>
         </nav>
         <div className="client-account"><span className="client-avatar" aria-hidden="true">{user?.name?.charAt(0).toUpperCase() || "C"}</span><div><strong>{user?.name || "Vehicle owner"}</strong><small>Client account</small></div><button type="button" onClick={onLogout}>Log out</button></div>
@@ -85,7 +85,7 @@ export default function ClientDashboard() {
             <section className="client-panel client-live-service" aria-labelledby="client-live-title"><div className="client-live-heading"><div><p className="client-eyebrow">SERVICE IN PROGRESS</p><h2 id="client-live-title">{activeBookings[0]?.vehicle_id || "Service progress"}</h2><p>{activeBookings[0]?.service_type || "Track your vehicle's journey with your garage."}</p></div><span className="client-count">{activeBookings.length ? "In progress" : "No active service"}</span></div>
               {activeBookings.length ? <><div className="client-workflow-label"><strong>Service workflow</strong><span>Booking #{activeBookings[0].id}</span></div><ol className="client-workflow"><li className="done"><small>STEP 01</small><strong>Request received</strong><span>Submitted</span></li><li className="current" aria-current="step"><small>STEP 02</small><strong>Service in progress</strong><span>With your garage</span></li><li><small>STEP 03</small><strong>Completed</strong><span>Awaiting completion</span></li></ol><div className="client-active-message"><strong>Latest garage update</strong><p>{[...(updatesByBooking[activeBookings[0].id] || [])].sort((a,b) => new Date(b.created_at) - new Date(a.created_at))[0]?.message || "Your garage has not posted an update yet."}</p></div><a className="client-button" href="#client-progress">View all service updates →</a></> : <div className="client-empty"><strong>Ready when you are.</strong><p>Your service workflow appears here when a garage starts work on your booking.</p><a href="#client-vehicles">My Vehicles <span aria-hidden="true">▣</span></a><a href="/client/book">Book a service →</a></div>}
             </section>
-            <section className="client-panel client-next-service" aria-labelledby="client-next-title"><div className="client-panel-heading"><div><h2 id="client-next-title">Upcoming Service</h2><p className="client-panel-description">Your next preferred service date.</p></div><span className="client-count">{nextBooking ? "Pending review" : "No upcoming request"}</span></div>{nextBooking ? <><div className="client-next-details"><div><small>VEHICLE</small><strong>{nextBooking.vehicle_id}</strong></div><div><small>SERVICE</small><strong>{nextBooking.service_type}</strong></div><div><small>REQUESTED DATE</small><strong>{String(nextBooking.booking_date).slice(0,10)}</strong></div></div><a className="client-button" href="#client-requests">View booking details →</a></> : <p className="client-no-updates">No upcoming pending bookings. Choose a date using the booking form below.</p>}</section>
+            <section className="client-panel client-next-service" aria-labelledby="client-next-title"><div className="client-panel-heading"><div><h2 id="client-next-title">Upcoming Service</h2><p className="client-panel-description">Your next preferred service date.</p></div><span className="client-count">{nextBooking ? "Pending review" : "No upcoming request"}</span></div>{nextBooking ? <><div className="client-next-details"><div><small>VEHICLE</small><strong>{nextBooking.vehicle_id}</strong></div><div><small>SERVICE</small><strong>{nextBooking.service_type}</strong></div><div><small>REQUESTED DATE</small><strong>{String(nextBooking.booking_date).slice(0,10)}</strong></div></div><a className="client-button" href="/client/bookings">View booking details →</a></> : <p className="client-no-updates">No upcoming pending bookings. Choose a date using the booking form below.</p>}</section>
           </div>
 
         </div>        <section className="client-panel client-requests" id="client-requests" aria-labelledby="client-requests-title">
@@ -108,6 +108,7 @@ export default function ClientDashboard() {
     </div>
   );
 }
+
 
 
 

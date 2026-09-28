@@ -54,7 +54,7 @@ export default function CreateBooking() {
       <aside className="client-sidebar">
         <Link className="client-brand" to="/"><span className="client-brand-mark">S.</span><span>AutoCare<small>CUSTOMER PORTAL</small></span></Link>
         <p className="client-nav-label">YOUR SERVICE WORKSPACE</p>
-        <nav aria-label="Customer navigation"><Link to="/client">Dashboard</Link><Link to="/client/book" aria-current="page">Book Service</Link><Link to="/client#client-requests">Booking Details</Link><Link to="/client#client-progress">Service Updates</Link></nav>
+        <nav aria-label="Customer navigation"><Link to="/client">Dashboard</Link><Link to="/client/book" aria-current="page">Book Service</Link><Link to="/client/bookings">Booking Details</Link><Link to="/client#client-progress">Service Updates</Link></nav>
         <div className="client-account"><span className="client-avatar">{user.name?.charAt(0).toUpperCase() || "C"}</span><div><strong>{user.name}</strong><small>Customer account</small></div><button type="button" onClick={() => { logout(); navigate("/"); }}>Log out</button></div>
       </aside>
       <main className="client-main">
@@ -79,3 +79,4 @@ export default function CreateBooking() {
     </div>
   );
 }
+
