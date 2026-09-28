@@ -44,3 +44,7 @@
 .history-page .history-updates strong { font-size: 12px; color: #182137; }
 .history-page .history-updates p { margin-top: 6px; }
 .history-page .history-updates small { font-size: 10px; color: #797d8b; }
+.history-page .history-heading-actions { display: flex; flex-wrap: wrap; gap: 10px; flex-shrink: 0; }
+.history-page .history-heading-actions button { border: 1px solid #eeeefa; border-radius: 24px; padding: 12px 18px; background: #fff; color: #182137; cursor: pointer; }
+.history-page .history-heading-actions button:disabled { opacity: .5; cursor: not-allowed; }
+.history-page .history-heading-actions .client-button { border-radius: 24px; background: #101f32; }
