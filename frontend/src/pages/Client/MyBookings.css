@@ -15,3 +15,8 @@
 .history-page .history-tabs button { border: 0; background: transparent; padding: 10px 16px; border-radius: 24px; color: #505665; cursor: pointer; font: inherit; font-size: 11px; }
 .history-page .history-tabs button[aria-pressed="true"] { background: #101f32; color: #fff; }
 .history-page .history-tabs span { margin-left: 7px; }
+.history-page .history-filter-fields { display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 10px; margin-top: 18px; }
+.history-page .history-filter-fields input, .history-page .history-filter-fields select { width: 100%; min-width: 0; border: 1px solid #eeeefa; background: #f3f2ff; font-size: 12px; padding: 12px; border-radius: 8px; }
+.history-page .history-filter-fields button { border: 0; background: #eef0ff; color: #005bea; border-radius: 8px; padding: 10px; cursor: pointer; }
+.history-page .history-record-count { color: #797d8b; font-size: 10px; margin: 15px 0 0; }
+@media(max-width: 850px) { .history-page .history-filter-fields { grid-template-columns: 1fr 1fr; } }
