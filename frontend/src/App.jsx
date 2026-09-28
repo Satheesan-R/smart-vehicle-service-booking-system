@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import AuthPage from "./pages/AuthPage";
 import ClientDashboard from "./pages/ClientDashboard";
 import CreateBooking from "./pages/Client/CreateBooking";
+import MyBookings from "./pages/Client/MyBookings";
 import GarageDashboard from "./pages/GarageDashboard";
 import "./App.css";
 
@@ -45,8 +46,10 @@ export default function App() {
           )}
         />
         <Route path="/client/book" element={<ProtectedRoute role="client"><CreateBooking /></ProtectedRoute>} />
+        <Route path="/client/bookings" element={<ProtectedRoute role="client"><MyBookings /></ProtectedRoute>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
 }
+

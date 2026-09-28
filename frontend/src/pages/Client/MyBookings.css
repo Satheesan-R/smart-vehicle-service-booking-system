@@ -1,0 +1,6 @@
+﻿.history-page .client-main { padding-bottom: 40px; }
+.history-page .client-sidebar nav a:first-child { background: transparent; color: #4e5463; box-shadow: none; }
+.history-page .client-sidebar nav a[aria-current="page"] { background: #101f32; color: #fff; }
+.history-page .history-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 32px; }
+.history-page .history-heading p:last-child { color: #797d8b; font-size: 13px; line-height: 1.7; }
+@media(max-width: 650px) { .history-page .history-heading { align-items: flex-start; flex-direction: column; } }

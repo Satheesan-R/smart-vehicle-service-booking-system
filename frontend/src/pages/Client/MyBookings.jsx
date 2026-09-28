@@ -1,24 +1,15 @@
-import React, { useEffect, useState } from "react";
+﻿import { Link, useNavigate } from "react-router-dom";
+import { getCurrentUser, logout } from "../../auth";
+import "../ClientDashboard.css";
+import "./MyBookings.css";
 
 export default function MyBookings() {
-  const [bookings, setBookings] = useState([]);
-
-  const fetchBookings = async () => {
-    const res = await fetch("http://localhost:5000/api/bookings");
-    const data = await res.json();
-    setBookings(data);
-  };
-
-  useEffect(() => { fetchBookings(); }, []);
-
-  return (
-    <div>
-      <h2>My Bookings</h2>
-      <ul>
-        {bookings.map(b => (
-          <li key={b.id}>{b.service_type} - {b.status}</li>
-        ))}
-      </ul>
-    </div>
-  );
+  const user = getCurrentUser();
+  const navigate = useNavigate();
+  return <div className="client-dashboard history-page">
+    <aside className="client-sidebar"><Link className="client-brand" to="/"><span className="client-brand-mark">S.</span><span>AutoCare<small>CUSTOMER PORTAL</small></span></Link><p className="client-nav-label">YOUR SERVICE WORKSPACE</p><nav aria-label="Customer navigation"><Link to="/client">Dashboard</Link><Link to="/client/book">Book Service</Link><Link to="/client/bookings" aria-current="page">Booking Details</Link></nav><div className="client-account"><div><strong>{user.name}</strong><small>Customer account</small></div><button onClick={() => { logout(); navigate("/"); }}>Log out</button></div></aside>
+    <main className="client-main"><header className="client-topbar"><span>AutoCare / Booking History</span><span>{user.name}</span></header><section className="history-heading"><div><p className="client-eyebrow">YOUR SERVICE RECORDS</p><h1>My Bookings</h1><p>View your service requests, garage updates, and past bookings.</p></div><Link className="client-button" to="/client/book">+ Book New Service</Link></section>
+    {/* HISTORY_CONTENT */}
+    </main>
+  </div>;
 }
