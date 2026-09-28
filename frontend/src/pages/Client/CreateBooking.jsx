@@ -60,9 +60,9 @@ export default function CreateBooking() {
       </aside>
       <main className="client-main">
         <header className="client-topbar"><span>Customer Portal / Book Service</span><div className="client-topbar-user">{user.name}</div></header>
-        <section className="booking-heading"><p className="client-eyebrow">YOUR NEXT SERVICE STARTS HERE</p><h1>Book a Vehicle Service</h1><p>Choose your vehicle, select a service, and send your preferred date.</p></section>
+        <section className="booking-heading"><p className="client-eyebrow">COMPLETE YOUR SERVICE REQUEST</p><h1>Vehicle Service Booking Form</h1><p>Fill in the required fields below, review your details, and submit your request for garage review.</p></section>
         {success ? <section className="client-panel booking-success" role="status"><span aria-hidden="true">✓</span><h2>Request #{success} submitted</h2><p>Your booking is pending garage review. Track progress from your dashboard.</p><Link className="client-button" to="/client">View my bookings →</Link><button type="button" className="booking-another" onClick={() => { setSuccess(null); setForm({ vehicle_id: "", service_type: "General Service", booking_date: "" }); }}>Book another service</button></section> :
-        <form className="booking-grid" onSubmit={submit} aria-busy={saving}>
+        <form aria-label="Vehicle service booking form" className="booking-grid" onSubmit={submit} aria-busy={saving}>
           <div className="booking-column">
             <section className="client-panel"><div className="booking-section-heading"><span>1</span><div><h2>Select Vehicle</h2><p>Choose from previous bookings or enter another vehicle.</p></div></div>
               {vehicleError && <p className="booking-note">{vehicleError}</p>}
