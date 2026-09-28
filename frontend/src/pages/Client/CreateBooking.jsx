@@ -1,5 +1,5 @@
 ﻿import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { getCurrentUser, logout } from "../../auth";
 import { createBooking, getBookings } from "../../services/api";
 import "../ClientDashboard.css";
@@ -15,9 +15,10 @@ const SERVICES = [
 
 export default function CreateBooking() {
   const user = getCurrentUser();
+  const { state } = useLocation();
   const navigate = useNavigate();
   const [vehicles, setVehicles] = useState([]);
-  const [form, setForm] = useState({ vehicle_id: "", service_type: "General Service", booking_date: "" });
+  const [form, setForm] = useState({ vehicle_id: typeof state?.rebook?.vehicle_id === "string" ? state.rebook.vehicle_id : "", service_type: SERVICES.some(([name]) => name === state?.rebook?.service_type) ? state.rebook.service_type : "General Service", booking_date: "" });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(null);
@@ -54,7 +55,7 @@ export default function CreateBooking() {
       <aside className="client-sidebar">
         <Link className="client-brand" to="/"><span className="client-brand-mark">S.</span><span>AutoCare<small>CUSTOMER PORTAL</small></span></Link>
         <p className="client-nav-label">YOUR SERVICE WORKSPACE</p>
-        <nav aria-label="Customer navigation"><Link to="/client">Dashboard</Link><Link to="/client/book" aria-current="page">Book Service</Link><Link to="/client#client-requests">Booking Details</Link><Link to="/client#client-progress">Service Updates</Link></nav>
+        <nav aria-label="Customer navigation"><Link to="/client">Dashboard</Link><Link to="/client/book" aria-current="page">Book Service</Link><Link to="/client/bookings">Booking Details</Link><Link to="/client#client-progress">Service Updates</Link></nav>
         <div className="client-account"><span className="client-avatar">{user.name?.charAt(0).toUpperCase() || "C"}</span><div><strong>{user.name}</strong><small>Customer account</small></div><button type="button" onClick={() => { logout(); navigate("/"); }}>Log out</button></div>
       </aside>
       <main className="client-main">
@@ -79,3 +80,5 @@ export default function CreateBooking() {
     </div>
   );
 }
+
+
