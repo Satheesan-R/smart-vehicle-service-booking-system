@@ -23,8 +23,10 @@ export default function MyBookings() {
   return <div className="client-dashboard history-page">
     <aside className="client-sidebar"><Link className="client-brand" to="/"><span className="client-brand-mark">S.</span><span>AutoCare<small>CUSTOMER PORTAL</small></span></Link><p className="client-nav-label">YOUR SERVICE WORKSPACE</p><nav aria-label="Customer navigation"><Link to="/client">Dashboard</Link><Link to="/client/book">Book Service</Link><Link to="/client/bookings" aria-current="page">Booking Details</Link></nav><div className="client-account"><div><strong>{user.name}</strong><small>Customer account</small></div><button onClick={() => { logout(); navigate("/"); }}>Log out</button></div></aside>
     <main className="client-main"><header className="client-topbar"><span>AutoCare / Booking History</span><span>{user.name}</span></header><section className="history-heading"><div><p className="client-eyebrow">YOUR SERVICE RECORDS</p><h1>My Bookings</h1><p>View your service requests, garage updates, and past bookings.</p></div><Link className="client-button" to="/client/book">+ Book New Service</Link></section>
-    <div aria-live="polite">{loading && <p className="history-notice">Loading your bookings...</p>}{error && <div className="client-error" role="alert">{error} <button type="button" onClick={() => setReload(value => value + 1)}>Try again</button></div>}</div>{/* HISTORY_CONTENT */}
+    <div aria-live="polite">{loading && <p className="history-notice">Loading your bookings...</p>}{error && <div className="client-error" role="alert">{error} <button type="button" onClick={() => setReload(value => value + 1)}>Try again</button></div>}</div><section className="history-stats" aria-label="Booking summary">{[["Vehicles booked", new Set(bookings.map(b => b.vehicle_id)).size], ["Pending requests", bookings.filter(b => b.status === "pending").length], ["In progress", bookings.filter(b => b.status === "in-progress").length], ["Completed", bookings.filter(b => b.status === "completed").length]].map(([label, value]) => <article key={label}><span aria-hidden="true">▦</span><div><small>{label}</small><strong>{loading || error ? "—" : value}</strong></div></article>)}</section>
+{/* HISTORY_CONTENT */}
     </main>
   </div>;
 }
+
 

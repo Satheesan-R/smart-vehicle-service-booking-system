@@ -4,3 +4,9 @@
 .history-page .history-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 32px; }
 .history-page .history-heading p:last-child { color: #797d8b; font-size: 13px; line-height: 1.7; }
 @media(max-width: 650px) { .history-page .history-heading { align-items: flex-start; flex-direction: column; } }
+.history-page .history-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 24px; }
+.history-page .history-stats article { display: flex; align-items: center; gap: 15px; padding: 22px; background: #fff; border-radius: 14px; }
+.history-page .history-stats article > span { background: #e9edff; color: #005bea; font-size: 22px; padding: 10px; border-radius: 9px; }
+.history-page .history-stats small { display: block; font-size: 9px; color: #747989; text-transform: uppercase; }
+.history-page .history-stats strong { display: block; margin-top: 6px; font-size: 22px; }
+@media(max-width: 1000px) { .history-page .history-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
