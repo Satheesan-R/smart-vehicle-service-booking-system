@@ -1,0 +1,11 @@
+﻿.booking-page .booking-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; }
+.booking-page .booking-column { display: grid; align-content: start; gap: 24px; }
+.booking-page .booking-heading { padding-block: 32px; }
+.booking-page .booking-heading > p:last-child { color: #777c8b; font-size: 14px; }
+.booking-page .booking-main { padding-bottom: 40px; }
+.booking-page .booking-packages { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0; margin: 0; border: 0; }
+.booking-page .booking-packages label { padding: 18px; border: 1px solid #eeeef8; border-radius: 12px; cursor: pointer; }
+.booking-page .booking-field { display: grid; gap: 10px; font-size: 12px; }
+.booking-page .booking-field input { width: 100%; min-width: 0; }
+.booking-page .booking-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+@media (max-width: 1000px) { .booking-page .booking-grid { grid-template-columns: 1fr; } }
