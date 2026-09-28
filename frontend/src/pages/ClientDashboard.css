@@ -201,3 +201,22 @@
 .client-dashboard .client-service-guide a { display: inline-block; color: #fff; background: #3069ef; padding: 11px 15px; border-radius: 8px; font-size: 11px; }
 @media (max-width: 1150px) { .client-dashboard .client-overview-grid { grid-template-columns: 1fr; } .client-dashboard .client-overview-aside { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .client-dashboard .client-overview-aside { display: flex; } .client-dashboard .client-live-heading { flex-wrap: wrap; } .client-dashboard .client-next-details { grid-template-columns: 1fr; } .client-dashboard .client-workflow { gap: 7px; } .client-dashboard .client-workflow li { padding: 12px 8px; } .client-dashboard .client-next-service .client-panel-heading { flex-wrap: wrap; } }
+
+/* Booking form and history, matching account pages. */
+.client-dashboard .client-workspace-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+.client-dashboard .client-form input, .client-dashboard .client-form select { background: #f3f2ff; border-color: transparent; border-radius: 9px; }
+.client-dashboard .client-form input:focus, .client-dashboard .client-form select:focus { border-color: #005bea; box-shadow: 0 0 0 3px #005bea15; }
+.client-dashboard .client-panel-symbol, .client-dashboard .client-service-number { background: #e9edff; color: #005bea; }
+.client-dashboard .client-service-list a { border-color: #f0eff9; }
+.client-dashboard .client-service-list a:hover, .client-dashboard .client-empty a { color: #005bea; }
+.client-dashboard .client-service-note { background: #f3f2ff; }
+.client-dashboard th { background: #f3f2ff; color: #626b80; border-color: #eeedf8; }
+.client-dashboard td { border-color: #eeedf8; }
+.client-dashboard .client-requests table { min-width: 570px; }
+.client-dashboard .client-status-in-progress { background: #e5ebff; color: #005bea; }
+.client-dashboard .client-status-completed { background: #eaf3ee; color: #326547; }
+.client-dashboard .client-timeline { border-color: #eeedf8; border-radius: 14px; }
+.client-dashboard .client-timeline ul { color: #005bea; }
+.client-dashboard .client-progress-empty { background: #f3f2ff; border-color: #d6dfff; }
+.client-dashboard .client-footer { border-color: #e8e7f4; }
+@media (max-width: 1000px) { .client-dashboard .client-workspace-grid { grid-template-columns: 1fr; } }

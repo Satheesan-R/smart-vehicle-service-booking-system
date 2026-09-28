@@ -79,7 +79,9 @@ export default function ClientDashboard() {
   const activeBookings = bookings.filter(booking => booking.status === "in-progress");
   const pendingBookings = bookings.filter(booking => booking.status === "pending");
   const completedBookings = bookings.filter(booking => booking.status === "completed");
-  const nextBooking = [...pendingBookings].filter(booking => String(booking.booking_date).slice(0, 10) >= new Date().toLocaleDateString("en-CA")).sort((a, b) => String(a.booking_date).localeCompare(String(b.booking_date)))[0];
+  const today = new Date();
+  const localDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+  const nextBooking = [...pendingBookings].filter(booking => String(booking.booking_date).slice(0, 10) >= localDate).sort((a, b) => String(a.booking_date).localeCompare(String(b.booking_date)))[0];
   const vehicles = [...new Set(bookings.map(booking => booking.vehicle_id).filter(Boolean))];
   const recentUpdates = bookings.flatMap(booking => (updatesByBooking[booking.id] || []).map(update => ({ ...update, bookingId: booking.id, service: booking.service_type }))).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 4);
   return (
@@ -141,6 +143,7 @@ export default function ClientDashboard() {
     </div>
   );
 }
+
 
 
 
