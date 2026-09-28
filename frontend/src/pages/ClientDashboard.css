@@ -157,3 +157,47 @@
 .client-dashboard .client-stat h2 { font-size: 15px; letter-spacing: -.2px; margin-top: 8px; }
 .client-dashboard .client-stat p { font-size: 11px; line-height: 1.6; margin-top: 5px; }
 @media (max-width: 1050px) { .client-dashboard .client-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Service workflow, next booking, and activity column. */
+.client-dashboard .client-overview-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr); gap: 22px; margin-bottom: 24px; }
+.client-dashboard .client-overview-main, .client-dashboard .client-overview-aside { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.client-dashboard .client-panel { border: 1px solid #f0eff9; border-radius: 15px; padding: 24px; }
+.client-dashboard .client-panel h2 { font-size: 18px; letter-spacing: -.4px; }
+.client-dashboard .client-eyebrow { color: #005bea; }
+.client-dashboard .client-count { background: #e9edff; color: #214a9a; }
+.client-dashboard .client-live-service { overflow: hidden; }
+.client-dashboard .client-live-heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; background: #f1f2ff; margin: -24px -24px 24px; padding: 24px; }
+.client-dashboard .client-live-heading h2 { overflow-wrap: anywhere; }
+.client-dashboard .client-live-heading p:last-child { font-size: 11px; color: #797d8b; margin: 7px 0 0; }
+.client-dashboard .client-workflow-label { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 16px; font-size: 11px; }
+.client-dashboard .client-workflow-label > span { color: #005bea; }
+.client-dashboard .client-workflow { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 0; margin: 0; }
+.client-dashboard .client-workflow li { padding: 16px 12px; background: #faf9ff; border: 1px solid transparent; border-radius: 9px; color: #8b8e9a; }
+.client-dashboard .client-workflow small { font-size: 8px; }
+.client-dashboard .client-workflow strong { display: block; font-size: 12px; margin-block: 12px 6px; }
+.client-dashboard .client-workflow li > span { font-size: 10px; }
+.client-dashboard .client-workflow .done { color: #344568; background: #f1f2ff; }
+.client-dashboard .client-workflow .current { border-color: #005bea; color: #005bea; background: #f1f4ff; box-shadow: 0 0 0 1px #005bea; }
+.client-dashboard .client-active-message { background: #f2f2ff; border-radius: 10px; padding: 16px; margin-block: 22px; font-size: 11px; }
+.client-dashboard .client-active-message p { color: #797d8b; line-height: 1.7; margin: 7px 0 0; overflow-wrap: anywhere; }
+.client-dashboard .client-next-details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; background: #f2f2ff; border-radius: 10px; padding: 20px; margin: 15px 0 20px; }
+.client-dashboard .client-next-details small { font-size: 8px; display: block; color: #797d8b; margin-bottom: 8px; }
+.client-dashboard .client-next-details strong { font-size: 12px; font-weight: 600; overflow-wrap: anywhere; }
+.client-dashboard .client-vehicle-list { display: grid; gap: 12px; max-height: 310px; overflow-y: auto; }
+.client-dashboard .client-vehicle-list > div { display: flex; gap: 12px; align-items: center; padding: 14px; background: #f3f2ff; border-radius: 10px; }
+.client-dashboard .client-vehicle-list > div > span { font-size: 23px; color: #005bea; }
+.client-dashboard .client-vehicle-list strong { font-size: 12px; overflow-wrap: anywhere; }
+.client-dashboard .client-vehicle-list small { display: block; margin-top: 5px; font-size: 9px; color: #797d8b; }
+.client-dashboard .client-recent-updates { display: grid; gap: 20px; margin-block: 22px; }
+.client-dashboard .client-recent-updates article { display: flex; gap: 12px; }
+.client-dashboard .client-recent-updates article > span { color: #005bea; font-size: 20px; }
+.client-dashboard .client-recent-updates strong { font-size: 10px; font-weight: 600; }
+.client-dashboard .client-recent-updates p { font-size: 11px; color: #797d8b; margin: 6px 0; line-height: 1.6; overflow-wrap: anywhere; }
+.client-dashboard .client-recent-updates time { font-size: 9px; color: #005bea; }
+.client-dashboard .client-aside-link { display: block; text-align: center; background: #f2f2ff; padding: 11px; border-radius: 8px; font-size: 10px; }
+.client-dashboard .client-service-guide { padding: 24px; border-radius: 15px; background: linear-gradient(135deg, #0f1e31 65%, #193d78); color: #fff; }
+.client-dashboard .client-service-guide h2 { font-size: 18px; }
+.client-dashboard .client-service-guide p { font-size: 12px; color: #b4c3de; line-height: 1.8; }
+.client-dashboard .client-service-guide a { display: inline-block; color: #fff; background: #3069ef; padding: 11px 15px; border-radius: 8px; font-size: 11px; }
+@media (max-width: 1150px) { .client-dashboard .client-overview-grid { grid-template-columns: 1fr; } .client-dashboard .client-overview-aside { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .client-dashboard .client-overview-aside { display: flex; } .client-dashboard .client-live-heading { flex-wrap: wrap; } .client-dashboard .client-next-details { grid-template-columns: 1fr; } .client-dashboard .client-workflow { gap: 7px; } .client-dashboard .client-workflow li { padding: 12px 8px; } .client-dashboard .client-next-service .client-panel-heading { flex-wrap: wrap; } }
