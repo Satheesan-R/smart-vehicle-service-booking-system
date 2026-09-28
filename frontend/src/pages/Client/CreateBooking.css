@@ -48,3 +48,8 @@
 .booking-page .booking-another { display: block; margin: 18px auto 0; border: 0; background: transparent; color: #005bea; font: inherit; font-size: 12px; cursor: pointer; }
 .booking-page input:disabled, .booking-page button:disabled { opacity: .6; }
 @media (max-width: 600px) { .booking-page .booking-packages, .booking-page .booking-vehicle-options { grid-template-columns: 1fr; } .booking-page .booking-section-heading { flex-wrap: wrap; } .booking-page .booking-field input { font-size: 16px; } }
+
+/* Form-based service selection */
+.booking-page .booking-field select { width: 100%; min-width: 0; font: inherit; font-size: 13px; font-weight: 400; border: 1px solid #eeedf8; background: #f4f3ff; padding: 14px; border-radius: 9px; color: #182137; }
+.booking-page .booking-field select:focus { outline: 2px solid #005bea; outline-offset: 2px; }
+@media (max-width: 600px) { .booking-page .booking-field select { font-size: 16px; } }
