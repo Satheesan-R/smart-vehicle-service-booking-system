@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { getCurrentUser, logout } from "../../auth";
+import { Link, useLocation } from "react-router-dom";
+import { getCurrentUser } from "../../auth";
 import { createBooking, getBookings } from "../../services/api";
 import "../ClientDashboard.css";
 import "./CreateBooking.css";
@@ -16,7 +16,6 @@ const SERVICES = [
 export default function CreateBooking() {
   const user = getCurrentUser();
   const { state } = useLocation();
-  const navigate = useNavigate();
   const [vehicles, setVehicles] = useState([]);
   const [form, setForm] = useState({ vehicle_id: typeof state?.rebook?.vehicle_id === "string" ? state.rebook.vehicle_id : "", service_type: SERVICES.some(([name]) => name === state?.rebook?.service_type) ? state.rebook.service_type : "General Service", booking_date: "" });
   const [saving, setSaving] = useState(false);
@@ -51,15 +50,7 @@ export default function CreateBooking() {
   }
 
   return (
-    <div className="client-dashboard booking-page">
-      <aside className="client-sidebar">
-        <Link className="client-brand" to="/"><span className="client-brand-mark">S.</span><span>AutoCare<small>CUSTOMER PORTAL</small></span></Link>
-        <p className="client-nav-label">YOUR SERVICE WORKSPACE</p>
-        <nav aria-label="Customer navigation"><Link to="/client">Dashboard</Link><Link to="/client/book" aria-current="page">Book Service</Link><Link to="/client/bookings">Booking Details</Link><Link to="/client#client-progress">Service Updates</Link></nav>
-        <div className="client-account"><span className="client-avatar">{user.name?.charAt(0).toUpperCase() || "C"}</span><div><strong>{user.name}</strong><small>Customer account</small></div><button type="button" onClick={() => { logout(); navigate("/"); }}>Log out</button></div>
-      </aside>
-      <main className="client-main">
-        <header className="client-topbar"><span>Customer Portal / Book Service</span><div className="client-topbar-user">{user.name}</div></header>
+    <div className="booking-page">
         <section className="booking-heading"><p className="client-eyebrow">COMPLETE YOUR SERVICE REQUEST</p><h1>Vehicle Service Booking Form</h1><p>Fill in the required fields below, review your details, and submit your request for garage review.</p></section>
         {success ? <section className="client-panel booking-success" role="status"><span aria-hidden="true">✓</span><h2>Service request #{success} submitted</h2><p>Your completed form has been sent for garage review. Open My Bookings to view the request and follow its progress.</p><Link className="client-button" to="/client/bookings">View my bookings →</Link><button type="button" className="booking-another" onClick={() => { setSuccess(null); setForm({ vehicle_id: "", service_type: "General Service", booking_date: "" }); }}>Fill another booking form</button></section> :
         <form aria-label="Vehicle service booking form" className="booking-grid" onSubmit={submit} aria-busy={saving}>
@@ -76,7 +67,6 @@ export default function CreateBooking() {
             <section className="client-panel booking-summary"><h2>Review Your Form</h2><p className="booking-note">Check these details before submitting. You can edit the fields above.</p><dl><div><dt>Vehicle</dt><dd>{form.vehicle_id || "Vehicle details not entered"}</dd></div><div><dt>Service</dt><dd>{form.service_type}</dd></div><div><dt>Preferred date</dt><dd>{form.booking_date || "Preferred date not selected"}</dd></div><div><dt>Status after submission</dt><dd>Pending review</dd></div></dl><p className="booking-note">Submitting sends a service request to your garage. Confirm pricing and appointment arrangements with the garage.</p>{error && <p className="client-error" role="alert">{error}</p>}<button className="client-button" type="submit" disabled={saving}>{saving ? "Submitting request..." : "Submit Service Request →"}</button></section>
           </div>
         </form>}
-      </main>
     </div>
   );
 }
