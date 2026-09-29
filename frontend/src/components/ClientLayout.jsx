@@ -30,10 +30,10 @@ export default function ClientLayout() {
         <p className="client-nav-label">YOUR SERVICE WORKSPACE</p>
         <nav aria-label="Customer navigation">
           <NavLink to="/client" end>Dashboard <span aria-hidden="true">↗</span></NavLink>
-          <NavLink to="/client#client-vehicles">My Vehicles <span aria-hidden="true">▣</span></NavLink>
+          <Link to="/client#client-vehicles">My Vehicles <span aria-hidden="true">▣</span></Link>
           <NavLink to="/client/book">Book a service <span aria-hidden="true">+</span></NavLink>
           <NavLink to="/client/bookings">My Bookings</NavLink>
-          <NavLink to="/client#client-progress">Service updates <span aria-hidden="true">↗</span></NavLink>
+          <Link to="/client#client-progress">Service updates <span aria-hidden="true">↗</span></Link>
         </nav>
         <div className="client-account">
           <span className="client-avatar" aria-hidden="true">{user?.name?.charAt(0).toUpperCase() || "C"}</span>
