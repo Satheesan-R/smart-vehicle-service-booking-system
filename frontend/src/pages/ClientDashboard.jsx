@@ -1,17 +1,16 @@
 ﻿import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { getCurrentUser, logout } from "../auth";
+import { useOutletContext } from "react-router-dom";
+import { getCurrentUser } from "../auth";
 import { getBookingUpdates, getBookings } from "../services/api";
 
 import "./ClientDashboard.css";
 
 
 export default function ClientDashboard() {
-  const navigate = useNavigate();
+  const { search } = useOutletContext();
   const user = getCurrentUser();
   const [bookings, setBookings] = useState([]);
   const [updatesByBooking, setUpdatesByBooking] = useState({});
-  const [search, setSearch] = useState("");
   const [error, setError] = useState("");
 
   const loadBookings = async () => {
@@ -49,11 +48,6 @@ export default function ClientDashboard() {
     });
   }, [bookings]);
 
-  const onLogout = () => {
-    logout();
-    navigate("/");
-  };
-
   const activeBookings = bookings.filter(booking => booking.status === "in-progress");
   const pendingBookings = bookings.filter(booking => booking.status === "pending");
   const completedBookings = bookings.filter(booking => booking.status === "completed");
@@ -64,20 +58,7 @@ export default function ClientDashboard() {
   const vehicles = [...new Set(bookings.map(booking => booking.vehicle_id).filter(Boolean))];
   const recentUpdates = bookings.flatMap(booking => (updatesByBooking[booking.id] || []).map(update => ({ ...update, bookingId: booking.id, service: booking.service_type }))).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 4);
   return (
-    <div className="client-dashboard">
-      <aside className="client-sidebar">
-        <Link className="client-brand" to="/" aria-label="Smart Vehicle Service home"><span className="client-brand-mark">S.</span><span>AutoCare<small>CUSTOMER PORTAL</small></span></Link>
-        <p className="client-nav-label">YOUR SERVICE WORKSPACE</p>
-        <nav aria-label="Dashboard navigation">
-          <a href="#client-overview">Dashboard <span aria-hidden="true">↗</span></a>
-          <a href="#client-vehicles">My Vehicles <span aria-hidden="true">▣</span></a><a href="/client/book">Book a service <span aria-hidden="true">+</span></a>
-          <a href="/client/bookings">My Bookings <span>{bookings.length}</span></a>
-          <a href="#client-progress">Service updates <span aria-hidden="true">↗</span></a>
-        </nav>
-        <div className="client-account"><span className="client-avatar" aria-hidden="true">{user?.name?.charAt(0).toUpperCase() || "C"}</span><div><strong>{user?.name || "Vehicle owner"}</strong><small>Client account</small></div><button type="button" onClick={onLogout}>Log out</button></div>
-      </aside>
-      <main className="client-main" id="client-overview">
-        <header className="client-topbar"><label className="client-search"><span aria-hidden="true">⌕</span><input type="search" aria-label="Search bookings by vehicle, service or booking ID" placeholder="Search vehicle, service, or booking ID..." value={search} onChange={event => setSearch(event.target.value)} /></label><div className="client-topbar-user"><span className="client-avatar" aria-hidden="true">{user?.name?.charAt(0).toUpperCase() || "C"}</span><span>{user?.name || "Vehicle owner"}<small>Customer account</small></span></div></header>
+    <div id="client-overview">
         <section className="client-welcome" aria-labelledby="client-title"><div><p className="client-eyebrow">YOUR VEHICLE SERVICE OVERVIEW</p><h1 id="client-title">Welcome back, {user?.name || "there"}<span>.</span></h1><p>Check your service status, review past bookings, or fill in a new service request.</p></div><a className="client-button" href="/client/book">Fill Booking Form <span aria-hidden="true">+</span></a></section>
         {error && <p className="client-error" role="alert">{error}</p>}
         <section className="client-stats" aria-label="Booking summary">{[["Upcoming Requests", pendingBookings.filter(b => String(b.booking_date).slice(0, 10) >= localDate).length, "Requested dates awaiting review", "▦"], ["Services in Progress", activeBookings.length, "Your garage is working on these", "⚙"], ["Completed Services", completedBookings.length, "Finished service requests", "✓"], ["Pending Requests", pendingBookings.length, "Awaiting garage review", "☷"]].map(([label, count, note, icon]) => <article className="client-stat" key={label}><span className="client-summary-icon" aria-hidden="true">{icon}</span><strong>{count}</strong><h2>{label}</h2><p>{note}</p></article>)}</section>        <div className="client-overview-grid">
@@ -104,7 +85,6 @@ export default function ClientDashboard() {
             <section className="client-service-guide"><h2>Planning your next service?</h2><p>Open the booking form, enter your vehicle details, select a service, and choose a preferred date.</p><a href="/client/book">Open booking form →</a></section>
           </aside>
         <footer className="client-footer"><span>Smart Vehicle Service</span><span>Better care. Every journey.</span></footer>
-      </main>
     </div>
   );
 }

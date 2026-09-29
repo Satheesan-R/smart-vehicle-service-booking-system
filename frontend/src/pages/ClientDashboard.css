@@ -9,7 +9,7 @@
 .client-dashboard .client-nav-label { color: #a2b7b4; font-size: 8px; letter-spacing: 1.6px; margin: 50px 10px 16px; }
 .client-dashboard nav { display: grid; gap: 7px; }
 .client-dashboard nav a { display: flex; justify-content: space-between; align-items: center; padding: 13px 12px; border-radius: 7px; color: #ccdad5; font-size: 12px; }
-.client-dashboard nav a:first-child { background: #d4ee821a; color: var(--client-accent); }
+.client-dashboard nav a[aria-current="page"] { background: #d4ee821a; color: var(--client-accent); }
 .client-dashboard nav a:hover { background: #ffffff0d; }
 .client-dashboard nav a span { font-size: 13px; }
 .client-dashboard .client-sidebar-note { padding: 22px 17px; margin-top: auto; margin-bottom: 28px; background: #ffffff07; border: 1px solid #ffffff15; border-radius: 10px; }
@@ -131,7 +131,7 @@
 .client-dashboard .client-brand-mark { background: #005bea; color: #fff; }
 .client-dashboard .client-brand small { font-size: 8px; letter-spacing: 1px; }
 .client-dashboard nav a { font-size: 13px; color: #b8c6df; }
-.client-dashboard nav a:first-child { background: #3069ef; color: #fff; box-shadow: 0 5px 15px #005bea25; }
+.client-dashboard nav a[aria-current="page"] { background: #3069ef; color: #fff; box-shadow: 0 5px 15px #005bea25; }
 .client-dashboard .client-sidebar-note { margin-top: auto; }
 .client-dashboard .client-sidebar-note > span, .client-dashboard .client-sidebar-note a, .client-dashboard .client-account button { color: #a7c6ff; }
 .client-dashboard .client-avatar { color: #fff; background: #183458; }
@@ -226,7 +226,7 @@
 .client-dashboard .client-brand small { color: #005bea; }
 .client-dashboard .client-nav-label { color: #7d8294; }
 .client-dashboard nav a { color: #4e5463; }
-.client-dashboard nav a:first-child { background: #101f32; box-shadow: none; }
+.client-dashboard nav a[aria-current="page"] { background: #101f32; box-shadow: none; }
 .client-dashboard nav a:hover { background: #e4e7fb; color: #172035; }
 .client-dashboard .client-account { margin-top: auto; border-color: #dedff0; }
 .client-dashboard .client-account small { color: #7d8294; }
