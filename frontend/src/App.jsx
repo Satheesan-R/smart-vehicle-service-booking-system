@@ -6,6 +6,7 @@ import ClientDashboard from "./pages/ClientDashboard";
 import CreateBooking from "./pages/Client/CreateBooking";
 import MyBookings from "./pages/Client/MyBookings";
 import GarageDashboard from "./pages/GarageDashboard";
+import ClientLayout from "./components/ClientLayout";
 import "./App.css";
 
 function ProtectedRoute({ children, role }) {
@@ -29,14 +30,11 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<AuthPage mode="signup" />} />
         <Route path="/login" element={<AuthPage mode="login" />} />
-        <Route
-          path="/client"
-          element={(
-            <ProtectedRoute role="client">
-              <ClientDashboard />
-            </ProtectedRoute>
-          )}
-        />
+        <Route element={<ProtectedRoute role="client"><ClientLayout /></ProtectedRoute>}>
+          <Route path="/client" element={<ClientDashboard />} />
+          <Route path="/client/book" element={<CreateBooking />} />
+          <Route path="/client/bookings" element={<MyBookings />} />
+        </Route>
         <Route
           path="/garage"
           element={(
@@ -45,8 +43,6 @@ export default function App() {
             </ProtectedRoute>
           )}
         />
-        <Route path="/client/book" element={<ProtectedRoute role="client"><CreateBooking /></ProtectedRoute>} />
-        <Route path="/client/bookings" element={<ProtectedRoute role="client"><MyBookings /></ProtectedRoute>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
