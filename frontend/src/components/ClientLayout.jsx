@@ -34,6 +34,7 @@ export default function ClientLayout() {
           <NavLink to="/client/book">Book a service <span aria-hidden="true">+</span></NavLink>
           <NavLink to="/client/bookings">My Bookings</NavLink>
           <Link to="/client#client-progress">Service updates <span aria-hidden="true">↗</span></Link>
+          <NavLink to="/client/settings">Settings <span aria-hidden="true">⚙</span></NavLink>
         </nav>
         <div className="client-account">
           <span className="client-avatar" aria-hidden="true">{user?.name?.charAt(0).toUpperCase() || "C"}</span>
