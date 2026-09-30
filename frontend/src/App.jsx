@@ -5,6 +5,7 @@ import AuthPage from "./pages/AuthPage";
 import ClientDashboard from "./pages/ClientDashboard";
 import CreateBooking from "./pages/Client/CreateBooking";
 import MyBookings from "./pages/Client/MyBookings";
+import ClientSettings from "./pages/Client/Settings";
 import GarageDashboard from "./pages/GarageDashboard";
 import ClientLayout from "./components/ClientLayout";
 import "./App.css";
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/client" element={<ClientDashboard />} />
           <Route path="/client/book" element={<CreateBooking />} />
           <Route path="/client/bookings" element={<MyBookings />} />
+          <Route path="/client/settings" element={<ClientSettings />} />
         </Route>
         <Route
           path="/garage"
