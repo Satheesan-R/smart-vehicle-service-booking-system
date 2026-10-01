@@ -10,6 +10,7 @@ export default function GarageLayout() {
   const user = getCurrentUser();
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState("");
+  const [updateSuccess, setUpdateSuccess] = useState("");
   const [savingId, setSavingId] = useState(null);
   const [updateForm, setUpdateForm] = useState({ booking_id: "", message: "", eta_value: "", eta_unit: "hours", status: "in-progress" });
 
@@ -26,18 +27,19 @@ export default function GarageLayout() {
   };
 
   const handleUpdateSubmit = async (event) => {
-    event.preventDefault(); setError("");
+    event.preventDefault(); setError(""); setUpdateSuccess("");
     if (!updateForm.booking_id || !updateForm.message.trim()) { setError("Please select a booking and enter update message."); return; }
     setSavingId(Number(updateForm.booking_id));
     try {
       await createBookingUpdate(updateForm.booking_id, { garage_id: user?.id, message: updateForm.message, eta_value: updateForm.eta_value ? Number(updateForm.eta_value) : null, eta_unit: updateForm.eta_unit, status: updateForm.status });
       setUpdateForm((prev) => ({ ...prev, message: "", eta_value: "" }));
       await loadBookings();
+      setUpdateSuccess("Progress update sent successfully. The customer can now see this update.");
     } catch (err) { setError(err.message); }
     finally { setSavingId(null); }
   };
 
-  const context = { bookings, user, updateForm, setUpdateForm, handleUpdateSubmit, changeStatus, savingId };
+  const context = { bookings, user, updateForm, setUpdateForm, handleUpdateSubmit, changeStatus, savingId, updateSuccess };
   const onLogout = () => { logout(); navigate("/"); };
 
   return (
