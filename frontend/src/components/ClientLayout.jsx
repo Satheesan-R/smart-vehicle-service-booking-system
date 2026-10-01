@@ -7,7 +7,8 @@ const pageTitles = {
   "/client": "Customer Portal / Dashboard",
   "/client/book": "Customer Portal / Book Service",
   "/client/bookings": "Customer Portal / Booking History",
-  "/client/vehicles": "Customer Portal / My Vehicles"
+  "/client/vehicles": "Customer Portal / My Vehicles",
+  "/client/updates": "Customer Portal / Service Updates"
 };
 
 export default function ClientLayout() {
@@ -34,7 +35,7 @@ export default function ClientLayout() {
           <NavLink to="/client/vehicles">My Vehicles <span aria-hidden="true">▣</span></NavLink>
           <NavLink to="/client/book">Book a service <span aria-hidden="true">+</span></NavLink>
           <NavLink to="/client/bookings">My Bookings</NavLink>
-          <Link className={location.hash === "#client-progress" ? "active" : ""} to="/client#client-progress">Service updates <span aria-hidden="true">↗</span></Link>
+          <NavLink to="/client/updates">Service updates <span aria-hidden="true">↗</span></NavLink>
           <NavLink to="/client/settings">Settings <span aria-hidden="true">⚙</span></NavLink>
         </nav>
         <div className="client-account">

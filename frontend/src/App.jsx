@@ -7,6 +7,7 @@ import CreateBooking from "./pages/Client/CreateBooking";
 import MyBookings from "./pages/Client/MyBookings";
 import ClientSettings from "./pages/Client/Settings";
 import MyVehicles from "./pages/Client/MyVehicles";
+import ServiceUpdates from "./pages/Client/ServiceUpdates";
 import GarageLayout from "./components/GarageLayout";
 import Overview from "./pages/Garage/Overview";
 import ServiceRequests from "./pages/Garage/ServiceRequests";
@@ -39,6 +40,7 @@ export default function App() {
         <Route element={<ProtectedRoute role="client"><ClientLayout /></ProtectedRoute>}>
           <Route path="/client" element={<ClientDashboard />} />
           <Route path="/client/vehicles" element={<MyVehicles />} />
+          <Route path="/client/updates" element={<ServiceUpdates />} />
           <Route path="/client/book" element={<CreateBooking />} />
           <Route path="/client/bookings" element={<MyBookings />} />
           <Route path="/client/settings" element={<ClientSettings />} />
