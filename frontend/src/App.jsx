@@ -6,7 +6,11 @@ import ClientDashboard from "./pages/ClientDashboard";
 import CreateBooking from "./pages/Client/CreateBooking";
 import MyBookings from "./pages/Client/MyBookings";
 import ClientSettings from "./pages/Client/Settings";
-import GarageDashboard from "./pages/GarageDashboard";
+import GarageLayout from "./components/GarageLayout";
+import Overview from "./pages/Garage/Overview";
+import ServiceRequests from "./pages/Garage/ServiceRequests";
+import SendUpdate from "./pages/Garage/SendUpdate";
+import ActiveWork from "./pages/Garage/ActiveWork";
 import ClientLayout from "./components/ClientLayout";
 import "./App.css";
 
@@ -37,14 +41,12 @@ export default function App() {
           <Route path="/client/bookings" element={<MyBookings />} />
           <Route path="/client/settings" element={<ClientSettings />} />
         </Route>
-        <Route
-          path="/garage"
-          element={(
-            <ProtectedRoute role="garage">
-              <GarageDashboard />
-            </ProtectedRoute>
-          )}
-        />
+        <Route path="/garage" element={<ProtectedRoute role="garage"><GarageLayout /></ProtectedRoute>}>
+          <Route index element={<Overview />} />
+          <Route path="requests" element={<ServiceRequests />} />
+          <Route path="update" element={<SendUpdate />} />
+          <Route path="active" element={<ActiveWork />} />
+        </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

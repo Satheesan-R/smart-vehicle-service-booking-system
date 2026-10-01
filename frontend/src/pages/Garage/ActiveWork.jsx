@@ -1,0 +1,7 @@
+import { Link, useOutletContext } from "react-router-dom";
+
+export default function ActiveWork() {
+  const { bookings } = useOutletContext();
+  const activeBookings = bookings.filter((booking) => booking.status === "in-progress");
+  return <section className="garage-panel garage-page-panel" aria-labelledby="active-title"><div className="garage-page-heading"><p className="garage-eyebrow">ON YOUR WORKBENCH</p><h1 id="active-title">Active service work<span>.</span></h1><p>Vehicles currently inside the garage and being serviced.</p></div>{activeBookings.length === 0 ? <div className="garage-queue-empty"><strong>Your workbench is clear.</strong><p>Bookings marked in progress will appear here.</p><Link to="/garage/requests">Review service requests ↗</Link></div> : <div className="garage-active-grid">{activeBookings.map((booking) => <article className="garage-active-card" key={booking.id}><span className="garage-job-id">#{booking.id}</span><h2>{booking.vehicle_id}</h2><p><strong>Customer:</strong> {booking.client_name || "Client"}</p><p><strong>Service:</strong> {booking.service_type}</p><span className="garage-status garage-status-in-progress">Repair in progress</span><div className="garage-progress"><span style={{ width: "65%" }} /></div><p className="garage-progress-label">Progress <strong>65%</strong></p><p className="garage-active-meta">Expected completion: <strong>To be confirmed</strong></p><Link className="garage-button" to="/garage/update">Manage service <span aria-hidden="true">↗</span></Link></article>)}</div>}</section>;
+}
