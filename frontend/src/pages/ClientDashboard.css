@@ -226,7 +226,7 @@
 .client-dashboard .client-brand small { color: #005bea; }
 .client-dashboard .client-nav-label { color: #7d8294; }
 .client-dashboard nav a { color: #4e5463; }
-.client-dashboard nav a[aria-current="page"] { background: #101f32; box-shadow: none; }
+.client-dashboard nav a[aria-current="page"], .client-dashboard nav a.active { background: #83a4cf; color: #fff; box-shadow: none; }
 .client-dashboard nav a:hover { background: #e4e7fb; color: #172035; }
 .client-dashboard .client-account { margin-top: auto; border-color: #dedff0; }
 .client-dashboard .client-account small { color: #7d8294; }

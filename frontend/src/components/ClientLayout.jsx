@@ -29,11 +29,11 @@ export default function ClientLayout() {
         </Link>
         <p className="client-nav-label">YOUR SERVICE WORKSPACE</p>
         <nav aria-label="Customer navigation">
-          <NavLink to="/client" end>Dashboard <span aria-hidden="true">↗</span></NavLink>
-          <Link to="/client#client-vehicles">My Vehicles <span aria-hidden="true">▣</span></Link>
+          <NavLink to="/client" end className={location.pathname === "/client" && !location.hash ? "active" : ""}>Dashboard <span aria-hidden="true">↗</span></NavLink>
+          <Link className={location.hash === "#client-vehicles" ? "active" : ""} to="/client#client-vehicles">My Vehicles <span aria-hidden="true">▣</span></Link>
           <NavLink to="/client/book">Book a service <span aria-hidden="true">+</span></NavLink>
           <NavLink to="/client/bookings">My Bookings</NavLink>
-          <Link to="/client#client-progress">Service updates <span aria-hidden="true">↗</span></Link>
+          <Link className={location.hash === "#client-progress" ? "active" : ""} to="/client#client-progress">Service updates <span aria-hidden="true">↗</span></Link>
           <NavLink to="/client/settings">Settings <span aria-hidden="true">⚙</span></NavLink>
         </nav>
         <div className="client-account">
