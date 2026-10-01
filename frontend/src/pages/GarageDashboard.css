@@ -9,7 +9,7 @@
 .garage-dashboard .garage-nav-label { color: #a2b7b4; font-size: 8px; letter-spacing: 1.6px; margin: 50px 10px 16px; }
 .garage-dashboard nav { display: grid; gap: 7px; }
 .garage-dashboard nav a { display: flex; justify-content: space-between; align-items: center; padding: 13px 12px; border-radius: 7px; color: #ccdad5; font-size: 12px; }
-.garage-dashboard nav a:first-child { background: #d4ee821a; color: var(--garage-accent); }
+.garage-dashboard nav a.active { background: #d4ee821a; color: var(--garage-accent); }
 .garage-dashboard nav a:hover { background: #ffffff0d; }
 .garage-dashboard nav a span { font-size: 13px; }
 .garage-dashboard .garage-sidebar-note { padding: 22px 17px; margin-top: auto; margin-bottom: 28px; background: #ffffff07; border: 1px solid #ffffff15; border-radius: 10px; }
