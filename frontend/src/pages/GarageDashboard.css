@@ -136,5 +136,22 @@
 .garage-dashboard .garage-requests table { min-width: 740px; }
 .garage-dashboard .garage-footer { margin-top: 32px; }
 .garage-dashboard input:disabled, .garage-dashboard select:disabled, .garage-dashboard textarea:disabled { opacity: .65; }
+.garage-dashboard .garage-page-panel { margin-top: 34px; min-height: 420px; }
+.garage-dashboard .garage-page-heading { padding: 12px 0 28px; }
+.garage-dashboard .garage-page-heading h1 { font-size: clamp(28px, 3vw, 42px); }
+.garage-dashboard .garage-page-heading > p:last-child { color: var(--garage-muted); font-size: 12px; margin: 12px 0 0; }
+.garage-dashboard .garage-stats-wide { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.garage-dashboard .garage-table-action { color: #587537; font-weight: 600; font-size: 11px; }
+.garage-dashboard .garage-active-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.garage-dashboard .garage-active-card { padding: 22px; border: 1px solid #e2e7dd; border-radius: 9px; background: #fafbf8; }
+.garage-dashboard .garage-active-card h2 { margin: 16px 0 12px; }
+.garage-dashboard .garage-active-card p { color: var(--garage-muted); font-size: 11px; line-height: 1.7; margin: 7px 0; }
+.garage-dashboard .garage-active-card p strong { color: var(--garage-ink); }
+.garage-dashboard .garage-progress { height: 7px; margin-top: 18px; overflow: hidden; border-radius: 10px; background: #e1e8dc; }
+.garage-dashboard .garage-progress span { display: block; height: 100%; border-radius: inherit; background: #78964b; }
+.garage-dashboard .garage-progress-label { display: flex; justify-content: space-between; }
+.garage-dashboard .garage-active-meta { margin-bottom: 20px !important; }
+.garage-dashboard .garage-active-card .garage-button { width: 100%; }
+@media (max-width: 780px) { .garage-dashboard .garage-stats-wide { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 780px) { .garage-dashboard .garage-form textarea, .garage-dashboard .garage-status-select { font-size: 16px; } }
 @media (max-width: 440px) { .garage-dashboard .garage-update-details { grid-template-columns: 1fr; } }
