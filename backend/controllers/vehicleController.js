@@ -35,9 +35,14 @@ exports.createVehicle = (req, res) => {
     if (userErr) return res.status(500).json({ message: "Database error", error: userErr.message });
     if (!users.length) return res.status(400).json({ message: "Invalid client user" });
 
-    db.query("INSERT INTO vehicles (user_id, vehicle_number, model, brand) VALUES (?, ?, ?, ?)", [vehicle.user_id, vehicle.vehicle_number, vehicle.model, vehicle.brand], (err, result) => {
-      if (err) return res.status(500).json({ message: "Database error", error: err.message });
-      res.status(201).json({ message: "Vehicle added", vehicle: { id: result.insertId, ...vehicle } });
+    db.query("SELECT id FROM vehicles WHERE user_id = ? AND vehicle_number = ?", [vehicle.user_id, vehicle.vehicle_number], (duplicateErr, existing) => {
+      if (duplicateErr) return res.status(500).json({ message: "Database error", error: duplicateErr.message });
+      if (existing.length) return res.status(409).json({ message: "This vehicle is already registered to your account." });
+
+      db.query("INSERT INTO vehicles (user_id, vehicle_number, model, brand) VALUES (?, ?, ?, ?)", [vehicle.user_id, vehicle.vehicle_number, vehicle.model, vehicle.brand], (err, result) => {
+        if (err) return res.status(500).json({ message: "Database error", error: err.message });
+        res.status(201).json({ message: "Vehicle added", vehicle: { id: result.insertId, ...vehicle } });
+      });
     });
   });
 };
