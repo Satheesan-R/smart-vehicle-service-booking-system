@@ -6,6 +6,7 @@ import ClientDashboard from "./pages/ClientDashboard";
 import CreateBooking from "./pages/Client/CreateBooking";
 import MyBookings from "./pages/Client/MyBookings";
 import ClientSettings from "./pages/Client/Settings";
+import MyVehicles from "./pages/Client/MyVehicles";
 import GarageLayout from "./components/GarageLayout";
 import Overview from "./pages/Garage/Overview";
 import ServiceRequests from "./pages/Garage/ServiceRequests";
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/login" element={<AuthPage mode="login" />} />
         <Route element={<ProtectedRoute role="client"><ClientLayout /></ProtectedRoute>}>
           <Route path="/client" element={<ClientDashboard />} />
+          <Route path="/client/vehicles" element={<MyVehicles />} />
           <Route path="/client/book" element={<CreateBooking />} />
           <Route path="/client/bookings" element={<MyBookings />} />
           <Route path="/client/settings" element={<ClientSettings />} />

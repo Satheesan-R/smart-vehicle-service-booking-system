@@ -6,7 +6,8 @@ import "../pages/ClientDashboard.css";
 const pageTitles = {
   "/client": "Customer Portal / Dashboard",
   "/client/book": "Customer Portal / Book Service",
-  "/client/bookings": "Customer Portal / Booking History"
+  "/client/bookings": "Customer Portal / Booking History",
+  "/client/vehicles": "Customer Portal / My Vehicles"
 };
 
 export default function ClientLayout() {
@@ -30,7 +31,7 @@ export default function ClientLayout() {
         <p className="client-nav-label">YOUR SERVICE WORKSPACE</p>
         <nav aria-label="Customer navigation">
           <NavLink to="/client" end className={location.pathname === "/client" && !location.hash ? "active" : ""}>Dashboard <span aria-hidden="true">↗</span></NavLink>
-          <Link className={location.hash === "#client-vehicles" ? "active" : ""} to="/client#client-vehicles">My Vehicles <span aria-hidden="true">▣</span></Link>
+          <NavLink to="/client/vehicles">My Vehicles <span aria-hidden="true">▣</span></NavLink>
           <NavLink to="/client/book">Book a service <span aria-hidden="true">+</span></NavLink>
           <NavLink to="/client/bookings">My Bookings</NavLink>
           <Link className={location.hash === "#client-progress" ? "active" : ""} to="/client#client-progress">Service updates <span aria-hidden="true">↗</span></Link>

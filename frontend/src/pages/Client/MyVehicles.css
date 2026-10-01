@@ -1,0 +1,16 @@
+.client-vehicles-page { padding-bottom: 48px; }
+.client-vehicles-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
+.client-vehicles-grid .client-panel { min-height: 340px; }
+.client-vehicles-grid .client-form { margin-top: 24px; }
+.client-vehicles-grid .client-form label { display: grid; gap: 8px; font-size: 11px; font-weight: 600; }
+.client-vehicles-grid .client-form input { width: 100%; min-width: 0; padding: 12px; border: 1px solid #e1e2ef; border-radius: 8px; background: #fbfbff; color: #182137; font: inherit; font-size: 12px; }
+.client-vehicles-grid .client-form input:focus { outline: none; border-color: #005bea; box-shadow: 0 0 0 3px #005bea20; }
+.client-vehicles-grid .client-form .client-button { margin-top: 6px; }
+.client-success { padding: 12px; border: 1px solid #b8dec8; border-radius: 8px; background: #effaf3; color: #276441; font-size: 11px; }
+.client-vehicle-list { display: grid; gap: 12px; margin-top: 24px; }
+.client-vehicle-card { display: flex; align-items: center; gap: 12px; padding: 16px; border: 1px solid #e1e2ef; border-radius: 10px; background: #fbfbff; }
+.client-vehicle-icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 9px; background: #e4e9ff; color: #005bea; }
+.client-vehicle-card strong, .client-vehicle-card small { display: block; }
+.client-vehicle-card strong { font-size: 13px; color: #182137; }
+.client-vehicle-card small { margin-top: 5px; color: #797d8b; font-size: 11px; }
+@media (max-width: 780px) { .client-vehicles-grid { grid-template-columns: 1fr; } }
