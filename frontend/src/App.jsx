@@ -13,6 +13,7 @@ import Overview from "./pages/Garage/Overview";
 import ServiceRequests from "./pages/Garage/ServiceRequests";
 import SendUpdate from "./pages/Garage/SendUpdate";
 import ActiveWork from "./pages/Garage/ActiveWork";
+import GarageSettings from "./pages/Garage/GarageSettings";
 import ClientLayout from "./components/ClientLayout";
 import "./App.css";
 
@@ -50,6 +51,7 @@ export default function App() {
           <Route path="requests" element={<ServiceRequests />} />
           <Route path="update" element={<SendUpdate />} />
           <Route path="active" element={<ActiveWork />} />
+          <Route path="settings" element={<GarageSettings />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

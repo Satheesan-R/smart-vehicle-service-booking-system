@@ -50,6 +50,7 @@ export default function GarageLayout() {
           <NavLink to="/garage/requests">Service requests <span>{bookings.length}</span></NavLink>
           <NavLink to="/garage/update">Send an update <span aria-hidden="true">+</span></NavLink>
           <NavLink to="/garage/active">Active work <span aria-hidden="true">↗</span></NavLink>
+          <NavLink to="/garage/settings">Settings <span aria-hidden="true">⚙</span></NavLink>
         </nav>
         <div className="garage-sidebar-note"><span aria-hidden="true">↗</span><h2>Great service. Clear communication.</h2><p>Keep customers informed at every stage of their service.</p><Link to="/garage/update">Share a progress update →</Link></div>
         <div className="garage-account"><span className="garage-avatar" aria-hidden="true">{user?.name?.charAt(0).toUpperCase() || "G"}</span><div><strong>{user?.name || "Garage team"}</strong><small>Garage account</small></div><button type="button" onClick={onLogout}>Log out</button></div>
