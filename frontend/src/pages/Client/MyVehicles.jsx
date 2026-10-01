@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getCurrentUser } from "../../auth";
 import { createVehicle, getVehicles } from "../../services/api";
 import "../ClientDashboard.css";
@@ -15,7 +15,7 @@ export default function MyVehicles() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  const loadVehicles = async () => {
+  const loadVehicles = useCallback(async () => {
     try {
       setVehicles(await getVehicles(user.id));
     } catch (err) {
@@ -23,11 +23,11 @@ export default function MyVehicles() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user.id]);
 
   useEffect(() => {
     loadVehicles();
-  }, [user.id]);
+  }, [loadVehicles]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
