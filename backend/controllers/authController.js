@@ -17,13 +17,13 @@ exports.register = async (req, res) => {
   if (![name, email, password, role, phone].every(value => typeof value === "string" && value.trim())) {
     return res.status(400).json({ message: "Name, email, phone, password and role are required." });
   }
-  if (!["client", "garage"].includes(role) || password.length < 8 || Buffer.byteLength(password, "utf8") > 72 || name.length > 100 || email.length > 100 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !/^\+[0-9 ()-]{7,30}$/.test(phone)) {
+  if (role !== "client" || password.length < 8 || Buffer.byteLength(password, "utf8") > 72 || name.length > 100 || email.length > 100 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !/^\+[0-9 ()-]{7,30}$/.test(phone)) {
     return res.status(400).json({ message: "Check your account details. Passwords need at least 8 characters (maximum 72 bytes)." });
   }
-  if (role === "client" && (!vehicle || ![vehicle.make, vehicle.model, vehicle.license_plate].every(value => typeof value === "string" && value.trim()) || vehicle.make.length > 80 || vehicle.model.length > 80 || vehicle.license_plate.length > 30 || !Number.isInteger(vehicle.year) || vehicle.year < 1886 || vehicle.year > new Date().getFullYear() + 1)) {
+  if (!vehicle || ![vehicle.make, vehicle.model, vehicle.license_plate].every(value => typeof value === "string" && value.trim()) || vehicle.make.length > 80 || vehicle.model.length > 80 || vehicle.license_plate.length > 30 || !Number.isInteger(vehicle.year) || vehicle.year < 1886 || vehicle.year > new Date().getFullYear() + 1) {
     return res.status(400).json({ message: "Enter a valid vehicle make, model, year and license plate." });
   }
-  const profileVehicle = role === "client" ? JSON.stringify({ make: vehicle.make.trim(), model: vehicle.model.trim(), year: vehicle.year, license_plate: vehicle.license_plate.trim().toUpperCase() }) : null;
+  const profileVehicle = JSON.stringify({ make: vehicle.make.trim(), model: vehicle.model.trim(), year: vehicle.year, license_plate: vehicle.license_plate.trim().toUpperCase() });
   let connection;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -36,9 +36,7 @@ exports.register = async (req, res) => {
     }
     const [result] = await connection.query("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)", [name.trim(), email.trim(), hashedPassword, role]);
     await connection.query("INSERT INTO registration_profiles (user_id, phone, vehicle) VALUES (?, ?, ?)", [result.insertId, phone.trim(), profileVehicle]);
-    if (role === "client") {
-      await connection.query("INSERT INTO vehicles (user_id, vehicle_number, model, brand) VALUES (?, ?, ?, ?)", [result.insertId, vehicle.license_plate.trim().toUpperCase(), vehicle.model.trim(), vehicle.make.trim()]);
-    }
+    await connection.query("INSERT INTO vehicles (user_id, vehicle_number, model, brand) VALUES (?, ?, ?, ?)", [result.insertId, vehicle.license_plate.trim().toUpperCase(), vehicle.model.trim(), vehicle.make.trim()]);
     await connection.commit();
     return res.status(201).json({ message: "User registered successfully", user: { id: result.insertId, name: name.trim(), email: email.trim(), role } });
   } catch (err) {
