@@ -3,7 +3,8 @@ import { Link, useOutletContext } from "react-router-dom";
 export default function Overview() {
   const { bookings, user } = useOutletContext();
   const activeBookings = bookings.filter((booking) => booking.status === "in-progress");
-  const today = new Date().toISOString().slice(0, 10);
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
   const todayBookings = bookings.filter((booking) => String(booking.booking_date).slice(0, 10) === today);
   const stats = [["New service requests", bookings.filter((booking) => booking.status === "pending").length, "Booking requests", "dot-1"], ["Today's appointments", todayBookings.length, "Appointments today", "dot-2"], ["Active services", activeBookings.length, "Vehicles being serviced", "dot-3"], ["Completed services", bookings.filter((booking) => booking.status === "completed").length, "Completed requests", "dot-0"], ["Pending invoices", "—", "Connect invoices to track payments", "dot-1"], ["Monthly revenue", "—", "Invoice data not available", "dot-2"]];
 

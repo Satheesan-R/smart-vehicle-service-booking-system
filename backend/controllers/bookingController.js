@@ -7,6 +7,12 @@ exports.createBooking = (req, res) => {
     booking_date
          } = req.body;
 
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(booking_date || "")) || booking_date < today) {
+    return res.status(400).json({ message: "Booking date must be today or a future date" });
+  }
+
  const sql = `INSERT INTO bookings
    (user_id, vehicle_id, service_type, booking_date, status)
    VALUES (?, ?, ?, ?, 'pending')`;
