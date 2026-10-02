@@ -1,12 +1,16 @@
+import { getAuth } from "../auth";
+
 const API_BASE = "http://localhost:5000/api";
 
 async function request(path, options = {}) {
+	const token = getAuth()?.token;
 	const response = await fetch(`${API_BASE}${path}`, {
+		...options,
 		headers: {
 			"Content-Type": "application/json",
+			...(token && { Authorization: `Bearer ${token}` }),
 			...(options.headers || {})
-		},
-		...options
+		}
 	});
 
 	const data = await response.json().catch(() => ({}));
