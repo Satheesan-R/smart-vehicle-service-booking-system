@@ -1,8 +1,8 @@
 const db = require("../config/db");
 
-function normalizeVehicle(body) {
+function normalizeVehicle(body, userId) {
   return {
-    user_id: Number(body.user_id),
+    user_id: userId,
     vehicle_number: String(body.vehicle_number || "").trim().toUpperCase(),
     model: String(body.model || "").trim(),
     brand: String(body.brand || "").trim()
@@ -14,19 +14,14 @@ function validVehicle(vehicle) {
 }
 
 exports.getVehicles = (req, res) => {
-  const userId = Number(req.query.user_id);
-  if (!Number.isInteger(userId) || userId <= 0) {
-    return res.status(400).json({ message: "A valid user_id is required" });
-  }
-
-  db.query("SELECT id, user_id, vehicle_number, model, brand FROM vehicles WHERE user_id = ? ORDER BY id DESC", [userId], (err, rows) => {
+  db.query("SELECT id, user_id, vehicle_number, model, brand FROM vehicles WHERE user_id = ? ORDER BY id DESC", [req.user.id], (err, rows) => {
     if (err) return res.status(500).json({ message: "Database error", error: err.message });
     res.json(rows);
   });
 };
 
 exports.createVehicle = (req, res) => {
-  const vehicle = normalizeVehicle(req.body);
+  const vehicle = normalizeVehicle(req.body, req.user.id);
   if (!validVehicle(vehicle)) {
     return res.status(400).json({ message: "Vehicle number, model and brand are required." });
   }
