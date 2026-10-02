@@ -49,18 +49,23 @@ exports.register = async (req, res) => {
 // ================= LOGIN =================
 exports.login = (req, res) => {
   const { email, password } = req.body;
+  const invalidLogin = () => res.status(401).json({ message: "Invalid email or password" });
 
-  db.query("SELECT * FROM users WHERE email = ?", [email], async (err, result) => {
+  if (typeof email !== "string" || !email.trim() || typeof password !== "string" || !password) {
+    return invalidLogin();
+  }
+
+  db.query("SELECT * FROM users WHERE email = ?", [email.trim()], async (err, result) => {
     if (err) return databaseError(res, err);
     if (result.length === 0) {
-      return res.status(400).json({ message: "User not found" });
+      return invalidLogin();
     }
 
     const user = result[0];
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Incorrect password" });
+      return invalidLogin();
     }
 
     // Create JWT token
