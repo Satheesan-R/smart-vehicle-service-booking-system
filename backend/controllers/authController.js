@@ -36,6 +36,9 @@ exports.register = async (req, res) => {
     }
     const [result] = await connection.query("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)", [name.trim(), email.trim(), hashedPassword, role]);
     await connection.query("INSERT INTO registration_profiles (user_id, phone, vehicle) VALUES (?, ?, ?)", [result.insertId, phone.trim(), profileVehicle]);
+    if (role === "client") {
+      await connection.query("INSERT INTO vehicles (user_id, vehicle_number, model, brand) VALUES (?, ?, ?, ?)", [result.insertId, vehicle.license_plate.trim().toUpperCase(), vehicle.model.trim(), vehicle.make.trim()]);
+    }
     await connection.commit();
     return res.status(201).json({ message: "User registered successfully", user: { id: result.insertId, name: name.trim(), email: email.trim(), role } });
   } catch (err) {

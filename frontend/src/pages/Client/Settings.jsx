@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCurrentUser } from "../../auth";
-import { getBookings } from "../../services/api";
+import { getBookings, getVehicles } from "../../services/api";
+import { Link } from "react-router-dom";
 
 import "../ClientDashboard.css";
 import "./Settings.css";
@@ -17,15 +18,18 @@ const notificationDefaults = {
 export default function ClientSettings() {
   const user = getCurrentUser();
   const [bookings, setBookings] = useState([]);
+  const [vehicles, setVehicles] = useState([]);
   const [notifications, setNotifications] = useState(notificationDefaults);
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     if (!user?.id) return;
-    getBookings(user.id).then(setBookings).catch(() => setBookings([]));
+    Promise.all([getBookings(user.id), getVehicles(user.id)]).then(([bookingData, vehicleData]) => {
+      setBookings(bookingData);
+      setVehicles(vehicleData);
+    }).catch(() => { setBookings([]); setVehicles([]); });
   }, [user?.id]);
 
-  const vehicles = [...new Map(bookings.filter(booking => booking.vehicle_id).map(booking => [booking.vehicle_id, booking])).values()];
   const toggleNotification = (name) => {
     setNotifications(previous => ({ ...previous, [name]: !previous[name] }));
     setSaved(false);
@@ -54,7 +58,7 @@ export default function ClientSettings() {
             <button type="button" className="settings-button settings-button-inline" onClick={() => setSaved(true)}>Save Changes</button>
           </section>
 
-          <section className="settings-card" aria-labelledby="vehicles-title"><div className="settings-section-heading"><div><h2 id="vehicles-title">My Vehicles</h2><p>Manage vehicles linked to your service history.</p></div><button type="button" className="settings-add-button">+ Add Vehicle</button></div><div className="settings-vehicle-list">{vehicles.length ? vehicles.map(vehicle => <article className="settings-vehicle" key={vehicle.vehicle_id}><div className="settings-vehicle-image" aria-hidden="true">CAR</div><div className="settings-vehicle-info"><strong>{vehicle.vehicle_id}</strong><span>{vehicle.service_type || "Vehicle service"}</span><small>Service requests: {bookings.filter(booking => booking.vehicle_id === vehicle.vehicle_id).length}</small></div><button type="button" className="settings-icon-button" aria-label={`Edit ${vehicle.vehicle_id}`}>Edit</button></article>) : <p className="settings-empty">Vehicles from your bookings will appear here.</p>}</div></section>
+          <section className="settings-card" aria-labelledby="vehicles-title"><div className="settings-section-heading"><div><h2 id="vehicles-title">My Vehicles</h2><p>Manage vehicles linked to your service history.</p></div><Link className="settings-add-button" to="/client/vehicles">+ Add Vehicle</Link></div><div className="settings-vehicle-list">{vehicles.length ? vehicles.map(vehicle => <article className="settings-vehicle" key={vehicle.id}><div className="settings-vehicle-image" aria-hidden="true">CAR</div><div className="settings-vehicle-info"><strong>{vehicle.brand} {vehicle.model}</strong><span>{vehicle.vehicle_number}</span><small>Service requests: {bookings.filter(booking => booking.vehicle_id === vehicle.vehicle_number).length}</small></div><Link className="settings-icon-button" to="/client/vehicles" aria-label={`Edit ${vehicle.vehicle_number}`}>View</Link></article>) : <p className="settings-empty">No registered vehicles yet. Add your first vehicle to get started.</p>}</div></section>
 
           <section className="settings-card" aria-labelledby="security-title"><div className="settings-section-heading"><div><h2 id="security-title">Security</h2><p>Change your password and authorization protocols.</p></div><span className="settings-health">High security</span></div><div className="settings-form-grid settings-password-grid"><label>Current password<input type="password" placeholder="••••••••" /></label><label>New password<input type="password" placeholder="New password" /></label><label>Confirm new password<input type="password" placeholder="Confirm password" /></label></div><button type="button" className="settings-button settings-button-inline">Update Password</button></section>
 

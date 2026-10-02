@@ -6,11 +6,14 @@ import ClientDashboard from "./pages/ClientDashboard";
 import CreateBooking from "./pages/Client/CreateBooking";
 import MyBookings from "./pages/Client/MyBookings";
 import ClientSettings from "./pages/Client/Settings";
+import MyVehicles from "./pages/Client/MyVehicles";
+import ServiceUpdates from "./pages/Client/ServiceUpdates";
 import GarageLayout from "./components/GarageLayout";
 import Overview from "./pages/Garage/Overview";
 import ServiceRequests from "./pages/Garage/ServiceRequests";
 import SendUpdate from "./pages/Garage/SendUpdate";
 import ActiveWork from "./pages/Garage/ActiveWork";
+import GarageSettings from "./pages/Garage/GarageSettings";
 import ClientLayout from "./components/ClientLayout";
 import "./App.css";
 
@@ -37,6 +40,8 @@ export default function App() {
         <Route path="/login" element={<AuthPage mode="login" />} />
         <Route element={<ProtectedRoute role="client"><ClientLayout /></ProtectedRoute>}>
           <Route path="/client" element={<ClientDashboard />} />
+          <Route path="/client/vehicles" element={<MyVehicles />} />
+          <Route path="/client/updates" element={<ServiceUpdates />} />
           <Route path="/client/book" element={<CreateBooking />} />
           <Route path="/client/bookings" element={<MyBookings />} />
           <Route path="/client/settings" element={<ClientSettings />} />
@@ -46,6 +51,7 @@ export default function App() {
           <Route path="requests" element={<ServiceRequests />} />
           <Route path="update" element={<SendUpdate />} />
           <Route path="active" element={<ActiveWork />} />
+          <Route path="settings" element={<GarageSettings />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

@@ -10,6 +10,7 @@ export default function GarageLayout() {
   const user = getCurrentUser();
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState("");
+  const [updateSuccess, setUpdateSuccess] = useState("");
   const [savingId, setSavingId] = useState(null);
   const [updateForm, setUpdateForm] = useState({ booking_id: "", message: "", eta_value: "", eta_unit: "hours", status: "in-progress" });
 
@@ -26,18 +27,19 @@ export default function GarageLayout() {
   };
 
   const handleUpdateSubmit = async (event) => {
-    event.preventDefault(); setError("");
+    event.preventDefault(); setError(""); setUpdateSuccess("");
     if (!updateForm.booking_id || !updateForm.message.trim()) { setError("Please select a booking and enter update message."); return; }
     setSavingId(Number(updateForm.booking_id));
     try {
       await createBookingUpdate(updateForm.booking_id, { garage_id: user?.id, message: updateForm.message, eta_value: updateForm.eta_value ? Number(updateForm.eta_value) : null, eta_unit: updateForm.eta_unit, status: updateForm.status });
       setUpdateForm((prev) => ({ ...prev, message: "", eta_value: "" }));
       await loadBookings();
+      setUpdateSuccess("Progress update sent successfully. The customer can now see this update.");
     } catch (err) { setError(err.message); }
     finally { setSavingId(null); }
   };
 
-  const context = { bookings, user, updateForm, setUpdateForm, handleUpdateSubmit, changeStatus, savingId };
+  const context = { bookings, user, updateForm, setUpdateForm, handleUpdateSubmit, changeStatus, savingId, updateSuccess };
   const onLogout = () => { logout(); navigate("/"); };
 
   return (
@@ -50,6 +52,7 @@ export default function GarageLayout() {
           <NavLink to="/garage/requests">Service requests <span>{bookings.length}</span></NavLink>
           <NavLink to="/garage/update">Send an update <span aria-hidden="true">+</span></NavLink>
           <NavLink to="/garage/active">Active work <span aria-hidden="true">↗</span></NavLink>
+          <NavLink to="/garage/settings">Settings <span aria-hidden="true">⚙</span></NavLink>
         </nav>
         <div className="garage-sidebar-note"><span aria-hidden="true">↗</span><h2>Great service. Clear communication.</h2><p>Keep customers informed at every stage of their service.</p><Link to="/garage/update">Share a progress update →</Link></div>
         <div className="garage-account"><span className="garage-avatar" aria-hidden="true">{user?.name?.charAt(0).toUpperCase() || "G"}</span><div><strong>{user?.name || "Garage team"}</strong><small>Garage account</small></div><button type="button" onClick={onLogout}>Log out</button></div>

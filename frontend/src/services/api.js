@@ -61,3 +61,14 @@ export function createBookingUpdate(bookingId, payload) {
 export function getBookingUpdates(bookingId) {
 	return request(`/bookings/${bookingId}/updates`);
 }
+
+export function getVehicles(userId) {
+	return request(`/vehicles?user_id=${encodeURIComponent(userId)}`);
+}
+
+export function createVehicle(payload) {
+	return request("/vehicles", {
+		method: "POST",
+		body: JSON.stringify(payload)
+	});
+}

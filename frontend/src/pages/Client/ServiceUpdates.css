@@ -1,0 +1,14 @@
+.client-updates-page { padding-bottom: 48px; }
+.client-update-list { display: grid; gap: 20px; }
+.client-update-card { border-color: #eeedf8; border-radius: 15px; }
+.client-update-card h2 { font-size: 20px; }
+.client-update-service { margin: 7px 0 0; color: #797d8b; font-size: 11px; }
+.client-update-card .client-status { white-space: nowrap; }
+.client-update-timeline { display: grid; gap: 14px; list-style: none; padding: 22px 0 0 18px; margin: 22px 0 0; border-top: 1px solid #eeedf8; }
+.client-update-timeline li { position: relative; padding-left: 18px; border-left: 2px solid #d6dfff; }
+.client-update-timeline li::before { content: ""; position: absolute; width: 9px; height: 9px; left: -6px; top: 3px; border-radius: 50%; background: #005bea; }
+.client-update-timeline strong { display: block; color: #182137; font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
+.client-update-timeline small { display: block; margin-top: 7px; color: #797d8b; font-size: 10px; line-height: 1.6; }
+.client-updates-empty { text-align: center; padding: 46px 24px; }
+.client-updates-empty strong { font-size: 15px; }
+.client-updates-empty p { color: #797d8b; font-size: 11px; }
