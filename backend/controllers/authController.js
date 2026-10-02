@@ -2,7 +2,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const JWT_SECRET = "your_secret_key"; // later move to .env
+const JWT_SECRET = process.env.JWT_SECRET || "your_secret_key";
 
 function databaseError(res, err) {
   console.error("Authentication database error:", err);

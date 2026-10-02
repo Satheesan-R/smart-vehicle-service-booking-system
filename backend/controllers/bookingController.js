@@ -2,7 +2,6 @@ const db = require("../config/db");
 
 exports.createBooking = (req, res) => {
   const {
-    user_id, 
     vehicle_id,
     service_type,
     booking_date
@@ -12,7 +11,7 @@ exports.createBooking = (req, res) => {
    (user_id, vehicle_id, service_type, booking_date, status)
    VALUES (?, ?, ?, ?, 'pending')`;
   
-  db.query(sql, [user_id, vehicle_id, service_type, booking_date], (err, result) => {
+  db.query(sql, [req.user.id, vehicle_id, service_type, booking_date], (err, result) => {
   if (err) return res.status(500).json({ message: "Database error", error: err.message });
 
   res.status(201).json({
@@ -23,8 +22,6 @@ exports.createBooking = (req, res) => {
 };
 
   exports.getBookings = (req, res) => {
-    const { user_id } = req.query;
-
     const baseSql = `
       SELECT
         b.id,
@@ -39,8 +36,9 @@ exports.createBooking = (req, res) => {
       LEFT JOIN users u ON b.user_id = u.id
     `;
 
-    const sql = user_id ? `${baseSql} WHERE b.user_id = ? ORDER BY b.id DESC` : `${baseSql} ORDER BY b.id DESC`;
-    const params = user_id ? [user_id] : [];
+    const isClient = req.user.role === "client";
+    const sql = isClient ? `${baseSql} WHERE b.user_id = ? ORDER BY b.id DESC` : `${baseSql} ORDER BY b.id DESC`;
+    const params = isClient ? [req.user.id] : [];
 
     db.query(sql, params, (err, rows) => {
       if (err) {
@@ -73,10 +71,10 @@ exports.updateBookingStatus = (req, res) => {
 
 exports.createBookingUpdate = (req, res) => {
   const bookingId = req.params.id;
-  const { garage_id, message, eta_value, eta_unit, status } = req.body;
+  const { message, eta_value, eta_unit, status } = req.body;
 
-  if (!garage_id || !message) {
-    return res.status(400).json({ message: "garage_id and message are required" });
+  if (!message) {
+    return res.status(400).json({ message: "message is required" });
   }
 
   const normalizedEtaValue = eta_value === "" || eta_value === null || eta_value === undefined ? null : Number(eta_value);
@@ -109,7 +107,7 @@ exports.createBookingUpdate = (req, res) => {
 
     db.query(
       "SELECT id FROM users WHERE id = ? AND role = 'garage'",
-      [garage_id],
+      [req.user.id],
       (garageErr, garageRows) => {
         if (garageErr) {
           return res.status(500).json({ message: "Database error", error: garageErr.message });
@@ -126,7 +124,7 @@ exports.createBookingUpdate = (req, res) => {
 
         db.query(
           insertSql,
-          [bookingId, garage_id, message, normalizedEtaValue, normalizedEtaUnit],
+          [bookingId, req.user.id, message, normalizedEtaValue, normalizedEtaUnit],
           (insertErr, result) => {
             if (insertErr) {
               return res.status(500).json({ message: "Database error", error: insertErr.message });
