@@ -75,7 +75,6 @@ export default function AuthPage({ mode }) {
                 <legend>I'm joining as a</legend>
                 <div className="register-role-options">
                   <label className={form.role === "client" ? "register-role selected" : "register-role"}><input type="radio" name="role" value="client" checked={form.role === "client"} onChange={handleChange} /><span><strong>Vehicle owner</strong><small>Book & track services</small></span></label>
-                  <label className={form.role === "garage" ? "register-role selected" : "register-role"}><input type="radio" name="role" value="garage" checked={form.role === "garage"} onChange={handleChange} /><span><strong>Garage team</strong><small>Manage service requests</small></span></label>
                 </div>
               </fieldset>
               <div className="register-field"><label htmlFor="register-name">{form.role === "garage" ? "Garage name" : "Full name"}</label><input id="register-name" name="name" autoComplete={form.role === "garage" ? "organization" : "name"} placeholder={form.role === "garage" ? "Enter your garage name" : "Enter your full name"} value={form.name} onChange={handleChange} disabled={loading} required /></div>
