@@ -63,7 +63,7 @@ export default function AuthPage({ mode }) {
   if (isSignup) {
     return (
       <main className="register-page">
-<header className="register-site-header"><Link className="register-logo" to="/">Auto<span>Care</span></Link><Link to="/">← Back to website</Link></header>
+       <header className="register-site-header"><Link className="register-logo" to="/">Auto<span>Care</span></Link><Link to="/">← Back to website</Link></header>
         <section className="register-content" aria-labelledby="register-title">
           <div className="register-topbar"><Link to="/">← Back to home</Link><span>Already a member? <Link to="/login">Log in ↗</Link></span></div>
           <div className="register-form-wrap">
