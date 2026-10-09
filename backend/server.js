@@ -25,7 +25,7 @@ db.query(createBookingUpdatesTable, (err) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Backend is running 🚀");
+  res.send("Backend is running ");
 });
 
 app.listen(5000, () => {
